@@ -162,8 +162,9 @@ export default function Home() {
         {/* Contact Section */}
         <section id="contact" className="py-16">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Get in Touch</h2>
+          <h3 className="font-semibold text-lg">I&apos;m always open to research collaborations and discussions.</h3>
           <p className="text-muted-foreground">
-            I'm always open to research collaborations and discussions.
+            I&apos;m always open to research collaborations and discussions.
           </p>
           <div className="mt-4 flex space-x-4">
             <Button asChild>
