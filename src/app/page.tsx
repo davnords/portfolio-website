@@ -52,6 +52,9 @@ export default function Home() {
             <p className="mt-4 max-w-[700px] text-muted-foreground">
               I like Deep Learning and Computer Vision. Make GPUs go brrr.
             </p>
+            <p className="mt-4 max-w-[700px] text-muted-foreground text-sm">
+              Supervised by Prof. Fredrik Kahl and Dr. Georg Bökman.
+            </p>
             <div className="mt-6 flex space-x-4">
               <Button variant="outline" size="icon" asChild>
                 <a href="www.linkedin.com/in/david-nordstrom-807b64183" target="_blank" rel="noopener noreferrer">
@@ -80,7 +83,7 @@ export default function Home() {
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
           <div className="grid gap-6">
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <h3 className="font-semibold text-lg">Stronger ViTs With Octic Equivariance</h3>
+              <h3 className="font-semibold text-lg">Octic Vision Transformers: Quicker ViTs Through Equivariance</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman
               </p>
@@ -154,6 +157,31 @@ export default function Home() {
                 <h3 className="font-semibold text-lg">B.Sc. in Economics</h3>
                 <p className="text-sm text-muted-foreground">University of Gothenburg</p>
                 <p className="mt-2 text-sm">Completed in parallel with Industrial Engineering degree</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Teaching Section */}
+        <section id="teaching" className="py-16">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Teaching</h2>
+          <div className="grid gap-6">
+             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-lg">Computer Vision</h3>
+                  <p className="text-sm text-muted-foreground">EEN020, Chalmers University of Technology</p>
+                </div>
+                <span className="text-sm font-medium bg-gray-500/10 dark:bg-gray-300/10 px-2 py-0.5 rounded">Fall 2025</span>
+              </div>
+            </div>
+            <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-lg">Deep Machine Learning</h3>
+                  <p className="text-sm text-muted-foreground">SSY340, Chalmers University of Technology</p>
+                </div>
+                <span className="text-sm font-medium bg-gray-500/10 dark:bg-gray-300/10 px-2 py-0.5 rounded">Fall 2025</span>
               </div>
             </div>
           </div>
