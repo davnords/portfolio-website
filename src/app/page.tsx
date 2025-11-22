@@ -4,6 +4,19 @@ import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
 
+export function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M21.35 11.1H12v2.8h5.35c-.25 1.4-1.6 4.1-5.35 4.1-3.25 0-5.9-2.7-5.9-6s2.65-6 5.9-6c1.85 0 3.1.8 3.8 1.5l1.95-1.9C16.4 3.2 14.4 2 12 2 6.95 2 3 6 3 12s3.95 10 9 10c5.2 0 8.65-3.7 8.65-8.9 0-.6-.1-1.3-.3-2z"/>
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background">
@@ -57,21 +70,27 @@ export default function Home() {
             </p>
             <div className="mt-6 flex space-x-4">
               <Button variant="outline" size="icon" asChild>
-                <a href="www.linkedin.com/in/david-nordstrom-807b64183" target="_blank" rel="noopener noreferrer">
-                  <LinkedinIcon className="h-4 w-4" />
-                  <span className="sr-only">LinkedIn Profile</span>
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
                 <a href="https://github.com/davnords" target="_blank" rel="noopener noreferrer">
                   <GithubIcon className="h-4 w-4" />
                   <span className="sr-only">GitHub Profile</span>
                 </a>
               </Button>
               <Button variant="outline" size="icon" asChild>
+                <a href="https://scholar.google.com/citations?user=-vJPE04AAAAJ" target="_blank" rel="noopener noreferrer">
+                  <GoogleScholarIcon className="h-4 w-4" />
+                  <span className="sr-only">Google Scholar Profile</span>
+                </a>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
                 <a href="mailto:davnords@chalmers.se">
                   <MailIcon className="h-4 w-4" />
                   <span className="sr-only">Email</span>
+                </a>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <a href="www.linkedin.com/in/david-nordstrom-807b64183" target="_blank" rel="noopener noreferrer">
+                  <LinkedinIcon className="h-4 w-4" />
+                  <span className="sr-only">LinkedIn Profile</span>
                 </a>
               </Button>
             </div>
@@ -82,6 +101,18 @@ export default function Home() {
         <section id="publications" className="py-16">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
           <div className="grid gap-6">
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <h3 className="font-semibold text-lg">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg
+              </p>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="text-sm font-medium">Pre-print</span>
+                <span className="text-sm text-muted-foreground">•</span>
+                <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2511.15706</a>
+              </div>
+              <p className="mt-2 text-sm">RoMa v2 is a dense feature matcher that combines speed with diverse data and novel architecture and matching loss. The result is a state-of-the-art model that excels on a wide range of tasks.</p>
+            </div>
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <h3 className="font-semibold text-lg">Octic Vision Transformers: Quicker ViTs Through Equivariance</h3>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -116,12 +147,12 @@ export default function Home() {
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex justify-between items-start">
                 <div>
-                  <h3 className="font-semibold text-lg">PhD in Geometric Deep Learning</h3>
+                  <h3 className="font-semibold text-lg">PhD in Geometric Deep Learning and 3D Computer Vision</h3>
                   <p className="text-sm text-muted-foreground">Chalmers University of Technology</p>
                 </div>
                 <span className="text-sm font-medium bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded">Ongoing</span>
               </div>
-              <p className="mt-2 text-sm">Research focus on equivariant neural networks and efficient deep learning architectures.</p>
+              <p className="mt-2 text-sm">Research focus on equivariant neural networks, efficient deep learning architectures and 3D computer vision.</p>
             </div>
 
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
@@ -166,7 +197,7 @@ export default function Home() {
         <section id="teaching" className="py-16">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Teaching</h2>
           <div className="grid gap-6">
-             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+            <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex justify-between items-start">
                 <div>
                   <h3 className="font-semibold text-lg">Computer Vision</h3>
@@ -192,7 +223,7 @@ export default function Home() {
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Get in Touch</h2>
           <h3 className="font-semibold text-lg">I&apos;m always open to research collaborations and discussions.</h3>
           <p className="text-muted-foreground">
-            I&apos;m always open to research collaborations and discussions.
+            Feel free to reach out via email for any inquiries or opportunities.
           </p>
           <div className="mt-4 flex space-x-4">
             <Button asChild>
