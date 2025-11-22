@@ -4,7 +4,7 @@ import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
 
-export function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
+function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       viewBox="0 0 24 24"
