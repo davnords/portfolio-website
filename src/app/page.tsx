@@ -102,6 +102,18 @@ export default function Home() {
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
           <div className="grid gap-6">
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <h3 className="font-semibold text-lg">MuM: Multi-View Masked Image Modeling for 3D Vision</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman
+              </p>
+              <div className="mt-1 flex items-center gap-2">
+                <span className="text-sm font-medium">Pre-print</span>
+                <span className="text-sm text-muted-foreground">•</span>
+                <a href="https://arxiv.org/abs/2511.17309" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2511.17309</a>
+              </div>
+              <p className="mt-2 text-sm">MuM is a feature encoder tailored for 3D vision. We extend the MAE objective to arbitrarily many frames and show that when scaling this we can beat DINOv3 and CroCo v2 on matching, feedforward reconstruction, and relative pose estimation.</p>
+            </div>
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <h3 className="font-semibold text-lg">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg
