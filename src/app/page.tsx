@@ -106,10 +106,14 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman
               </p>
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-3 flex-wrap">
                 <span className="text-sm font-medium">Pre-print</span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <a href="https://arxiv.org/abs/2511.17309" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2511.17309</a>
+                <a href="https://arxiv.org/abs/2511.17309" target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <img src="https://img.shields.io/badge/arXiv-2511.17309-b31b1b" alt="arXiv" className="h-5" />
+                </a>
+                <a href="https://github.com/davnords/mum" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                  <GithubIcon className="h-5 w-5" />
+                </a>
               </div>
               <p className="mt-2 text-sm">MuM is a feature encoder tailored for 3D vision. We extend the MAE objective to arbitrarily many frames and show that when scaling this we can beat DINOv3 and CroCo v2 on matching, feedforward reconstruction, and relative pose estimation.</p>
             </div>
@@ -118,10 +122,14 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">
                 Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg
               </p>
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-3 flex-wrap">
                 <span className="text-sm font-medium">Pre-print</span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2511.15706</a>
+                <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
+                </a>
+                <a href="https://github.com/Parskatt/romav2" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                  <GithubIcon className="h-5 w-5" />
+                </a>
               </div>
               <p className="mt-2 text-sm">RoMa v2 is a dense feature matcher that combines speed with diverse data and novel architecture and matching loss. The result is a state-of-the-art model that excels on a wide range of tasks.</p>
             </div>
@@ -130,10 +138,14 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">
                 <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman
               </p>
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-3 flex-wrap">
                 <span className="text-sm font-medium">Pre-print</span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <a href="https://arxiv.org/abs/2505.15441" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2505.15441</a>
+                <a href="https://arxiv.org/abs/2505.15441" target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <img src="https://img.shields.io/badge/arXiv-2505.15441-b31b1b" alt="arXiv" className="h-5" />
+                </a>
+                <a href="https://github.com/davnords/octic-vits" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                  <GithubIcon className="h-5 w-5" />
+                </a>
               </div>
               <p className="mt-2 text-sm">Introducing octic-equivariant Vision Transformers, achieving 40% FLOPs reduction while improving both classification and segmentation performance for DeiT III and DINOv2.</p>
             </div>
@@ -142,10 +154,14 @@ export default function Home() {
               <p className="mt-2 text-sm text-muted-foreground">
                 Georg Bökman, <span className="font-medium text-foreground">David Nordström</span>, Fredrik Kahl
               </p>
-              <div className="mt-1 flex items-center gap-2">
+              <div className="mt-1 flex items-center gap-3 flex-wrap">
                 <span className="text-sm font-medium text-blue-500">ICML 2025 Spotlight Paper</span>
-                <span className="text-sm text-muted-foreground">•</span>
-                <a href="https://arxiv.org/abs/2502.05169" target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-foreground">arXiv:2502.05169</a>
+                <a href="https://arxiv.org/abs/2502.05169" target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <img src="https://img.shields.io/badge/arXiv-2502.05169-b31b1b" alt="arXiv" className="h-5" />
+                </a>
+                <a href="https://github.com/georg-bn/flopping-for-flops" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                  <GithubIcon className="h-5 w-5" />
+                </a>
               </div>
               <p className="mt-2 text-sm">We show that building flopping-equivariance into modern vision architectures reduces the number of FLOPs and increases performance.</p>
             </div>
