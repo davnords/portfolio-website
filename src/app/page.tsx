@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
 
@@ -68,29 +68,37 @@ export default function Home() {
             <p className="mt-4 max-w-[700px] text-muted-foreground text-sm">
               Supervised by Prof. Fredrik Kahl and Dr. Georg Bökman.
             </p>
-            <div className="mt-6 flex space-x-4">
-              <Button variant="outline" size="icon" asChild>
-                <a href="https://github.com/davnords" target="_blank" rel="noopener noreferrer">
-                  <GithubIcon className="h-4 w-4" />
-                  <span className="sr-only">GitHub Profile</span>
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <a href="https://scholar.google.com/citations?user=-vJPE04AAAAJ" target="_blank" rel="noopener noreferrer">
-                  <GoogleScholarIcon className="h-4 w-4" />
-                  <span className="sr-only">Google Scholar Profile</span>
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <a href="mailto:davnords@chalmers.se">
-                  <MailIcon className="h-4 w-4" />
-                  <span className="sr-only">Email</span>
-                </a>
-              </Button>
-              <Button variant="outline" size="icon" asChild>
-                <a href="www.linkedin.com/in/david-nordstrom-807b64183" target="_blank" rel="noopener noreferrer">
-                  <LinkedinIcon className="h-4 w-4" />
-                  <span className="sr-only">LinkedIn Profile</span>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <div className="flex space-x-4">
+                <Button variant="outline" size="icon" asChild>
+                  <a href="https://github.com/davnords" target="_blank" rel="noopener noreferrer">
+                    <GithubIcon className="h-4 w-4" />
+                    <span className="sr-only">GitHub Profile</span>
+                  </a>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <a href="https://scholar.google.com/citations?user=-vJPE04AAAAJ" target="_blank" rel="noopener noreferrer">
+                    <GoogleScholarIcon className="h-4 w-4" />
+                    <span className="sr-only">Google Scholar Profile</span>
+                  </a>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <a href="mailto:davnords@chalmers.se">
+                    <MailIcon className="h-4 w-4" />
+                    <span className="sr-only">Email</span>
+                  </a>
+                </Button>
+                <Button variant="outline" size="icon" asChild>
+                  <a href="www.linkedin.com/in/david-nordstrom-807b64183" target="_blank" rel="noopener noreferrer">
+                    <LinkedinIcon className="h-4 w-4" />
+                    <span className="sr-only">LinkedIn Profile</span>
+                  </a>
+                </Button>
+              </div>
+              <Button variant="default" asChild>
+                <a href="/Resume_David_Nordstrom.pdf" download>
+                  <DownloadIcon className="h-4 w-4" />
+                  Download Resume
                 </a>
               </Button>
             </div>
@@ -253,11 +261,17 @@ export default function Home() {
           <p className="text-muted-foreground">
             Feel free to reach out via email for any inquiries or opportunities.
           </p>
-          <div className="mt-4 flex space-x-4">
+          <div className="mt-4 flex flex-wrap gap-4">
             <Button asChild>
               <a href="mailto:davnords@chalmers.se">
                 <MailIcon className="mr-2 h-4 w-4" />
                 davnords@chalmers.se
+              </a>
+            </Button>
+            <Button variant="outline" asChild>
+              <a href="/Resume_David_Nordstrom.pdf" download>
+                <DownloadIcon className="mr-2 h-4 w-4" />
+                Download Resume
               </a>
             </Button>
           </div>
