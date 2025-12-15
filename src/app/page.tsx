@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, FileTextIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
 
