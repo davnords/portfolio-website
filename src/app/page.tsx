@@ -317,9 +317,9 @@ export default function Home() {
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
-                  <h3 className="font-semibold text-lg">Computer Vision Course</h3>
+                  <h3 className="font-semibold text-lg">Feedforward 3D Reconstruction</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Guest lecture on deep learning and computer vision
+                    Guest lecture in the Computer Vision course at Chalmers University of Technology.
                   </p>
                 </div>
                 <span className="text-sm font-medium bg-red-500/10 text-red-500 px-2 py-0.5 rounded flex items-center gap-1">
@@ -329,7 +329,7 @@ export default function Home() {
               </div>
               <div className="mt-4 flex items-center gap-3">
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                  <a href="https://www.youtube.com/watch?v=z0Um97MSJoA" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                     <YoutubeIcon className="h-4 w-4" />
                     Watch on YouTube
                     <ExternalLinkIcon className="h-3 w-3" />
