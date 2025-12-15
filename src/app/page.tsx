@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, FileTextIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
 
@@ -24,7 +24,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="container flex h-16 items-center justify-between">
           <nav className="flex items-center space-x-8 ml-6">
-            {["About", "Publications", "Education", "Contact"].map((item) => (
+            {["About", "News", "Publications", "Education", "Talks", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -105,8 +105,64 @@ export default function Home() {
           </div>
         </section>
 
+        {/* News Section */}
+        <section id="news" className="py-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">News</h2>
+          <div className="space-y-6">
+            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10">
+                    <NewspaperIcon className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border"></div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">Pre-prints out now for MuM and RoMa v2</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        Released our work on Multi-View Masked Image Modeling for 3D Vision and a new dense feature matcher, RoMa v2.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CalendarIcon className="h-4 w-4" />
+                      <time dateTime="2025-01-15">Nov, 2025</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
+                    <AwardIcon className="h-5 w-5 text-green-500" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border"></div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">ICML 2025 Spotlight</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        &quot;Flopping for FLOPs&quot; accepted as Spotlight Paper at ICML 2025.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <CalendarIcon className="h-4 w-4" />
+                      <time dateTime="2025-01-10">May, 2025</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Publications Section */}
-        <section id="publications" className="py-16">
+        <section id="publications" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
           <div className="grid gap-6">
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
@@ -177,7 +233,7 @@ export default function Home() {
         </section>
 
         {/* Education Section */}
-        <section id="education" className="py-16">
+        <section id="education" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Education</h2>
           <div className="grid gap-6">
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
@@ -230,7 +286,7 @@ export default function Home() {
         </section>
 
         {/* Teaching Section */}
-        <section id="teaching" className="py-16">
+        <section id="teaching" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Teaching</h2>
           <div className="grid gap-6">
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
@@ -254,8 +310,63 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Talks Section */}
+        <section id="talks" className="py-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Talks</h2>
+          <div className="grid gap-6">
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg">Computer Vision Course</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Guest lecture on deep learning and computer vision
+                  </p>
+                </div>
+                <span className="text-sm font-medium bg-red-500/10 text-red-500 px-2 py-0.5 rounded flex items-center gap-1">
+                  <YoutubeIcon className="h-3.5 w-3.5" />
+                  Video
+                </span>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <YoutubeIcon className="h-4 w-4" />
+                    Watch on YouTube
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+            {/* Example structure for future talks with slides:
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg">Talk Title</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Description of the talk
+                  </p>
+                </div>
+                <span className="text-sm font-medium bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded flex items-center gap-1">
+                  <FileTextIcon className="h-3.5 w-3.5" />
+                  Slides
+                </span>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="/path/to/slides.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <FileTextIcon className="h-4 w-4" />
+                    View Slides
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+            */}
+          </div>
+        </section>
+
         {/* Contact Section */}
-        <section id="contact" className="py-16">
+        <section id="contact" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Get in Touch</h2>
           <h3 className="font-semibold text-lg">I&apos;m always open to research collaborations and discussions.</h3>
           <p className="text-muted-foreground">
