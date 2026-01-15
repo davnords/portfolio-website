@@ -3,6 +3,13 @@ import { ModeToggle } from "@/components/mode-toggle"
 import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
 import Image from "next/image"
 import { ShootingStars } from "@/components/shooting-stars"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -362,6 +369,55 @@ export default function Home() {
               </div>
             </div>
             */}
+          </div>
+        </section>
+
+        {/* Gallery Section */}
+        <section id="gallery" className="py-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Gallery</h2>
+          <div className="relative w-full max-w-4xl mx-auto">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent>
+                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border">
+                      <Image
+                        src="/gallery/wasp_winter_conference_26.jpg"
+                        alt="Presentation at conference"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-center text-muted-foreground">
+                      WASP Winter Conference 2026
+                    </p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border">
+                      <Image
+                        src="/gallery/icml_25.jpeg"
+                        alt="Research presentation"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-center text-muted-foreground">
+                      ICML 2025
+                    </p>
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
           </div>
         </section>
 
