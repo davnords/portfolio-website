@@ -440,6 +440,51 @@ export default function Home() {
                     </p>
                   </div>
                 </CarouselItem>
+                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border">
+                      <Image
+                        src="/gallery/singapore_wasp.jpg"
+                        alt="WASP event in Singapore"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-center text-muted-foreground">
+                      WASP in Singapore
+                    </p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border">
+                      <Image
+                        src="/gallery/ssba_award.jpeg"
+                        alt="SSBA award ceremony"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-center text-muted-foreground">
+                      SSBA26 Award
+                    </p>
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+                  <div className="space-y-2">
+                    <div className="relative aspect-[4/3] rounded-lg overflow-hidden border">
+                      <Image
+                        src="/gallery/ssba_present.jpeg"
+                        alt="SSBA presentation"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <p className="text-sm text-center text-muted-foreground">
+                      SSBA26 Presentation
+                    </p>
+                  </div>
+                </CarouselItem>
               </CarouselContent>
               <CarouselPrevious className="left-4" />
               <CarouselNext className="right-4" />
