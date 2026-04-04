@@ -133,7 +133,7 @@ export default function LoMaPage() {
         <section className="max-w-5xl mx-auto py-12 border-t border-border">
           <Image src="/projects/loma/thresholds.png" alt="LoMa teaser" width={1600} height={900} className="w-full h-auto rounded-lg" />
           <p className="mt-3 text-sm text-muted-foreground text-center">
-            <strong className="text-foreground">Figure 1.</strong> LoMa achieves state-of-the-art results, even beating the RoMa-family, on various benchmarks. Here we report percentage-of-correct keypoints for different pixel thresholds on HardMatch (a new benchmark that we will release soon). 
+            <strong className="text-foreground">Figure 1.</strong> LoMa achieves state-of-the-art results, even beating the RoMa-family, on various benchmarks. Here we report percentage-of-correct keypoints for different pixel thresholds on HardMatch (a new benchmark that we will release soon). We also provide a human baseline on the benchmark by querying independent annotators.
           </p>
         </section>
 
