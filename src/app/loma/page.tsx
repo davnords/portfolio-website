@@ -31,17 +31,19 @@ const affiliations = [
 
 const links = [
   { label: "Paper", icon: FileTextIcon, href: "/papers/LoMa.pdf" },
-  { label: "arXiv", icon: ExternalLinkIcon, href: "https://arxiv.org/abs/TBD" },
+  { label: "arXiv", icon: ExternalLinkIcon, href: "https://arxiv.org/abs/2604.04931" },
   { label: "GitHub", icon: ExternalLinkIcon, href: "http://github.com/davnords/loma" },
 ]
 
-// const bibtex = `@article{nordstrom2025loma,
-//   title     = {LoMa: Local Feature Matching Revisited},
-//   author    = {Nordström, David},
-//   journal   = {arXiv preprint},
-//   year      = {2025},
-// }`
-const bibtex = `Preprint coming soon...`
+const bibtex = `@misc{nordström2026lomalocalfeaturematching,
+      title={LoMa: Local Feature Matching Revisited}, 
+      author={David Nordström and Johan Edstedt and Georg Bökman and Jonathan Astermark and Anders Heyden and Viktor Larsson and Mårten Wadenbäck and Michael Felsberg and Fredrik Kahl},
+      year={2026},
+      eprint={2604.04931},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2604.04931}, 
+}`
 
 export default function LoMaPage() {
   return (
