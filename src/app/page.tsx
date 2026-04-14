@@ -204,8 +204,9 @@ export default function Home() {
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <h3 className="font-semibold text-lg">LoMa: Local Feature Matching Revisited</h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Georg Bökman, Jonathan Astermark, Anders Heyden, Viktor Larsson, Mårten Wadenbäck, Michael Felsberg, Fredrik Kahl
+                <span className="font-medium text-foreground">David Nordström</span><sup>*</sup>, Johan Edstedt<sup>*</sup>, Georg Bökman, Jonathan Astermark, Anders Heyden, Viktor Larsson, Mårten Wadenbäck, Michael Felsberg, Fredrik Kahl
               </p>
+              {/* <p className="text-xs text-muted-foreground mt-0.5"><sup>*</sup>Equal contribution</p> */}
               <div className="mt-1 flex items-center gap-3 flex-wrap">
                 <span className="text-sm font-medium">Pre-print</span>
                 <a href="https://arxiv.org/abs/2604.04931" target="_blank" rel="noopener noreferrer" className="inline-block">
