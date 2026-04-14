@@ -197,7 +197,26 @@ export default function Home() {
         {/* Publications Section */}
         <section id="publications" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
-          <div className="grid gap-6">
+
+          {/* Selected */}
+          <h3 className="mb-4 text-base font-semibold uppercase tracking-widest text-muted-foreground">Selected</h3>
+          <div className="grid gap-6 mb-10">
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <h3 className="font-semibold text-lg">LoMa: Local Feature Matching Revisited</h3>
+              <p className="mt-2 text-sm text-muted-foreground">
+                <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Georg Bökman, Jonathan Astermark, Anders Heyden, Viktor Larsson, Mårten Wadenbäck, Michael Felsberg, Fredrik Kahl
+              </p>
+              <div className="mt-1 flex items-center gap-3 flex-wrap">
+                <span className="text-sm font-medium">Pre-print</span>
+                <a href="https://arxiv.org/abs/2604.04931" target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <img src="https://img.shields.io/badge/arXiv-2604.04931-b31b1b" alt="arXiv" className="h-5" />
+                </a>
+                <a href="https://github.com/davnords/loma" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                  <GithubIcon className="h-5 w-5" />
+                </a>
+              </div>
+              <p className="mt-2 text-sm">LoMa revisits local feature matching from a data-driven perspective, combining large and diverse data mixtures, modern training recipes, and scaled compute. We also introduce HardMatch, a new benchmark of 1000 challenging image pairs. LoMa outperforms ALIKED+LightGlue by +18.6 mAA on HardMatch and +29.5 mAA on WxBS.</p>
+            </div>
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <h3 className="font-semibold text-lg">MuM: Multi-View Masked Image Modeling for 3D Vision</h3>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -215,38 +234,6 @@ export default function Home() {
               <p className="mt-2 text-sm">MuM is a feature encoder tailored for 3D vision. We extend the MAE objective to arbitrarily many frames and show that when scaling this we can beat DINOv3 and CroCo v2 on matching, feedforward reconstruction, and relative pose estimation.</p>
             </div>
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <h3 className="font-semibold text-lg">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg
-              </p>
-              <div className="mt-1 flex items-center gap-3 flex-wrap">
-                <span className="text-sm font-medium">Pre-print</span>
-                <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
-                </a>
-                <a href="https://github.com/Parskatt/romav2" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                  <GithubIcon className="h-5 w-5" />
-                </a>
-              </div>
-              <p className="mt-2 text-sm">RoMa v2 is a dense feature matcher that combines speed with diverse data and novel architecture and matching loss. The result is a state-of-the-art model that excels on a wide range of tasks.</p>
-            </div>
-            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <h3 className="font-semibold text-lg">Octic Vision Transformers: Quicker ViTs Through Equivariance</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                <span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman
-              </p>
-              <div className="mt-1 flex items-center gap-3 flex-wrap">
-                <span className="text-sm font-medium">Pre-print</span>
-                <a href="https://arxiv.org/abs/2505.15441" target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <img src="https://img.shields.io/badge/arXiv-2505.15441-b31b1b" alt="arXiv" className="h-5" />
-                </a>
-                <a href="https://github.com/davnords/octic-vits" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                  <GithubIcon className="h-5 w-5" />
-                </a>
-              </div>
-              <p className="mt-2 text-sm">Introducing octic-equivariant Vision Transformers, achieving 40% FLOPs reduction while improving both classification and segmentation performance for DeiT III and DINOv2.</p>
-            </div>
-            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <h3 className="font-semibold text-lg">Flopping for FLOPs: Leveraging equivariance for computational efficiency</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Georg Bökman, <span className="font-medium text-foreground">David Nordström</span>, Fredrik Kahl
@@ -261,6 +248,62 @@ export default function Home() {
                 </a>
               </div>
               <p className="mt-2 text-sm">We show that building flopping-equivariance into modern vision architectures reduces the number of FLOPs and increases performance.</p>
+            </div>
+          </div>
+
+          {/* Other */}
+          <h3 className="mb-4 text-base font-semibold uppercase tracking-widest text-muted-foreground">Other</h3>
+          <div className="grid gap-3">
+            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-medium">Who Handles Orientation? Investigating Invariance in Feature Matching</h3>
+                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                  <span className="text-sm font-medium text-blue-500">CVPRW 2026</span>
+                  <a href="https://arxiv.org/abs/2604.11809" target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <img src="https://img.shields.io/badge/arXiv-2604.11809-b31b1b" alt="arXiv" className="h-5" />
+                  </a>
+                  <a href="https://github.com/davnords/loma" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                    <GithubIcon className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-medium">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                  <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
+                  <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
+                  </a>
+                  <a href="https://github.com/Parskatt/romav2" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                    <GithubIcon className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-medium">Octic Vision Transformers: Quicker ViTs Through Equivariance</h3>
+                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman</p>
+                </div>
+                <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                  <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
+                  <a href="https://arxiv.org/abs/2505.15441" target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <img src="https://img.shields.io/badge/arXiv-2505.15441-b31b1b" alt="arXiv" className="h-5" />
+                  </a>
+                  <a href="https://github.com/davnords/octic-vits" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                    <GithubIcon className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
