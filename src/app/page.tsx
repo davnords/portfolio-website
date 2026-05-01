@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 import { ShootingStars } from "@/components/shooting-stars"
 import {
   Carousel,
@@ -215,6 +216,10 @@ export default function Home() {
                 <a href="https://github.com/davnords/loma" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
                   <GithubIcon className="h-5 w-5" />
                 </a>
+                <Link href="/loma" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <ExternalLinkIcon className="h-3.5 w-3.5" />
+                  Project page
+                </Link>
               </div>
               <p className="mt-2 text-sm">LoMa revisits local feature matching from a data-driven perspective, combining large and diverse data mixtures, modern training recipes, and scaled compute. We also introduce HardMatch, a new benchmark of 1000 challenging image pairs. LoMa outperforms ALIKED+LightGlue by +18.6 mAA on HardMatch and +29.5 mAA on WxBS.</p>
             </div>
@@ -231,6 +236,10 @@ export default function Home() {
                 <a href="https://github.com/davnords/mum" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
                   <GithubIcon className="h-5 w-5" />
                 </a>
+                <Link href="/mum" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                  <ExternalLinkIcon className="h-3.5 w-3.5" />
+                  Project page
+                </Link>
               </div>
               <p className="mt-2 text-sm">MuM is a feature encoder tailored for 3D vision. We extend the MAE objective to arbitrarily many frames and show that when scaling this we can beat DINOv3 and CroCo v2 on matching, feedforward reconstruction, and relative pose estimation.</p>
             </div>
