@@ -9,6 +9,15 @@ export default {
   ],
   theme: {
   	extend: {
+  		animation: {
+  			marquee: 'marquee var(--marquee-duration, 40s) linear infinite',
+  		},
+  		keyframes: {
+  			marquee: {
+  				from: { transform: 'translateX(0)' },
+  				to: { transform: 'translateX(calc(-50% - 0.5rem))' },
+  			},
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
