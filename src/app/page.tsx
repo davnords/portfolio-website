@@ -29,11 +29,11 @@ function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
-        <div className="flex h-16 w-full items-center justify-between px-8">
-          <nav className="flex items-center space-x-8">
+        <div className="flex h-16 w-full items-center justify-between px-4 md:px-8">
+          <nav className="hidden sm:flex items-center space-x-4 md:space-x-8">
             {["About", "News", "Publications", "Education", "Talks", "Contact"].map((item) => (
               <a
                 key={item}
@@ -44,6 +44,7 @@ export default function Home() {
               </a>
             ))}
           </nav>
+          <div className="sm:hidden" />
           <div className="">
             <ModeToggle />
           </div>
@@ -51,7 +52,7 @@ export default function Home() {
       </header>
 
       <TracingBeam>
-      <div className="container mx-auto px-4 pt-20">
+      <div className="w-full max-w-5xl mx-auto px-4 pt-20">
         {/* Hero Section */}
         <section id="about" className="flex min-h-[80vh] flex-col items-center justify-center py-24 relative overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -83,7 +84,7 @@ export default function Home() {
                 priority
               />
             </div>
-            <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
               David Nordström
             </h1>
             <p className="mt-4 text-xl text-muted-foreground">
@@ -119,7 +120,7 @@ export default function Home() {
               <span className="cursor-pointer font-medium text-foreground underline decoration-dotted underline-offset-4">Georg Bökman</span>
             </Tooltip>.
             </span>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap sm:justify-center">
               <div className="flex space-x-4">
                 <Button variant="outline" size="icon" asChild>
                   <a href="https://github.com/davnords" target="_blank" rel="noopener noreferrer">
@@ -154,7 +155,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <TechMarquee className="mt-12 w-full max-w-3xl" />
+          <TechMarquee className="mt-12 w-full max-w-3xl hidden sm:flex" />
         </section>
 
         {/* News Section */}
@@ -195,15 +196,15 @@ export default function Home() {
                   </div>
                   <div className="mt-2 h-full w-px bg-border"></div>
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-lg">Pre-prints out now for MuM and RoMa v2</h3>
                       <p className="mt-1 text-sm text-muted-foreground">
                         Released our work on Multi-View Masked Image Modeling for 3D Vision and a new dense feature matcher, RoMa v2.
                       </p>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
                       <CalendarIcon className="h-4 w-4" />
                       <time dateTime="2025-01-15">Nov, 2025</time>
                     </div>
@@ -220,15 +221,15 @@ export default function Home() {
                   </div>
                   <div className="mt-2 h-full w-px bg-border"></div>
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                    <div className="flex-1 min-w-0">
                       <h3 className="font-semibold text-lg">ICML 2025 Spotlight</h3>
                       <p className="mt-1 text-sm text-muted-foreground">
                         &quot;Flopping for FLOPs&quot; accepted as Spotlight Paper at ICML 2025.
                       </p>
                     </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
                       <CalendarIcon className="h-4 w-4" />
                       <time dateTime="2025-01-10">May, 2025</time>
                     </div>
@@ -387,12 +388,12 @@ export default function Home() {
           <h3 className="mb-4 text-base font-semibold uppercase tracking-widest text-muted-foreground">Other</h3>
           <div className="grid gap-3">
             <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex items-start justify-between gap-4">
-                <div>
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <h3 className="font-medium">Who Handles Orientation? Investigating Invariance in Feature Matching</h3>
                   <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman</p>
                 </div>
-                <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
                   <span className="text-sm font-medium text-blue-500">CVPRW 2026</span>
                   <a href="https://arxiv.org/abs/2604.11809" target="_blank" rel="noopener noreferrer" className="inline-block">
                     <img src="https://img.shields.io/badge/arXiv-2604.11809-b31b1b" alt="arXiv" className="h-5" />
@@ -404,12 +405,12 @@ export default function Home() {
               </div>
             </div>
             <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex items-start justify-between gap-4">
-                <div>
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <h3 className="font-medium">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
                   <p className="mt-1 text-sm text-muted-foreground">Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg</p>
                 </div>
-                <div className="flex items-center gap-2 shrink-0 mt-0.5">
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
                   <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
                   <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
                     <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
