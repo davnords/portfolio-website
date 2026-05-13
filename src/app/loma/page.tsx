@@ -4,6 +4,14 @@ import { ShootingStars } from "@/components/shooting-stars"
 import { ExternalLinkIcon, ArrowLeftIcon, FileTextIcon } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 export const metadata = {
   title: "LoMa: Local Feature Matching Revisited",
@@ -157,6 +165,158 @@ export default function LoMaPage() {
           <p className="mt-6 text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
             LoMa takes the best of prior work and combines it in a novel matching pipeline. The descriptor and matcher are trained on a large collection of 3D vision datasets. The resulting models achieve state-of-the-art results, even surpassing dense matchers on some benchmarks.
           </p>
+        </section>
+
+        {/* Results */}
+        <section className="max-w-5xl mx-auto py-12 border-t border-border">
+          <h2 className="text-2xl font-bold mb-8 text-center">Results</h2>
+
+          {/* Visual Localization Table */}
+          <div className="mb-10">
+            <h3 className="text-lg font-semibold mb-1 text-center">Visual Localization</h3>
+            <p className="text-sm text-muted-foreground text-center mb-4">
+              Comparison on Map-free, InLoc, and Oxford Day-and-Night. For InLoc and Oxford, we report % of queries localized within (0.25m, 2°) / (0.5m, 5°) / (1m, 10°).
+            </p>
+            <div className="rounded-lg border border-border overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead rowSpan={2} className="align-bottom w-[160px]">Method</TableHead>
+                    <TableHead colSpan={2} className="text-center border-b-0">Map-free</TableHead>
+                    <TableHead colSpan={2} className="text-center border-b-0">InLoc</TableHead>
+                    <TableHead className="text-center border-b-0">Oxford</TableHead>
+                  </TableRow>
+                  <TableRow>
+                    <TableHead className="text-center">Prec. ↑</TableHead>
+                    <TableHead className="text-center">AUC ↑</TableHead>
+                    <TableHead className="text-center">DUC1</TableHead>
+                    <TableHead className="text-center">DUC2</TableHead>
+                    <TableHead className="text-center">Night</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell colSpan={6} className="text-xs font-semibold text-muted-foreground bg-muted/30 py-2 px-4">
+                      Prior work
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>SP+SG</TableCell>
+                    <TableCell className="text-center">46.3</TableCell>
+                    <TableCell className="text-center">74.1</TableCell>
+                    <TableCell className="text-center">46.5/65.7/78.3</TableCell>
+                    <TableCell className="text-center">52.7/72.5/79.4</TableCell>
+                    <TableCell className="text-center">44.3/54.4/58.0</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>SP+LG</TableCell>
+                    <TableCell className="text-center">45.5</TableCell>
+                    <TableCell className="text-center">76.2</TableCell>
+                    <TableCell className="text-center">43.9/64.6/76.8</TableCell>
+                    <TableCell className="text-center">42.7/68.7/74.0</TableCell>
+                    <TableCell className="text-center">43.4/53.5/57.7</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>DISK+LG</TableCell>
+                    <TableCell className="text-center">43.2</TableCell>
+                    <TableCell className="text-center">60.7</TableCell>
+                    <TableCell className="text-center">43.4/60.6/74.2</TableCell>
+                    <TableCell className="text-center">36.6/53.4/67.2</TableCell>
+                    <TableCell className="text-center">14.8/17.5/20.1</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>ALIKED+LG</TableCell>
+                    <TableCell className="text-center">47.2</TableCell>
+                    <TableCell className="text-center">79.5</TableCell>
+                    <TableCell className="text-center">41.4/64.6/79.8</TableCell>
+                    <TableCell className="text-center">35.9/64.1/67.9</TableCell>
+                    <TableCell className="text-center">42.8/53.9/58.9</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={6} className="text-xs font-semibold text-muted-foreground bg-muted/30 py-2 px-4">
+                      Ours
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>LoMa-B</TableCell>
+                    <TableCell className="text-center">65.6</TableCell>
+                    <TableCell className="text-center">89.0</TableCell>
+                    <TableCell className="text-center">57.1/<strong>80.8</strong>/<strong>91.9</strong></TableCell>
+                    <TableCell className="text-center">71.0/87.0/88.5</TableCell>
+                    <TableCell className="text-center">54.7/62.4/66.2</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>LoMa-L</TableCell>
+                    <TableCell className="text-center">67.6</TableCell>
+                    <TableCell className="text-center">89.4</TableCell>
+                    <TableCell className="text-center"><strong>59.1</strong>/<strong>80.8</strong>/<strong>91.9</strong></TableCell>
+                    <TableCell className="text-center">71.0/84.0/87.8</TableCell>
+                    <TableCell className="text-center">56.0/64.6/69.2</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>LoMa-G</TableCell>
+                    <TableCell className="text-center"><strong>68.9</strong></TableCell>
+                    <TableCell className="text-center"><strong>90.3</strong></TableCell>
+                    <TableCell className="text-center">55.6/80.3/91.4</TableCell>
+                    <TableCell className="text-center"><strong>73.3/87.8/89.3</strong></TableCell>
+                    <TableCell className="text-center"><strong>58.9/66.0/69.7</strong></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
+
+          {/* Pose Estimation / Matching Table */}
+          <div>
+            <h3 className="text-lg font-semibold mb-1 text-center">Relative Pose Estimation & Matching</h3>
+            <p className="text-sm text-muted-foreground text-center mb-4">
+              AUC@20° on MegaDepth-1500 and ScanNet-1500. mAA@10px on WxBS and HardMatch.
+            </p>
+            <div className="rounded-lg border border-border overflow-x-auto">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[160px]">Method</TableHead>
+                    <TableHead className="text-center">MegaDepth ↑</TableHead>
+                    <TableHead className="text-center">ScanNet ↑</TableHead>
+                    <TableHead className="text-center">WxBS ↑</TableHead>
+                    <TableHead className="text-center">HardMatch ↑</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell>ALIKED+LG</TableCell>
+                    <TableCell className="text-center">79.3</TableCell>
+                    <TableCell className="text-center">43.5</TableCell>
+                    <TableCell className="text-center">43.9</TableCell>
+                    <TableCell className="text-center">35.7</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>RoMa</TableCell>
+                    <TableCell className="text-center"><strong>86.3</strong></TableCell>
+                    <TableCell className="text-center">70.9</TableCell>
+                    <TableCell className="text-center">72.6</TableCell>
+                    <TableCell className="text-center">48.1</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>MASt3R</TableCell>
+                    <TableCell className="text-center">76.9</TableCell>
+                    <TableCell className="text-center"><strong>74.1</strong></TableCell>
+                    <TableCell className="text-center">34.5</TableCell>
+                    <TableCell className="text-center">33.6</TableCell>
+                  </TableRow>
+    
+                  <TableRow>
+                    <TableCell>LoMa-G</TableCell>
+                    <TableCell className="text-center">84.0</TableCell>
+                    <TableCell className="text-center">70.0</TableCell>
+                    <TableCell className="text-center"><strong>73.4</strong></TableCell>
+                    <TableCell className="text-center"><strong>54.3</strong></TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </div>
         </section>
 
         {/* BibTeX */}
