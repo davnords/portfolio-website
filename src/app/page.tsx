@@ -618,6 +618,7 @@ export default function Home() {
           <div className="relative overflow-hidden w-full h-full py-20">
             <Carousel slides={[
               { title: "SSBA26 Award",                button: "View", src: "/gallery/ssba_award.jpeg" },
+              { title: "CVPR 2026",                   button: "View", src: "/gallery/cvpr_26.jpg" },
               { title: "WASP in Singapore",           button: "View", src: "/gallery/singapore_wasp.jpg" },
               { title: "ICML 2025",                  button: "View", src: "/gallery/icml_25.jpeg" },
               { title: "WASP Winter Conference 2026", button: "View", src: "/gallery/wasp_winter_conference_26.jpg" },
