@@ -166,6 +166,31 @@ export default function Home() {
             <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex gap-4">
                 <div className="flex flex-col items-center">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/10">
+                    <AwardIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <div className="mt-2 h-full w-px bg-border"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-lg">3 papers accepted at ECCV 2026</h3>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        LoMa, Octic ViTs, and RoMa v2 all accepted at ECCV 2026.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
+                      <CalendarIcon className="h-4 w-4" />
+                      <time dateTime="2026-06-01">Jun, 2026</time>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex gap-4">
+                <div className="flex flex-col items-center">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10">
                     <AwardIcon className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                   </div>
@@ -251,8 +276,8 @@ export default function Home() {
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
                 <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-300/50 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:border-slate-600/50 dark:bg-slate-800 dark:text-slate-300">
-                    Pre-print
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+                    ★ ECCV 2026
                   </span>
                 </CardItem>
                 <CardItem translateZ={60} className="w-full mt-3">
@@ -323,8 +348,8 @@ export default function Home() {
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
                 <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-300/50 bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600 dark:border-slate-600/50 dark:bg-slate-800 dark:text-slate-300">
-                    Pre-print
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
+                    ★ ECCV 2026
                   </span>
                 </CardItem>
                 <CardItem translateZ={60} className="w-full mt-3">
@@ -411,7 +436,7 @@ export default function Home() {
                   <p className="mt-1 text-sm text-muted-foreground">Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
+                  <span className="text-sm font-medium text-blue-500">ECCV 2026</span>
                   <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
                     <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
                   </a>
