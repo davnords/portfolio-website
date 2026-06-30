@@ -155,7 +155,7 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <TechMarquee className="mt-12 w-full max-w-3xl hidden sm:flex" />
+          {/* <TechMarquee className="mt-12 w-full max-w-3xl hidden sm:flex" /> */}
         </section>
 
         {/* News Section */}
