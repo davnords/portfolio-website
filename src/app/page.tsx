@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, CalendarIcon, NewspaperIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ShootingStars } from "@/components/shooting-stars"
@@ -8,7 +8,6 @@ import Carousel from "@/components/ui/carousel"
 import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { FlipWords } from "@/components/ui/flip-words"
 import { TracingBeam } from "@/components/ui/tracing-beam"
-import { TechMarquee } from "@/components/ui/tech-marquee"
 import { Terminal } from "@/components/ui/terminal"
 import { Tooltip } from "@/components/ui/tooltip-card"
 import { GlobeClient } from "@/components/globe-client"
@@ -98,7 +97,7 @@ export default function Home() {
               Supervised by{" "}
               <Tooltip content={
               <div>
-                <img src="/team/kahl.jpg" alt="Fredrik Kahl" className="aspect-square w-full rounded-sm object-cover" />
+                <div className="relative aspect-square w-full"><Image src="/team/kahl.jpg" alt="Fredrik Kahl" fill className="rounded-sm object-cover" /></div>
                 <div className="my-3 flex flex-col">
                   <p className="text-base font-bold text-neutral-900 dark:text-neutral-100">Prof. Fredrik Kahl</p>
                   <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">Professor at Chalmers. Legend in computer vision, very mathematical. Always supportive.</p>
@@ -110,7 +109,7 @@ export default function Home() {
               {" "}and{" "}
               <Tooltip content={
               <div>
-                <img src="/team/GeorgBoekman.jpg" alt="Georg Bökman" className="aspect-square w-full rounded-sm object-cover" />
+                <div className="relative aspect-square w-full"><Image src="/team/GeorgBoekman.jpg" alt="Georg Bökman" fill className="rounded-sm object-cover" /></div>
                 <div className="my-3 flex flex-col">
                   <p className="text-base font-bold text-neutral-900 dark:text-neutral-100">Dr. Georg Bökman</p>
                   <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">PostDoc in Amsterdam, formerly at Chalmers. Equivariance legend. Best mentor.</p>
@@ -161,107 +160,36 @@ export default function Home() {
         {/* News Section */}
         <section id="news" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">News</h2>
-          <div className="space-y-6">
+          <div className="divide-y divide-border">
 
-            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-500/10">
-                    <AwardIcon className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div className="mt-2 h-full w-px bg-border"></div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">3 papers accepted at ECCV 2026</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        LoMa, Octic ViTs, and RoMa v2 all accepted at ECCV 2026.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
-                      <CalendarIcon className="h-4 w-4" />
-                      <time dateTime="2026-06-01">Jun, 2026</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
+              <time dateTime="2026-06-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Jun 2026</time>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">LoMa</span>, <span className="font-semibold text-foreground">Octic ViTs</span>, and <span className="font-semibold text-foreground">RoMa v2</span> all accepted at ECCV 2026.
+              </p>
             </div>
 
-            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-500/10">
-                    <AwardIcon className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div className="mt-2 h-full w-px bg-border"></div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                    <div className="flex-1">
-                      <h3 className="font-semibold text-lg">MuM accepted at CVPR 2026</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        Our paper on Multi-View Masked Image Modeling for 3D Vision has been accepted at CVPR 2026.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
-                      <CalendarIcon className="h-4 w-4" />
-                      <time dateTime="2026-02-01">Feb, 2026</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
+              <time dateTime="2026-02-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Feb 2026</time>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">MuM</span> accepted at CVPR 2026. Our paper on Multi-View Masked Image Modeling for 3D Vision.
+              </p>
             </div>
 
-            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10">
-                    <NewspaperIcon className="h-5 w-5 text-blue-500" />
-                  </div>
-                  <div className="mt-2 h-full w-px bg-border"></div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-lg">Pre-prints out now for MuM and RoMa v2</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        Released our work on Multi-View Masked Image Modeling for 3D Vision and a new dense feature matcher, RoMa v2.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
-                      <CalendarIcon className="h-4 w-4" />
-                      <time dateTime="2025-01-15">Nov, 2025</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
+              <time dateTime="2025-11-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Nov 2025</time>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Pre-prints released for <span className="font-semibold text-foreground">MuM</span> and <span className="font-semibold text-foreground">RoMa v2</span>.
+              </p>
             </div>
 
-            <div className="group relative rounded-lg border p-6 transition-colors hover:bg-muted/50">
-              <div className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/10">
-                    <AwardIcon className="h-5 w-5 text-green-500" />
-                  </div>
-                  <div className="mt-2 h-full w-px bg-border"></div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-lg">ICML 2025 Spotlight</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        &quot;Flopping for FLOPs&quot; accepted as Spotlight Paper at ICML 2025.
-                      </p>
-                    </div>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground shrink-0">
-                      <CalendarIcon className="h-4 w-4" />
-                      <time dateTime="2025-01-10">May, 2025</time>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
+              <time dateTime="2025-05-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">May 2025</time>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                <span className="font-semibold text-foreground">&quot;Flopping for FLOPs&quot;</span> accepted as Spotlight Paper at ICML 2025.
+              </p>
             </div>
+
           </div>
         </section>
 
@@ -275,18 +203,14 @@ export default function Home() {
             {/* LoMa */}
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-                    ★ ECCV 2026
-                  </span>
-                </CardItem>
-                <CardItem translateZ={60} className="w-full mt-3">
+                <CardItem translateZ={60} className="w-full">
                   <h3 className="text-xl font-bold leading-snug">LoMa</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Local Feature Matching Revisited</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span><sup>*</sup>, J. Edstedt<sup>*</sup>, G. Bökman, J. Astermark, A. Heyden, V. Larsson, M. Wadenbäck, M. Felsberg, F. Kahl</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026</p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
-                  <img src="/projects/loma/teaser.png" alt="LoMa method" className="h-44 w-full object-cover rounded-xl" />
+                  <div className="relative h-44 w-full"><Image src="/projects/loma/teaser.png" alt="LoMa method" fill className="object-cover rounded-xl" /></div>
                 </CardItem>
                 <CardItem translateZ={30} className="w-full mt-2">
                   <p className="text-sm text-muted-foreground">Revisits local feature matching with large data mixtures and scaled compute. <span className="font-semibold text-foreground">+18.6 mAA</span> on HardMatch over ALIKED+LightGlue.</p>
@@ -311,18 +235,14 @@ export default function Home() {
             {/* MuM */}
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-                    ★ CVPR 2026
-                  </span>
-                </CardItem>
-                <CardItem translateZ={60} className="w-full mt-3">
+                <CardItem translateZ={60} className="w-full">
                   <h3 className="text-xl font-bold leading-snug">MuM</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Multi-View Masked Image Modeling for 3D Vision</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span>, J. Edstedt, F. Kahl, G. Bökman</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">CVPR 2026</p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
-                  <img src="/projects/mum/teaser.png" alt="MuM teaser" className="h-44 w-full object-cover rounded-xl" />
+                  <div className="relative h-44 w-full"><Image src="/projects/mum/teaser.png" alt="MuM teaser" fill className="object-cover rounded-xl" /></div>
                 </CardItem>
                 <CardItem translateZ={30} className="w-full mt-2">
                   <p className="text-sm text-muted-foreground">Feature encoder for 3D vision via multi-frame MAE. Beats DINOv3 and CroCo v2 on matching, reconstruction, and pose estimation.</p>
@@ -347,18 +267,14 @@ export default function Home() {
             {/* Octic Vision Transformers */}
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-400/40 bg-blue-500/10 px-2.5 py-1 text-xs font-semibold text-blue-600 dark:text-blue-400">
-                    ★ ECCV 2026
-                  </span>
-                </CardItem>
-                <CardItem translateZ={60} className="w-full mt-3">
+                <CardItem translateZ={60} className="w-full">
                   <h3 className="text-xl font-bold leading-snug">Octic ViTs</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Octic Vision Transformers: Quicker ViTs Through Equivariance</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span>, J. Edstedt, F. Kahl, G. Bökman</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026</p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
-                  <img src="/projects/octic/method.png" alt="Octic ViTs" className="h-44 w-full object-cover rounded-xl" />
+                  <div className="relative h-44 w-full"><Image src="/projects/octic/method.png" alt="Octic ViTs" fill className="object-cover rounded-xl" /></div>
                 </CardItem>
                 <CardItem translateZ={30} className="w-full mt-2">
                   <p className="text-sm text-muted-foreground">Builds 8-fold symmetry into Vision Transformers, reducing compute while improving performance through equivariance.</p>
@@ -379,18 +295,14 @@ export default function Home() {
             {/* Flopping for FLOPs */}
             <CardContainer containerClassName="py-2 w-full" className="w-full">
               <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={50} className="w-full">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-400/40 bg-amber-500/10 px-2.5 py-1 text-xs font-semibold text-amber-600 dark:text-amber-400">
-                    ★ ICML 2025 Spotlight
-                  </span>
-                </CardItem>
-                <CardItem translateZ={60} className="w-full mt-3">
+                <CardItem translateZ={60} className="w-full">
                   <h3 className="text-xl font-bold leading-snug">Flopping for FLOPs</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Leveraging equivariance for computational efficiency</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">G. Bökman, <span className="font-medium text-foreground">D. Nordström</span>, F. Kahl</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 Spotlight</p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
-                  <img src="/projects/flopping/flopping.png" alt="Flopping for FLOPs" className="h-44 w-full object-cover rounded-xl" />
+                  <div className="relative h-44 w-full"><Image src="/projects/flopping/flopping.png" alt="Flopping for FLOPs" fill className="object-cover rounded-xl" /></div>
                 </CardItem>
                 <CardItem translateZ={30} className="w-full mt-2">
                   <p className="text-sm text-muted-foreground">Flopping-equivariance in modern vision architectures reduces FLOPs and improves performance — a free lunch from symmetry.</p>
@@ -495,7 +407,7 @@ export default function Home() {
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex justify-between items-start">
                 <div className="flex items-center gap-4">
-                  <img src="/logos/chalmers.png" alt="Chalmers" className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
+                  <Image src="/logos/chalmers.png" alt="Chalmers" width={48} height={48} className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg">PhD in Geometric Deep Learning and 3D Computer Vision</h3>
                     <p className="text-sm text-muted-foreground">Chalmers University of Technology</p>
@@ -508,7 +420,7 @@ export default function Home() {
 
             <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex items-center gap-4">
-                <img src="/logos/chalmers.png" alt="Chalmers" className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
+                <Image src="/logos/chalmers.png" alt="Chalmers" width={48} height={48} className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
                 <div>
                   <h3 className="font-semibold text-lg">M.Sc. in Engineering Mathematics</h3>
                   <p className="text-sm text-muted-foreground">Chalmers University of Technology</p>
@@ -532,7 +444,7 @@ export default function Home() {
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
                 <div className="flex items-center gap-4">
-                  <img src="/logos/chalmers.png" alt="Chalmers" className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
+                  <Image src="/logos/chalmers.png" alt="Chalmers" width={48} height={48} className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg">B.Sc. in Industrial Engineering</h3>
                     <p className="text-sm text-muted-foreground">Chalmers University of Technology</p>
@@ -545,7 +457,7 @@ export default function Home() {
 
               <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
                 <div className="flex items-center gap-4">
-                  <img src="/logos/gu.png" alt="University of Gothenburg" className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
+                  <Image src="/logos/gu.png" alt="University of Gothenburg" width={48} height={48} className="h-12 w-12 rounded-full object-contain border bg-white p-1 shrink-0" />
                   <div>
                     <h3 className="font-semibold text-lg">B.Sc. in Economics</h3>
                     <p className="text-sm text-muted-foreground">University of Gothenburg</p>
@@ -659,7 +571,7 @@ export default function Home() {
             My research is a result of a great collaboration with{" "}
             <Tooltip content={
               <div>
-                <img src="/team/GeorgBoekman.jpg" alt="Georg Bökman" className="aspect-square w-full rounded-sm object-cover" />
+                <div className="relative aspect-square w-full"><Image src="/team/GeorgBoekman.jpg" alt="Georg Bökman" fill className="rounded-sm object-cover" /></div>
                 <div className="my-3 flex flex-col">
                   <p className="text-base font-bold text-neutral-900 dark:text-neutral-100">Dr. Georg Bökman</p>
                   <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">PostDoc in Amsterdam, formerly at Chalmers. Equivariance legend. Best mentor.</p>
@@ -671,7 +583,7 @@ export default function Home() {
             {" "}and{" "}
             <Tooltip content={
               <div>
-                <img src="/team/edstedt.jpg" alt="Johan Edstedt" className="aspect-square w-full rounded-sm object-cover" />
+                <div className="relative aspect-square w-full"><Image src="/team/edstedt.jpg" alt="Johan Edstedt" fill className="rounded-sm object-cover" /></div>
                 <div className="my-3 flex flex-col">
                   <p className="text-base font-bold text-neutral-900 dark:text-neutral-100">Johan Edstedt</p>
                   <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">Now at Apple, formerly at Linköping University. Image matching guy, creator of RoMa and DKM. Great guy.</p>
@@ -683,7 +595,7 @@ export default function Home() {
             , and my main supervisor{" "}
             <Tooltip content={
               <div>
-                <img src="/team/kahl.jpg" alt="Fredrik Kahl" className="aspect-square w-full rounded-sm object-cover" />
+                <div className="relative aspect-square w-full"><Image src="/team/kahl.jpg" alt="Fredrik Kahl" fill className="rounded-sm object-cover" /></div>
                 <div className="my-3 flex flex-col">
                   <p className="text-base font-bold text-neutral-900 dark:text-neutral-100">Prof. Fredrik Kahl</p>
                   <p className="mt-1 text-xs text-neutral-600 dark:text-neutral-400">Professor at Chalmers. Legend in computer vision, very mathematical. Always supportive.</p>
