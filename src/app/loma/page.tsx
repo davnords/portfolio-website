@@ -43,14 +43,11 @@ const links = [
   { label: "GitHub", icon: ExternalLinkIcon, href: "http://github.com/davnords/loma" },
 ]
 
-const bibtex = `@misc{nordström2026lomalocalfeaturematching,
+const bibtex = `@inproceedings{nordstrom2026loma,
       title={LoMa: Local Feature Matching Revisited}, 
       author={David Nordström and Johan Edstedt and Georg Bökman and Jonathan Astermark and Anders Heyden and Viktor Larsson and Mårten Wadenbäck and Michael Felsberg and Fredrik Kahl},
-      year={2026},
-      eprint={2604.04931},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2604.04931}, 
+      booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+      year={2026}
 }`
 
 export default function LoMaPage() {
@@ -79,7 +76,7 @@ export default function LoMaPage() {
             {/* Venue badge */}
             <div className="mb-6">
               <span className="inline-block rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-muted-foreground">
-                Preprint 2026
+                ECCV 2026
               </span>
             </div>
 
