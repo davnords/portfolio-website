@@ -165,7 +165,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
               <time dateTime="2026-06-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Jun 2026</time>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-foreground">LoMa</span>, <span className="font-semibold text-foreground">Octic ViTs</span>, and <span className="font-semibold text-foreground">RoMa v2</span> all accepted at ECCV 2026.
+                3 papers accepted at ECCV 2026: <span className="font-semibold text-foreground">LoMa</span> <span className="font-semibold text-orange-500">(Oral)</span>, <span className="font-semibold text-foreground">Octic ViTs</span>, and <span className="font-semibold text-foreground">RoMa v2</span> <span className="font-semibold text-orange-500">(Oral)</span>.
               </p>
             </div>
 
@@ -207,7 +207,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold leading-snug">LoMa</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Local Feature Matching Revisited</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span><sup>*</sup>, J. Edstedt<sup>*</sup>, G. Bökman, J. Astermark, A. Heyden, V. Larsson, M. Wadenbäck, M. Felsberg, F. Kahl</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026 <span className="text-orange-500">Oral</span></p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
                   <div className="relative h-44 w-full"><Image src="/projects/loma/teaser.png" alt="LoMa method" fill className="object-cover rounded-xl" /></div>
@@ -348,7 +348,7 @@ export default function Home() {
                   <p className="mt-1 text-sm text-muted-foreground">Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-blue-500">ECCV 2026</span>
+                  <span className="text-sm font-medium text-blue-500">ECCV 2026 <span className="text-orange-500">Oral</span></span>
                   <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
                     <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
                   </a>
