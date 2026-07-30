@@ -64,6 +64,7 @@ export default function Home() {
               markers={[
                 { lat: 39.74, lng: -104.99, src: "/logos/cvpr2026.png", label: "CVPR 2026" },
                 { lat: 49.2827, lng: -123.121, src: "/logos/icmlbg.jpg", label: "ICML 2025" },
+                { lat: 55.61, lng: 13.0, src: "/logos/eccv2026.png", label: "ECCV 2026" },
               ] as GlobeMarker[]}
               config={{
                 atmosphereColor: "#4da6ff",
@@ -186,7 +187,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
               <time dateTime="2025-05-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">May 2025</time>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                <span className="font-semibold text-foreground">&quot;Flopping for FLOPs&quot;</span> accepted as Spotlight Paper at ICML 2025.
+                <span className="font-semibold text-foreground">&quot;Flopping for FLOPs&quot;</span> accepted as <span className="font-semibold text-purple-500">Spotlight</span> Paper at ICML 2025.
               </p>
             </div>
 
@@ -299,7 +300,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold leading-snug">Flopping for FLOPs</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Leveraging equivariance for computational efficiency</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">G. Bökman, <span className="font-medium text-foreground">D. Nordström</span>, F. Kahl</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 <span className="text-yellow-500">Spotlight</span></p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 <span className="text-purple-500">Spotlight</span></p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
                   <div className="relative h-44 w-full"><Image src="/projects/flopping/flopping.png" alt="Flopping for FLOPs" fill className="object-cover rounded-xl" /></div>
