@@ -299,7 +299,7 @@ export default function Home() {
                   <h3 className="text-xl font-bold leading-snug">Flopping for FLOPs</h3>
                   <p className="text-sm text-muted-foreground mt-0.5">Leveraging equivariance for computational efficiency</p>
                   <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">G. Bökman, <span className="font-medium text-foreground">D. Nordström</span>, F. Kahl</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 Spotlight</p>
+                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 <span className="text-yellow-500">Spotlight</span></p>
                 </CardItem>
                 <CardItem translateZ={100} className="w-full mt-4">
                   <div className="relative h-44 w-full"><Image src="/projects/flopping/flopping.png" alt="Flopping for FLOPs" fill className="object-cover rounded-xl" /></div>
