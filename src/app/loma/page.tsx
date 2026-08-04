@@ -41,6 +41,7 @@ const links = [
   { label: "Paper", icon: FileTextIcon, href: "/papers/LoMa.pdf" },
   { label: "arXiv", icon: ExternalLinkIcon, href: "https://arxiv.org/abs/2604.04931" },
   { label: "GitHub", icon: ExternalLinkIcon, href: "http://github.com/davnords/loma" },
+  { label: "HardMatch Dataset", icon: ExternalLinkIcon, href: "/loma/hardmatch", internal: true },
 ]
 
 const bibtex = `@inproceedings{nordstrom2026loma,
@@ -126,10 +127,17 @@ export default function LoMaPage() {
             <div className="flex flex-wrap justify-center gap-3">
               {links.map((link) => (
                 <Button key={link.label} variant="outline" asChild>
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                    <link.icon className="h-4 w-4" />
-                    {link.label}
-                  </a>
+                  {link.internal ? (
+                    <Link href={link.href} className="flex items-center gap-2">
+                      <link.icon className="h-4 w-4" />
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <link.icon className="h-4 w-4" />
+                      {link.label}
+                    </a>
+                  )}
                 </Button>
               ))}
             </div>
@@ -140,7 +148,9 @@ export default function LoMaPage() {
         <section className="max-w-5xl mx-auto py-12 border-t border-border">
           <Image src="/projects/loma/thresholds.png" alt="LoMa teaser" width={1600} height={900} className="w-full h-auto rounded-lg" />
           <p className="mt-3 text-sm text-muted-foreground text-center">
-            <strong className="text-foreground">Figure 1.</strong> LoMa achieves state-of-the-art results, even beating the RoMa-family, on various benchmarks. Here we report percentage-of-correct keypoints for different pixel thresholds on HardMatch (a novel benchmark that we will release soon). We also provide a human baseline by querying independent annotators.
+            <strong className="text-foreground">Figure 1.</strong> LoMa achieves state-of-the-art results, even beating the RoMa-family, on various benchmarks. Here we report percentage-of-correct keypoints for different pixel thresholds on{" "}
+            <Link href="/loma/hardmatch" className="underline hover:text-foreground">HardMatch</Link>
+            , our new benchmark of 1000 challenging manually-annotated image pairs. We also provide a human baseline by querying independent annotators.
           </p>
         </section>
 
