@@ -356,13 +356,15 @@ export default function HardMatchPage() {
     })
   }, [metadata, activeCategory, activeTag])
 
-  const selectedPair = selectedIdx !== null ? filtered[selectedIdx] : null
+  const visible = useMemo(() => filtered.filter(p => p.corresp.length > 0), [filtered])
+
+  const selectedPair = selectedIdx !== null ? visible[selectedIdx] : null
 
   const handleClose = useCallback(() => setSelectedIdx(null), [])
   const handlePrev = useCallback(() => setSelectedIdx(i => (i !== null && i > 0 ? i - 1 : i)), [])
   const handleNext = useCallback(
-    () => setSelectedIdx(i => (i !== null && i < filtered.length - 1 ? i + 1 : i)),
-    [filtered.length]
+    () => setSelectedIdx(i => (i !== null && i < visible.length - 1 ? i + 1 : i)),
+    [visible.length]
   )
 
   return (
@@ -464,7 +466,7 @@ export default function HardMatchPage() {
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
-                {filtered.map((pair, idx) => (
+                {visible.map((pair, idx) => (
                   <PairCard key={pair.id} pair={pair} onClick={() => setSelectedIdx(idx)} />
                 ))}
               </div>
@@ -481,7 +483,7 @@ export default function HardMatchPage() {
           onPrev={handlePrev}
           onNext={handleNext}
           hasPrev={selectedIdx !== null && selectedIdx > 0}
-          hasNext={selectedIdx !== null && selectedIdx < filtered.length - 1}
+          hasNext={selectedIdx !== null && selectedIdx < visible.length - 1}
         />
       )}
     </main>
