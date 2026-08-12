@@ -166,7 +166,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
               <time dateTime="2026-06-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Jun 2026</time>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                3 papers accepted at ECCV 2026: <span className="font-semibold text-foreground">LoMa</span> <span className="font-semibold text-orange-500">(Oral)</span>, <span className="font-semibold text-foreground">Octic ViTs</span>, and <span className="font-semibold text-foreground">RoMa v2</span> <span className="font-semibold text-orange-500">(Oral)</span>.
+                3 papers accepted at ECCV 2026: <span className="font-semibold text-foreground">LoMa</span> <span className="font-semibold text-orange-500">(Oral)</span>, <span className="font-semibold text-foreground">Octic ViTs</span>, and <span className="font-semibold text-foreground">RoMa v2</span> <span className="font-semibold text-orange-500">(Oral)</span>. Also, <span className="font-semibold text-foreground">RoMa-Ω</span> accepted at the SFM-DL workshop.
               </p>
             </div>
 
