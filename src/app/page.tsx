@@ -332,6 +332,23 @@ export default function Home() {
             <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
                 <div className="min-w-0">
+                  <h3 className="font-medium">RoMa-&Omega;: What Feed-Forward 3D Models Know About Image Matching</h3>
+                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Xinyue Zhang, Thibaut Loiseau, Vincent Lepetit, Fredrik Kahl</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
+                  <span className="text-sm font-medium text-blue-500">ECCVW 2026</span>
+                  <a href="https://arxiv.org/abs/2609.09507" target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <img src="https://img.shields.io/badge/arXiv-2609.09507-b31b1b" alt="arXiv" className="h-5" />
+                  </a>
+                  <a href="https://github.com/davnords/roma-omega" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                    <GithubIcon className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <h3 className="font-medium">Who Handles Orientation? Investigating Invariance in Feature Matching</h3>
                   <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman</p>
                 </div>
