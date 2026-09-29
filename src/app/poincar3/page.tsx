@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeftIcon, ArrowUpRightIcon, BoxIcon, FileTextIcon, GithubIcon, PackageIcon } from "lucide-react"
+import { ArrowLeftIcon, BoxIcon, FileTextIcon, GithubIcon, PackageIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
@@ -42,7 +42,7 @@ const affiliations = [
 const stats = [
   { value: "94.9", unit: "PCK@50", label: "Zero-shot multi-view correspondence on ScanNet, straight from the attention map" },
   { value: "650", unit: "M params", label: "ViT-L encoder plus a 12-layer alternating-attention multi-view decoder" },
-  { value: "0", unit: "3D labels", label: "Trained from scratch on unlabeled internet video — no poses, no depth, no correspondences" },
+  { value: "0", unit: "3D labels", label: "Trained from scratch on unlabeled internet videos. No poses, no depth, no correspondences" },
   { value: "3", unit: "days · 8×H200", label: "400k steps at 256×256, sequences of 2 to 24 views" },
 ]
 
@@ -99,19 +99,6 @@ for imgs in loader:            # mini-batch of M+T frame sequences
     update(fs)                              # AdamW
     ft.params = l * ft.params + (1 - l) * fs.params`
 
-const usage = `import torch
-from poincar3 import Poincar3
-
-model = Poincar3().eval().cuda()
-
-# [batch, frames, 3, H, W], RGB in [0, 1], H and W multiples of 16
-images = torch.rand(1, 4, 3, 448, 448).cuda()
-
-with torch.no_grad():
-    patch_logits, patch_features, global_logits, camera_tokens = model(images)
-
-# patch_features:  [1, 4, 784, 1024]  dense tokens, cross-view attended
-# camera_tokens:   [1, 4, 1024]       one scene/pose token per frame`
 
 const bibtex = `@article{nordstrom2026poincare3,
   title={Emergent Multi-View Geometry Through Self-Distillation},
@@ -173,10 +160,10 @@ export default function Poincar3Page() {
         <div className="mx-auto w-full max-w-4xl px-4 py-20 text-center sm:px-6">
           <div className="mb-7 flex flex-wrap items-center justify-center gap-2">
             <span className="rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-              Preprint · under review
+              Preprint
             </span>
             <span className="rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-              Self-supervised 3D vision
+              SSL for 3D vision
             </span>
           </div>
 
@@ -243,9 +230,7 @@ export default function Poincar3Page() {
           </div>
 
           <p className="mx-auto mt-10 max-w-lg text-sm leading-relaxed text-muted-foreground">
-            The backdrop is a single observer moving through a static scene. Blue frustums are the views the student
-            sees, orange are the extra views only the teacher gets, and the coloured tracks follow the same three scene
-            points across every view.
+            Poincar3 inputs a sequence of images from the same scene without labels and is trained using a multi-view self-distillation objective. Interstingly, it obtains a strong understanding of multiple-view geometry, illustrated by zero-shot correspondence estimation abilities and rapid finetuning for feedforward-reconstruction.
           </p>
         </div>
       </section>
@@ -268,15 +253,10 @@ export default function Poincar3Page() {
             </div>
             <blockquote className="border-l-2 border-foreground/20 pl-6">
               <p className="text-balance text-xl font-medium leading-relaxed sm:text-2xl">
-                A motionless being could never acquire the notion of space.
+                Motivated by Henri Poincaré
               </p>
               <footer className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                Poincaré made that argument over a century ago, and it still indicts most of visual representation
-                learning: models trained on single images. The methods that do look at several views mostly learn by
-                reconstructing RGB — which forces the representation to carry appearance along with geometry.{" "}
-                <span className="font-medium text-foreground">
-                  Poincar3 asks whether views can teach each other without reconstructing pixels at all.
-                </span>
+                Over a century ago, Henri Poincaré argued that &quot;A motionless being could never have acquired the concept of space because, he would have had no reason to distinguish [changes of position] from changes of state. Nor would he have been able to acquire it if his movements had not been voluntary.&quot; Motivated by this, we question why state-of-the-art SSL models like DINO are built on single-view data. To this end, we introduce a multi-view SSL pipeline that learns 3D geometry, just like Poincaré conjectured.
               </footer>
             </blockquote>
           </div>
@@ -286,8 +266,8 @@ export default function Poincar3Page() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="At a glance"
-            title="One objective, six benchmarks"
-            lead="Poincar3 beats every prior single- and multi-view self-supervised model we compared against — on camera pose, point clouds, correspondence and SE(3) structure alike. Bars are drawn so that longer is always better."
+            title="Main results"
+            lead="Poincar3 outperforms DINOv3, MuM and Muskie on camera pose, point clouds, correspondence and SE(3) structure alike. Bars are drawn so that longer is always better."
           />
           <HeadlineResults />
 
@@ -306,7 +286,7 @@ export default function Poincar3Page() {
 
         {/* -------------------------------------------------------- abstract */}
         <section className="border-t border-border py-16 sm:py-20">
-          <SectionHeading eyebrow="Abstract" title="What we did" />
+          <SectionHeading eyebrow="Abstract" title="Poincar3 in short" />
           <p className="max-w-3xl text-[15px] leading-[1.85] text-muted-foreground">
             Over a century ago, Henri Poincaré argued that a motionless observer cannot acquire the notion of space.
             Yet most visual representation learning methods operate on individual images, while those that leverage
@@ -325,12 +305,10 @@ export default function Poincar3Page() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Emergence"
-            title="Correspondence nobody asked for"
+            title="Emergent matching capabilities without supervision."
             lead={
               <>
-                The model never sees a correspondence label, and nothing supervises its attention. Yet pick a query
-                patch and follow the highest attention activation across frames, and you get tracks — geometry falling
-                out of a purely self-supervised objective.
+                The model never sees a correspondence label. Yet pick a query patch and follow the highest attention activation across frames, and you get beautiful tracks.
               </>
             }
           />
@@ -406,7 +384,7 @@ export default function Poincar3Page() {
           <SectionHeading
             eyebrow="Results · correspondence"
             title="Zero-shot multi-view matching"
-            lead="Patch tracking across eight views, with no finetuning. The attention map turns out to be an even stronger correspondence estimator than the features themselves — and beats feed-forward reconstruction models that were trained with 3D supervision."
+            lead="Patch tracking across eight views, with no finetuning. The attention map turns out to be an even stronger correspondence estimator than the features themselves. It even outperforms feed-forward reconstruction models that were trained with 3D supervision."
           />
           <CorrespondenceChart />
 
@@ -580,16 +558,6 @@ export default function Poincar3Page() {
 
           <AdapterChart />
 
-          <Figure
-            className="mt-12"
-            src="/projects/poincar3/see_se3_teaser.png"
-            alt="Camera trajectories recovered by the Poincaré adapter"
-            width={1600}
-            height={398}
-            plate
-            label="Figure 7."
-            caption="Feature space unrolled by the adapter, against the ground-truth camera trajectories. MuM and DINOv3 collapse the three trajectories onto a single axis; Poincar3 keeps them apart and roughly in shape."
-          />
         </section>
 
         {/* -------------------------------------------------------- ablations */}
@@ -611,48 +579,6 @@ export default function Poincar3Page() {
             </p>
           </div>
 
-          <Figure
-            className="mt-12"
-            src="/projects/poincar3/feature_pca_grid.jpg"
-            alt="PCA of the learned features"
-            width={1600}
-            height={1200}
-            label="Figure 8."
-            caption="The first three principal components of the dense features, rendered as RGB, for several sequences of the same scene."
-          />
-        </section>
-
-        {/* ---------------------------------------------------------- get it */}
-        <section className="border-t border-border py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Try it"
-            title="Two lines to a 3D-aware backbone"
-            lead={
-              <>
-                The model needs only <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-foreground">torch</code>;
-                the checkpoint downloads itself on first use.
-              </>
-            }
-          />
-          <div className="grid gap-6 lg:grid-cols-[minmax(0,320px)_1fr]">
-            <div className="space-y-4">
-              <CopyBlock text={"uv add poincar3"} language="install" />
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                Extras pull in what the scripts need:{" "}
-                <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">[demo]</code>,{" "}
-                <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">[train]</code> and{" "}
-                <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">[eval]</code>.
-              </p>
-              <Button variant="outline" size="sm" asChild className="w-full">
-                <a href="https://github.com/davnords/poincar3" target="_blank" rel="noopener noreferrer">
-                  <GithubIcon className="h-4 w-4" />
-                  davnords/poincar3
-                  <ArrowUpRightIcon className="h-3.5 w-3.5" />
-                </a>
-              </Button>
-            </div>
-            <CopyBlock text={usage} language="python" />
-          </div>
         </section>
 
         {/* ---------------------------------------------------------- bibtex */}
@@ -660,29 +586,6 @@ export default function Poincar3Page() {
           <SectionHeading eyebrow="Cite" title="BibTeX" />
           <CopyBlock text={bibtex} language="bibtex" />
         </section>
-
-        <footer className="border-t border-border py-10 text-center text-sm text-muted-foreground">
-          <p>
-            Built on{" "}
-            <a href="https://github.com/facebookresearch/dinov3" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">
-              DINOv3
-            </a>
-            ,{" "}
-            <a href="https://github.com/facebookresearch/vggt" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">
-              VGGT
-            </a>{" "}
-            and{" "}
-            <a href="https://github.com/mbanani/probe3d" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-foreground">
-              probe3d
-            </a>
-            .
-          </p>
-          <p className="mt-2">
-            <Link href="/" className="underline underline-offset-4 hover:text-foreground">
-              davnords.com
-            </Link>
-          </p>
-        </footer>
       </div>
     </main>
   )

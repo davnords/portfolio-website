@@ -563,8 +563,8 @@ export function AdapterChart() {
       </div>
 
       <p className="mt-5 border-t border-border pt-4 text-xs leading-relaxed text-muted-foreground">
-        Every model improves once the feature is allowed to see the scene move — the gap between the two
-        markers is exactly what a motionless observer cannot acquire. DINOv3 has no multi-view mode.
+        Every model improves once the feature is allowed to see the scene move. The gap between the two
+        markers is exactly what a motionless observer cannot acquire (following Poincaré&apos;s argument). DINOv3 has no multi-view mode.
       </p>
     </div>
   )
