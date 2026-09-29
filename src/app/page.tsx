@@ -28,7 +28,7 @@ function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background overflow-x-hidden">
+    <main className="min-h-screen bg-background overflow-x-clip">
       {/* Header */}
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="flex h-16 w-full items-center justify-between px-4 md:px-8">
@@ -44,7 +44,7 @@ export default function Home() {
             ))}
           </nav>
           <div className="sm:hidden" />
-          <div className="">
+          <div className="mr-2 md:mr-6">
             <ModeToggle />
           </div>
         </div>
@@ -162,6 +162,14 @@ export default function Home() {
         <section id="news" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">News</h2>
           <div className="divide-y divide-border">
+
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
+              <time dateTime="2026-09-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Sep 2026</time>
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Pre-print released for <span className="font-semibold text-foreground">Poincar3</span>, emerging multi-view geometry from self-distillation without labels.{" "}
+                <Link href="/poincar3" className="font-medium text-foreground underline underline-offset-4 hover:no-underline">Project page</Link>.
+              </p>
+            </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 py-4">
               <time dateTime="2026-06-01" className="shrink-0 text-sm text-muted-foreground w-24 pt-0.5">Jun 2026</time>

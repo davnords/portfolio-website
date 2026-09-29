@@ -8,6 +8,14 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
+/**
+ * The beam is positioned `top-20` and carries a 16px dot above the SVG, so the
+ * SVG has to be this much shorter than the content or it overflows the bottom
+ * of its container — which turns any ancestor with `overflow-x` set into a
+ * scroll container of its own.
+ */
+const BEAM_TOP_OFFSET = 96;
+
 export const TracingBeam = ({
   children,
   className,
@@ -18,16 +26,24 @@ export const TracingBeam = ({
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
 
+  // Images, fonts and the globe all settle after mount, so measure on every
+  // resize rather than once — a stale height leaves the beam short or overlong.
   useEffect(() => {
-    if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
-    }
+    const el = contentRef.current;
+    if (!el) return;
+    const measure = () =>
+      setSvgHeight(Math.max(0, el.offsetHeight - BEAM_TOP_OFFSET));
+    measure();
+    if (typeof ResizeObserver === "undefined") return;
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   const y1 = useSpring(
@@ -45,34 +61,26 @@ export const TracingBeam = ({
     },
   );
 
+  // Driven as motion values so the dot tracks scroll without re-rendering the
+  // whole page on every frame.
+  const dotShadow = useTransform(scrollYProgress, (v) =>
+    v > 0 ? "none" : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
+  );
+  const dotFill = useTransform(scrollYProgress, (v) => (v > 0 ? "white" : "#10b981"));
+  const dotBorder = useTransform(scrollYProgress, (v) => (v > 0 ? "white" : "#059669"));
+
   return (
     <motion.div
       ref={ref}
       className={cn("relative mx-auto h-full w-full", className)}
     >
-      <div className="absolute top-20 left-2 md:left-4 z-40 hidden md:block">
+      <div className="pointer-events-none absolute top-20 left-2 md:left-4 z-40 hidden md:block">
         <motion.div
-          transition={{
-            duration: 0.2,
-            delay: 0.5,
-          }}
-          animate={{
-            boxShadow:
-              scrollYProgress.get() > 0
-                ? "none"
-                : "rgba(0, 0, 0, 0.24) 0px 3px 8px",
-          }}
+          style={{ boxShadow: dotShadow }}
           className="border-netural-200 ml-[27px] flex h-4 w-4 items-center justify-center rounded-full border shadow-sm"
         >
           <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor: scrollYProgress.get() > 0 ? "white" : "#10b981",
-              borderColor: scrollYProgress.get() > 0 ? "white" : "#059669",
-            }}
+            style={{ backgroundColor: dotFill, borderColor: dotBorder }}
             className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
           />
         </motion.div>
