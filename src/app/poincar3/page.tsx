@@ -34,7 +34,7 @@ const authors = [
 
 const affiliations = [
   { id: "1", name: "Chalmers University of Technology" },
-  { id: "2", name: "École des Ponts, IP Paris" },
+  { id: "2", name: "ENPC, IP Paris" },
   { id: "3", name: "Linköping University" },
   { id: "4", name: "University of Bordeaux, CNRS" },
 ]
