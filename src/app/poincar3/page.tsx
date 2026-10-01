@@ -100,12 +100,14 @@ for imgs in loader:            # mini-batch of M+T frame sequences
     ft.params = l * ft.params + (1 - l) * fs.params`
 
 
-const bibtex = `@article{nordstrom2026poincare3,
-  title={Emergent Multi-View Geometry Through Self-Distillation},
-  author={David Nordström and Thibaut Loiseau and Vincent Lepetit
-          and Michael Felsberg and Guillaume Bourmaud and Fredrik Kahl},
-  journal={arXiv preprint},
-  year={2026}
+const bibtex = `@misc{nordstrom2026emergentmultiview,
+      title={Emergent Multi-View Geometry Through Self-Distillation}, 
+      author={David Nordström and Thibaut Loiseau and Vincent Lepetit and Michael Felsberg and Guillaume Bourmaud and Fredrik Kahl},
+      year={2026},
+      eprint={2609.39227},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2609.39227}, 
 }`
 
 function SectionHeading({ eyebrow, title, lead }: { eyebrow: string; title: string; lead?: React.ReactNode }) {
@@ -223,9 +225,11 @@ export default function Poincar3Page() {
                 PyPI
               </a>
             </Button>
-            <Button variant="outline" disabled className="cursor-not-allowed">
-              <FileTextIcon className="h-4 w-4" />
-              Paper — soon
+            <Button variant="outline" asChild>
+              <a href="https://arxiv.org/abs/2609.39227" target="_blank" rel="noopener noreferrer">
+                <FileTextIcon className="h-4 w-4" />
+                Paper
+              </a>
             </Button>
           </div>
 
