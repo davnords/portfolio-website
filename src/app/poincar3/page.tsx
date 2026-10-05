@@ -39,9 +39,6 @@ const affiliations = [
   { id: "4", name: "University of Bordeaux, CNRS" },
 ]
 
-const seese3Authors =
-  "Caroline Chen, Sayna Ebrahimi, Fedor Kitashov, Ming-Hsuan Yang, Leonidas Guibas, Viorica Pătrăucean, Maks Ovsjanikov"
-
 const stats = [
   { value: "94.9", unit: "PCK@50", label: "Zero-shot multi-view correspondence on ScanNet, straight from the attention map" },
   { value: "650", unit: "M params", label: "ViT-L encoder plus a 12-layer alternating-attention multi-view decoder" },
@@ -177,15 +174,12 @@ export default function Poincar3Page() {
             <span className="rounded-full border border-border bg-background/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
               SSL for 3D vision
             </span>
-            <a
-              href="#seese3"
-              className="rounded-full border border-dashed border-foreground/30 bg-background/70 px-3 py-1 text-xs font-medium text-foreground/80 backdrop-blur transition-colors hover:border-foreground/60 hover:text-foreground"
-            >
-              Formulation, probe &amp; name after SeeSE3 (NeurIPS 2026)
-            </a>
           </div>
 
-          <p className="mb-4 font-mono text-sm tracking-[0.35em] text-muted-foreground">POINCAR3</p>
+          <p className="mb-4 font-mono text-sm tracking-[0.35em] text-muted-foreground">
+            POINCAR3
+            <sup className="ml-0.5 tracking-normal text-[10px]">†</sup>
+          </p>
           <h1 className="text-balance text-4xl font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl">
             Emergent Multi-View Geometry
             <br className="hidden sm:block" />{" "}
@@ -253,13 +247,11 @@ export default function Poincar3Page() {
             Poincar3 inputs a sequence of images from the same scene without labels and is trained using a multi-view self-distillation objective. Interstingly, it obtains a strong understanding of multiple-view geometry, illustrated by zero-shot correspondence estimation abilities and rapid finetuning for feedforward-reconstruction.
           </p>
 
-          <p className="mx-auto mt-6 max-w-lg text-xs leading-relaxed text-muted-foreground">
-            The SE(3) formulation, the Poincaré Adapter probe and the name{" "}
-            <span className="font-semibold text-foreground">Poincar3</span> all come from{" "}
-            <a href="#seese3" className="font-medium text-foreground underline underline-offset-4">
-              SeeSE3: Emergence of 3D Space in Vision Features
-            </a>{" "}
-            (Chen et al., NeurIPS 2026). We follow their framing.
+          <div className="mx-auto mt-8 h-px w-10 bg-border" />
+          <p className="mx-auto mt-4 max-w-md text-[11px] leading-[1.6] text-muted-foreground/80">
+            <span className="mr-1">†</span>
+            The name Poincar3 is inspired by the reasoning of SeeSE3 (Chen et al., NeurIPS 2026), which relates
+            Poincaré&apos;s argument about motionless beings to the SE(3) structure of vision features.
           </p>
         </div>
       </section>
@@ -288,86 +280,14 @@ export default function Poincar3Page() {
                 Over a century ago, Henri Poincaré argued that &quot;A motionless being could never have acquired the concept of space because, he would have had no reason to distinguish [changes of position] from changes of state. Nor would he have been able to acquire it if his movements had not been voluntary.&quot; Motivated by this, we question why state-of-the-art SSL models like DINO are built on single-view data. To this end, we introduce a multi-view SSL pipeline that learns 3D geometry, just like Poincaré conjectured.
               </footer>
               <footer className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                This framing is not original to us. Connecting Poincaré&apos;s argument to the SE(3) structure of vision
-                features — and the name we gave this project — comes from{" "}
-                <a href="#seese3" className="font-medium text-foreground underline underline-offset-4">
-                  SeeSE3 (Chen et al., NeurIPS 2026)
-                </a>
-                .
+                This motivation, and our naming, take inspiration from{" "}
+                <span className="font-medium text-foreground">
+                  SeeSE3: Emergence of 3D Space in Vision Features
+                </span>{" "}
+                (Chen et al., NeurIPS 2026), which frames Poincaré&apos;s hypothesis about motionless beings in terms of
+                the SE(3) structure of vision features.
               </footer>
             </blockquote>
-          </div>
-        </section>
-
-        {/* ------------------------------------------------- credit: SeeSE3 */}
-        <section id="seese3" className="scroll-mt-24 border-t border-border py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Credit · prior work"
-            title="This formulation comes from SeeSE3"
-            lead={
-              <>
-                Poincar3 is a direct follow-up to{" "}
-                <span className="font-semibold text-foreground">
-                  SeeSE3: Emergence of 3D Space in Vision Features
-                </span>
-                . The question we ask, the way we ask it, and even the name of this project are theirs — we train a new
-                model, but the lens we evaluate it through was built by them.
-              </>
-            }
-          />
-
-          <div className="rounded-xl border-2 border-dashed border-foreground/25 bg-muted/30 p-6 sm:p-8">
-            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">NeurIPS 2026</p>
-            <h3 className="mt-2 text-xl font-bold tracking-tight sm:text-2xl">
-              SeeSE3: Emergence of 3D Space in Vision Features
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{seese3Authors}</p>
-
-            <p className="mt-6 max-w-3xl border-l-2 border-foreground/20 pl-5 text-[15px] leading-[1.85] text-muted-foreground">
-              &quot;In this paper, we ask whether vision foundation models construct representations that reflect the
-              intrinsic properties of 3D Euclidean space. Unlike previous works that probe 3D awareness of vision
-              features by regressing image-centric quantities such as depth or normals, we investigate the relation
-              between the structure of the space of visual features and the group of Euclidean transformations SE(3). We
-              propose a set of probes to evaluate this relation from both topological and geometric perspectives: a
-              mutual neighborhood metric that measures the alignment between feature neighborhoods and spatial topology,
-              and a Poincaré Adapter to test the linear accessibility of the geometry of camera motion from latent
-              displacements in static scenes. We show that self-supervised vision models, which, in principle, have not
-              been trained with direct 3D supervision or active agency, possess latent subspaces that are remarkably
-              strongly correlated with three-dimensional Euclidean space, when probed correctly. Building on this
-              insight we propose a new class of &apos;Latent-Space Navigation&apos; techniques that perform visual
-              odometry and localization purely in the latent space, bypassing the need for explicit 3D
-              reconstruction.&quot;
-            </p>
-
-            <div className="mt-8 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-3">
-              {[
-                {
-                  k: "The name",
-                  v: "“Poincar3” is a nod to their work. They brought Poincaré and the group SE(3) into the vocabulary of self-supervised vision features; we borrowed the pun.",
-                },
-                {
-                  k: "The Poincaré Adapter",
-                  v: "The adapter we report on below is their probe, not ours. We reuse it unchanged as an evaluation of how linearly accessible camera motion is from latent displacements.",
-                },
-                {
-                  k: "The SE(3) framing",
-                  v: "Asking whether features align with the geometry of rigid motion — rather than regressing depth or normals — is the question SeeSE3 posed. Poincar3 is our attempt to train a model that answers it well.",
-                },
-              ].map((c) => (
-                <div key={c.k} className="bg-background p-5">
-                  <h4 className="mb-2 text-sm font-semibold">{c.k}</h4>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{c.v}</p>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-6 text-xs leading-relaxed text-muted-foreground">
-              If you use the Poincaré Adapter numbers on this page, please cite SeeSE3 as well — the{" "}
-              <a href="#cite" className="underline underline-offset-4 hover:text-foreground">
-                BibTeX below
-              </a>{" "}
-              lists both papers.
-            </p>
           </div>
         </section>
 
@@ -407,13 +327,6 @@ export default function Poincar3Page() {
             self-supervised approaches such as DINOv3, MuM and Muskie on correspondence estimation, camera pose
             estimation and 3D reconstruction. Using a lightweight Poincaré adapter, we also find that our learned
             features encode camera motion more accurately than existing self-supervised representations.
-          </p>
-          <p className="mt-6 max-w-3xl border-l-2 border-foreground/20 pl-5 text-sm leading-relaxed text-muted-foreground">
-            The Poincaré Adapter referenced here is not ours: it was introduced by{" "}
-            <a href="#seese3" className="font-medium text-foreground underline underline-offset-4">
-              SeeSE3 (Chen et al., NeurIPS 2026)
-            </a>
-            , together with the SE(3) perspective that motivates this entire project.
           </p>
         </section>
 
@@ -650,20 +563,8 @@ export default function Poincar3Page() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Results · SE(3)"
-            title="The Poincaré Adapter — a probe from SeeSE3"
-            lead={
-              <>
-                Everything in this section is an evaluation using someone else&apos;s instrument. The Poincaré Adapter
-                was proposed by{" "}
-                <a href="#seese3" className="font-medium text-foreground underline underline-offset-4">
-                  SeeSE3 (Chen et al., NeurIPS 2026)
-                </a>{" "}
-                to test the linear accessibility of the geometry of camera motion from latent displacements; we apply it
-                as-is. Do the features encode the geometry of rigid motion, and not just its appearance? Following their
-                protocol, we fit a small MLP per scene and ask it to make feature displacements linear in the se(3)
-                twist between two frames.
-              </>
-            }
+            title="The Poincaré adapter"
+            lead="Do the features encode the geometry of rigid motion, and not just its appearance? Following the Poincaré Adapter of SeeSE3 (Chen et al., NeurIPS 2026), we fit a small MLP per scene and ask it to make feature displacements linear in the se(3) twist between two frames."
           />
 
           <div className="mb-8 rounded-xl border border-border bg-muted/30 px-6 py-8">
@@ -678,9 +579,9 @@ export default function Poincar3Page() {
               <span className="text-muted-foreground">))</span>
             </p>
             <p className="mx-auto mt-5 max-w-xl text-center text-xs leading-relaxed text-muted-foreground">
-              The adapter φ — defined as in SeeSE3 — tries to unroll the non-linear feature space into a homogeneous
-              coordinate system where a change of pose is just a translation. How well it can is a direct measure of how
-              much SE(3) structure the representation already holds.
+              The adapter φ tries to unroll the non-linear feature space into a homogeneous coordinate system where a
+              change of pose is just a translation. How well it can is a direct measure of how much SE(3) structure the
+              representation already holds.
             </p>
           </div>
 
@@ -710,25 +611,15 @@ export default function Poincar3Page() {
         </section>
 
         {/* ---------------------------------------------------------- bibtex */}
-        <section id="cite" className="scroll-mt-24 border-t border-border py-16 sm:py-20">
-          <SectionHeading
-            eyebrow="Cite"
-            title="BibTeX"
-            lead="If you cite Poincar3, please cite SeeSE3 too — the formulation, the Poincaré Adapter and the name all originate there."
-          />
-          <div className="space-y-8">
-            <div>
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                This work
-              </p>
-              <CopyBlock text={bibtex} language="bibtex" />
-            </div>
-            <div>
-              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
-                The work it builds on
-              </p>
-              <CopyBlock text={seese3Bibtex} language="bibtex" />
-            </div>
+        <section className="border-t border-border py-16 sm:py-20">
+          <SectionHeading eyebrow="Cite" title="BibTeX" />
+          <CopyBlock text={bibtex} language="bibtex" />
+
+          <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Please also consider citing SeeSE3, the paper we base our motivation and naming on.
+          </p>
+          <div className="mt-4">
+            <CopyBlock text={seese3Bibtex} language="bibtex" />
           </div>
         </section>
       </div>
