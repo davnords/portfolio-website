@@ -11,6 +11,7 @@ import { TracingBeam } from "@/components/ui/tracing-beam"
 import { Terminal } from "@/components/ui/terminal"
 import { Tooltip } from "@/components/ui/tooltip-card"
 import { GlobeClient } from "@/components/globe-client"
+import { ImpactChart } from "@/components/impact-chart"
 import type { GlobeMarker } from "@/components/ui/3d-globe"
 
 function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -33,7 +34,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="flex h-16 w-full items-center justify-between px-4 md:px-8">
           <nav className="hidden sm:flex items-center space-x-4 md:space-x-8">
-            {["About", "News", "Publications", "Education", "Talks", "Contact"].map((item) => (
+            {["About", "News", "Publications", "Impact", "Education", "Talks", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -340,6 +341,27 @@ export default function Home() {
             <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
                 <div className="min-w-0">
+                  <h3 className="font-medium">Poincar3: Emergent Multi-View Geometry Through Self-Distillation</h3>
+                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Thibaut Loiseau, Vincent Lepetit, Michael Felsberg, Guillaume Bourmaud, Fredrik Kahl</p>
+                </div>
+                <div className="flex flex-wrap items-center gap-2 shrink-0">
+                  <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
+                  <a href="https://arxiv.org/abs/2609.39227" target="_blank" rel="noopener noreferrer" className="inline-block">
+                    <img src="https://img.shields.io/badge/arXiv-2609.39227-b31b1b" alt="arXiv" className="h-5" />
+                  </a>
+                  <a href="https://github.com/davnords/poincar3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
+                    <GithubIcon className="h-4 w-4" />
+                  </a>
+                  <Link href="/poincar3" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    <ExternalLinkIcon className="h-3.5 w-3.5" />
+                    <span>Project page</span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
+                <div className="min-w-0">
                   <h3 className="font-medium">RoMa-&Omega;: What Feed-Forward 3D Models Know About Image Matching</h3>
                   <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Xinyue Zhang, Thibaut Loiseau, Vincent Lepetit, Fredrik Kahl</p>
                 </div>
@@ -389,6 +411,12 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Impact Section */}
+        <section id="impact" className="py-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Impact</h2>
+          <ImpactChart />
         </section>
 
         {/* Open Source */}

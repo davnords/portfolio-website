@@ -120,6 +120,37 @@
   }
 }
 
+/* ---- Data-viz series palette ----
+   A CVD-safe categorical order; the slot is keyed to the entity (a paper and
+   its repo share a slot) and never to its rank, and the stack is drawn in slot
+   order so every touching pair is one of the validated adjacent pairs.
+   Light: worst adjacent CVD ΔE 9.1, normal-vision ΔE 19.6 on #ffffff.
+   Dark: same eight hues re-stepped for the dark surface, all >= 3:1 on #0a0a0a. */
+@layer base {
+  :root {
+    --series-1: #2a78d6;
+    --series-2: #eb6834;
+    --series-3: #1baf7a;
+    --series-4: #eda100;
+    --series-5: #e87ba4;
+    --series-6: #008300;
+    --series-7: #4a3aa7;
+    --series-8: #e34948;
+    --series-up: #006300;
+  }
+  .dark {
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+    --series-up: #0ca30c;
+  }
+}
+
 /* ---- Poincar3 project page ---- */
 @layer utilities {
   @keyframes p3-flow {

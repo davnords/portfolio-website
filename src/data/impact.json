@@ -1,0 +1,306 @@
+{
+  "generatedAt": "2026-10-14",
+  "sources": {
+    "citations": "Semantic Scholar Academic Graph API",
+    "stars": "GitHub REST API"
+  },
+  "totals": {
+    "citations": 99,
+    "hIndex": 4,
+    "stars": 1471,
+    "papers": 8
+  },
+  "milestones": [
+    {
+      "month": "2025-05",
+      "label": "ICML 2025 Spotlight"
+    },
+    {
+      "month": "2025-11",
+      "label": "RoMa v2 + MuM pre-prints"
+    },
+    {
+      "month": "2026-02",
+      "label": "MuM @ CVPR 2026"
+    },
+    {
+      "month": "2026-04",
+      "label": "LoMa pre-print"
+    },
+    {
+      "month": "2026-06",
+      "label": "3× ECCV 2026 (2 Orals)"
+    },
+    {
+      "month": "2026-09",
+      "label": "Poincar3 pre-print"
+    }
+  ],
+  "papers": [
+    {
+      "key": "loma",
+      "label": "LoMa",
+      "venue": "ECCV 2026 Oral",
+      "arxiv": "2604.04931",
+      "title": "LoMa: Local Feature Matching Revisited",
+      "published": "2026-04",
+      "citations": 17,
+      "reportedCitations": 17,
+      "undated": 1,
+      "monthly": {
+        "2026-10": 4,
+        "2026-09": 2,
+        "2026-08": 1,
+        "2026-07": 2,
+        "2026-06": 2,
+        "2026-05": 1,
+        "2026-04": 5
+      }
+    },
+    {
+      "key": "romav2",
+      "label": "RoMa v2",
+      "venue": "ECCV 2026 Oral",
+      "arxiv": "2511.15706",
+      "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
+      "published": "2025-11",
+      "citations": 56,
+      "reportedCitations": 56,
+      "undated": 0,
+      "monthly": {
+        "2026-10": 6,
+        "2026-09": 9,
+        "2026-08": 10,
+        "2026-07": 6,
+        "2026-06": 7,
+        "2026-05": 2,
+        "2026-04": 4,
+        "2026-03": 8,
+        "2026-02": 1,
+        "2025-11": 3
+      }
+    },
+    {
+      "key": "mum",
+      "label": "MuM",
+      "venue": "CVPR 2026",
+      "arxiv": "2511.17309",
+      "title": "MuM: Multi-View Masked Image Modeling for 3D Vision",
+      "published": "2025-11",
+      "citations": 8,
+      "reportedCitations": 8,
+      "undated": 1,
+      "monthly": {
+        "2026-10": 1,
+        "2026-09": 4,
+        "2025-11": 3
+      }
+    },
+    {
+      "key": "poincar3",
+      "label": "Poincar3",
+      "venue": "Pre-print",
+      "arxiv": "2609.39227",
+      "title": "Emergent Multi-View Geometry Through Self-Distillation",
+      "published": "2026-09",
+      "citations": 0,
+      "reportedCitations": 0,
+      "undated": 0,
+      "monthly": {}
+    },
+    {
+      "key": "octic",
+      "label": "Octic ViTs",
+      "venue": "ECCV 2026",
+      "arxiv": "2505.15441",
+      "title": "Quick ViTs: Speeding up Vision Transformers through Equivariance",
+      "published": "2025-05",
+      "citations": 4,
+      "reportedCitations": 4,
+      "undated": 1,
+      "monthly": {
+        "2026-08": 1,
+        "2026-06": 1,
+        "2026-04": 1,
+        "2025-05": 1
+      }
+    },
+    {
+      "key": "romaomega",
+      "label": "RoMa-Ω",
+      "venue": "ECCVW 2026",
+      "arxiv": "2609.09507",
+      "title": "RoMa-$\\Omega$: What Feed-Forward 3D Models Know About Image Matching",
+      "published": "2026-09",
+      "citations": 0,
+      "reportedCitations": 0,
+      "undated": 0,
+      "monthly": {}
+    },
+    {
+      "key": "orientation",
+      "label": "LoMa-R",
+      "venue": "CVPRW 2026",
+      "arxiv": "2604.11809",
+      "title": "Who Handles Orientation? Investigating Invariance in Feature Matching",
+      "published": "2026-04",
+      "citations": 4,
+      "reportedCitations": 4,
+      "undated": 0,
+      "monthly": {
+        "2026-07": 1,
+        "2026-06": 1,
+        "2026-04": 2
+      }
+    },
+    {
+      "key": "flopping",
+      "label": "Flopping",
+      "venue": "ICML 2025 Spotlight",
+      "arxiv": "2502.05169",
+      "title": "Flopping for FLOPs: Leveraging equivariance for computational efficiency",
+      "published": "2025-02",
+      "citations": 10,
+      "reportedCitations": 10,
+      "undated": 1,
+      "monthly": {
+        "2026-07": 1,
+        "2026-06": 1,
+        "2026-04": 2,
+        "2026-03": 1,
+        "2026-02": 1,
+        "2025-10": 1,
+        "2025-06": 1,
+        "2025-05": 1,
+        "2025-02": 1
+      }
+    }
+  ],
+  "repos": [
+    {
+      "key": "loma",
+      "label": "davnords/LoMa",
+      "repo": "davnords/LoMa",
+      "url": "https://github.com/davnords/LoMa",
+      "created": "2026-03",
+      "stars": 465,
+      "reportedStars": 465,
+      "monthly": {
+        "2026-03": 1,
+        "2026-04": 201,
+        "2026-05": 33,
+        "2026-06": 77,
+        "2026-07": 55,
+        "2026-08": 27,
+        "2026-09": 58,
+        "2026-10": 13
+      }
+    },
+    {
+      "key": "romav2",
+      "label": "Parskatt/RoMaV2",
+      "repo": "Parskatt/RoMaV2",
+      "url": "https://github.com/Parskatt/RoMaV2",
+      "created": "2025-11",
+      "stars": 740,
+      "reportedStars": 740,
+      "monthly": {
+        "2025-11": 309,
+        "2025-12": 62,
+        "2026-01": 57,
+        "2026-02": 22,
+        "2026-03": 60,
+        "2026-04": 41,
+        "2026-05": 27,
+        "2026-06": 36,
+        "2026-07": 35,
+        "2026-08": 38,
+        "2026-09": 43,
+        "2026-10": 10
+      }
+    },
+    {
+      "key": "mum",
+      "label": "davnords/MuM",
+      "repo": "davnords/MuM",
+      "url": "https://github.com/davnords/MuM",
+      "created": "2025-10",
+      "stars": 126,
+      "reportedStars": 126,
+      "monthly": {
+        "2025-11": 50,
+        "2025-12": 15,
+        "2026-01": 2,
+        "2026-02": 2,
+        "2026-03": 2,
+        "2026-04": 12,
+        "2026-05": 5,
+        "2026-06": 21,
+        "2026-07": 11,
+        "2026-08": 1,
+        "2026-09": 4,
+        "2026-10": 1
+      }
+    },
+    {
+      "key": "poincar3",
+      "label": "davnords/poincar3",
+      "repo": "davnords/poincar3",
+      "url": "https://github.com/davnords/poincar3",
+      "created": "2026-09",
+      "stars": 46,
+      "reportedStars": 46,
+      "monthly": {
+        "2026-10": 46
+      }
+    },
+    {
+      "key": "octic",
+      "label": "davnords/octic-vits",
+      "repo": "davnords/octic-vits",
+      "url": "https://github.com/davnords/octic-vits",
+      "created": "2025-05",
+      "stars": 28,
+      "reportedStars": 28,
+      "monthly": {
+        "2025-05": 12,
+        "2025-06": 2,
+        "2025-09": 2,
+        "2025-11": 2,
+        "2026-02": 2,
+        "2026-03": 1,
+        "2026-04": 1,
+        "2026-06": 2,
+        "2026-07": 1,
+        "2026-08": 1,
+        "2026-09": 2
+      }
+    },
+    {
+      "key": "romaomega",
+      "label": "davnords/RoMa-Omega",
+      "repo": "davnords/RoMa-Omega",
+      "url": "https://github.com/davnords/RoMa-Omega",
+      "created": "2026-07",
+      "stars": 64,
+      "reportedStars": 64,
+      "monthly": {
+        "2026-09": 59,
+        "2026-10": 5
+      }
+    },
+    {
+      "key": "flopping",
+      "label": "georg-bn/flopping-for-flops",
+      "repo": "georg-bn/flopping-for-flops",
+      "url": "https://github.com/georg-bn/flopping-for-flops",
+      "created": "2025-05",
+      "stars": 2,
+      "reportedStars": 2,
+      "monthly": {
+        "2025-05": 1,
+        "2026-05": 1
+      }
+    }
+  ]
+}
