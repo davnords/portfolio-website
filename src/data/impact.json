@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-14",
+  "generatedAt": "2026-10-15",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 99,
+    "citations": 102,
     "hIndex": 4,
-    "stars": 1471,
+    "stars": 1473,
     "papers": 8
   },
   "milestones": [
@@ -64,11 +64,11 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 56,
-      "reportedCitations": 56,
+      "citations": 59,
+      "reportedCitations": 59,
       "undated": 0,
       "monthly": {
-        "2026-10": 6,
+        "2026-10": 9,
         "2026-09": 9,
         "2026-08": 10,
         "2026-07": 6,
@@ -202,8 +202,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 740,
-      "reportedStars": 740,
+      "stars": 742,
+      "reportedStars": 742,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -216,7 +216,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 10
+        "2026-10": 12
       }
     },
     {
