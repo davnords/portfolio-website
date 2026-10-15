@@ -22,7 +22,15 @@ jobs:
 
       - name: Fetch citations and stars
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Stars come from other repositories, which the built-in Actions token
+          # cannot read — it is scoped to this one and 403s on their stargazers.
+          # STATS_TOKEN is a classic PAT with public_repo. Since July 2026 the
+          # stargazers listing is limited to a repo's admins and collaborators,
+          # so the token has to carry those rights — a fine-grained PAT cannot
+          # (it grants nothing on repos owned by others) and read-only public
+          # access is refused. Without it the run still refreshes citations and
+          # keeps the last known star counts.
+          GITHUB_TOKEN: ${{ secrets.STATS_TOKEN || secrets.GITHUB_TOKEN }}
           # Optional: raises the Semantic Scholar rate limit. Works without it.
           S2_API_KEY: ${{ secrets.S2_API_KEY }}
         run: node scripts/fetch-stats.mjs

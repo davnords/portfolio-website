@@ -14,11 +14,16 @@
  *
  *   node scripts/fetch-stats.mjs
  *
- * Optional env: S2_API_KEY (higher Semantic Scholar limits),
- *               GITHUB_TOKEN (5000 req/h instead of 60).
+ * Env: GITHUB_TOKEN is required for stars. Since July 2026 the stargazers
+ * listing is limited to each repo's admins and collaborators: anonymous callers
+ * get 401, and an Actions GITHUB_TOKEN only reaches the repository the workflow
+ * runs in, so it gets 403 on every repo below. Stars therefore need a classic
+ * PAT with public_repo, held by someone with push on all of them. A
+ * fine-grained PAT cannot work — it grants nothing on another user's repo.
+ * S2_API_KEY is optional and raises the Semantic Scholar rate limit.
  */
 
-import { writeFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 
@@ -63,6 +68,37 @@ const MILESTONES = [
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const monthOf = (date) => (date ? String(date).slice(0, 7) : null);
 
+const MAX_WAIT = 120000;
+
+/** The API's own message — which is where GitHub explains what a 403 means. */
+async function detailOf(res) {
+  try {
+    const text = (await res.text()).slice(0, 400);
+    try {
+      return JSON.parse(text).message ?? text;
+    } catch {
+      return text || res.statusText;
+    }
+  } catch {
+    return res.statusText;
+  }
+}
+
+/**
+ * How long the response is asking us to wait, or null if it isn't asking.
+ * GitHub sends retry-after for secondary limits, and remaining: 0 with an
+ * epoch-second reset for primary ones; Semantic Scholar sends neither.
+ */
+function requestedWait(res) {
+  const after = Number(res.headers.get("retry-after"));
+  if (Number.isFinite(after) && after > 0) return Math.min(after * 1000, MAX_WAIT);
+  if (res.headers.get("x-ratelimit-remaining") === "0") {
+    const reset = Number(res.headers.get("x-ratelimit-reset")) * 1000 - Date.now();
+    if (Number.isFinite(reset) && reset > 0) return Math.min(reset + 1000, MAX_WAIT);
+  }
+  return null;
+}
+
 async function request(url, { headers = {}, body, tries = 8 } = {}) {
   const init = {
     method: body ? "POST" : "GET",
@@ -72,16 +108,24 @@ async function request(url, { headers = {}, body, tries = 8 } = {}) {
   for (let attempt = 0; attempt < tries; attempt++) {
     const res = await fetch(url, init);
     if (res.ok) return res.json();
-    // The unauthenticated Semantic Scholar pool is shared and bursty, so 429s
-    // are routine rather than exceptional — back off generously.
-    if (res.status === 429 || res.status === 403 || res.status >= 500) {
-      const wait = Math.min(5000 * 2 ** attempt, 120000);
-      console.warn(`  ${res.status} on ${url.slice(0, 96)} — retrying in ${wait / 1000}s`);
-      await sleep(wait);
-      continue;
-    }
     if (res.status === 404) return null;
-    throw new Error(`${res.status} ${res.statusText} for ${url}`);
+
+    const asked = requestedWait(res);
+    // The unauthenticated Semantic Scholar pool is shared and bursty, so 429s
+    // are routine rather than exceptional — back off generously. A GitHub 403
+    // with rate-limit budget still on the clock is the other thing entirely: a
+    // token that may not read this resource. Backoff cannot fix that, so fail
+    // on the spot rather than sleeping through eight doublings first.
+    const transient =
+      res.status === 429 ||
+      res.status >= 500 ||
+      (res.status === 403 && (asked !== null || !url.includes("api.github.com")));
+    if (!transient) throw new Error(`${res.status} on ${url.slice(0, 96)} — ${await detailOf(res)}`);
+    if (attempt === tries - 1) break;
+
+    const wait = asked ?? Math.min(5000 * 2 ** attempt, MAX_WAIT);
+    console.warn(`  ${res.status} on ${url.slice(0, 96)} — retrying in ${wait / 1000}s`);
+    await sleep(wait);
   }
   throw new Error(`gave up after ${tries} attempts: ${url}`);
 }
@@ -155,6 +199,8 @@ async function fetchCitations({ key, label, arxiv, venue }, meta) {
 
 const ghHeaders = {
   "X-GitHub-Api-Version": "2022-11-28",
+  // GitHub rejects requests without a User-Agent, and undici sends none.
+  "User-Agent": "davnords-portfolio-stats",
   ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}),
 };
 
@@ -196,6 +242,24 @@ async function fetchStars({ key, repo }) {
   };
 }
 
+/**
+ * Prove stars are reachable before the slow citation pass, rather than finding
+ * out twenty minutes in. Anonymous callers get 401 here, and an Actions
+ * GITHUB_TOKEN — scoped to the repository the workflow runs in — gets 403 on
+ * every repo above, including the ones under this same account.
+ */
+async function starAccessError() {
+  try {
+    await request(`https://api.github.com/repos/${REPOS[0].repo}/stargazers?per_page=1`, {
+      headers: { ...ghHeaders, Accept: "application/vnd.github.star+json" },
+      tries: 3,
+    });
+    return null;
+  } catch (err) {
+    return err.message;
+  }
+}
+
 /* --------------------------------------------------------------------- main */
 
 function hIndex(counts) {
@@ -205,20 +269,83 @@ function hIndex(counts) {
   return h;
 }
 
+/** The last good snapshot. Stale numbers beat wrong ones. */
+const previous = await readFile(OUT, "utf8").then(JSON.parse).catch(() => null);
+const degraded = [];
+
+/**
+ * Keep the previous row when this run can't better it. A source that errors
+ * out, or hands back a zero where we already had a count, is a failed read —
+ * not a reset — and publishing it would claim the citations went away.
+ */
+function keepPrevious(kind, metric, key, label, reason) {
+  const prior = (previous?.[kind] ?? []).find((row) => row.key === key);
+  if (!(prior?.[metric] > 0)) return null;
+  console.warn(`  ${label}: ${reason} — keeping ${prior[metric]} from ${previous.generatedAt}`);
+  degraded.push(`${label} ${metric}: ${previous.generatedAt} snapshot`);
+  return { ...prior, stale: true };
+}
+
+// Checked first so a token problem surfaces in seconds, not after the citations.
+const starError = await starAccessError();
+if (starError) {
+  console.warn(`GitHub stars unavailable — ${starError}`);
+  console.warn("  Stargazers is limited to each repo's admins and collaborators:");
+  console.warn("  use a classic PAT with public_repo, passed in as GITHUB_TOKEN.");
+  console.warn("  Actions' built-in token only reaches its own repository.\n");
+}
+
 console.log("Citations (Semantic Scholar):");
-const meta = await fetchPaperMeta(PAPERS);
+let meta = new Map();
+try {
+  meta = await fetchPaperMeta(PAPERS);
+} catch (err) {
+  console.warn(`  paper metadata unavailable — ${err.message}`);
+}
+
 const papers = [];
-for (const p of PAPERS) papers.push(await fetchCitations(p, meta.get(p.key)));
+for (const p of PAPERS) {
+  let row;
+  try {
+    row = await fetchCitations(p, meta.get(p.key) ?? null);
+  } catch (err) {
+    console.warn(`  ${p.label}: ${err.message}`);
+    row = keepPrevious("papers", "citations", p.key, p.label, "fetch failed")
+      ?? { key: p.key, label: p.label, venue: p.venue, arxiv: p.arxiv, title: null, citations: 0, undated: 0, monthly: {} };
+  }
+  // A zero is right for a paper nobody has cited yet, and wrong for one we
+  // counted last night; keepPrevious only answers in the second case.
+  if (row.citations === 0) row = keepPrevious("papers", "citations", p.key, p.label, "API returned 0") ?? row;
+  papers.push(row);
+}
 
 console.log("Stars (GitHub):");
 const repos = [];
 for (const r of REPOS) {
-  const row = await fetchStars(r);
+  let row = null;
+  if (starError) {
+    row = keepPrevious("repos", "stars", r.key, r.repo, "no star access");
+  } else {
+    try {
+      row = await fetchStars(r);
+    } catch (err) {
+      console.warn(`  ${r.repo}: ${err.message}`);
+      row = keepPrevious("repos", "stars", r.key, r.repo, "fetch failed");
+    }
+    if (row?.stars === 0) row = keepPrevious("repos", "stars", r.key, r.repo, "API returned 0") ?? row;
+  }
   if (row) repos.push(row);
+}
+
+if (!papers.some((p) => p.citations > 0) && !repos.some((r) => r.stars > 0)) {
+  console.error("\nEvery source came back empty and there is nothing to fall back on —");
+  console.error("refusing to publish a blank snapshot.");
+  process.exit(1);
 }
 
 const snapshot = {
   generatedAt: new Date().toISOString().slice(0, 10),
+  ...(degraded.length ? { degraded } : {}),
   sources: {
     citations: "Semantic Scholar Academic Graph API",
     stars: "GitHub REST API",
@@ -236,3 +363,8 @@ const snapshot = {
 
 await writeFile(OUT, JSON.stringify(snapshot, null, 2) + "\n");
 console.log(`\nWrote ${path.relative(process.cwd(), OUT)} — ${snapshot.totals.citations} citations, ${snapshot.totals.stars} stars, h-index ${snapshot.totals.hIndex}`);
+
+// Whatever was fresh still gets written and committed; the stale rows become
+// job annotations so a broken source is visible without failing the refresh.
+for (const note of degraded) console.log(`::warning::stale ${note}`);
+if (degraded.length) console.warn(`${degraded.length} of ${PAPERS.length + REPOS.length} rows came from the previous snapshot.`);
