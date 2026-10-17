@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-16",
+  "generatedAt": "2026-10-17",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 102,
+    "citations": 103,
     "hIndex": 4,
-    "stars": 1478,
+    "stars": 1481,
     "papers": 8
   },
   "milestones": [
@@ -160,10 +160,11 @@
       "arxiv": "2502.05169",
       "title": "Flopping for FLOPs: Leveraging equivariance for computational efficiency",
       "published": "2025-02",
-      "citations": 10,
-      "reportedCitations": 10,
+      "citations": 11,
+      "reportedCitations": 11,
       "undated": 1,
       "monthly": {
+        "2026-08": 1,
         "2026-07": 1,
         "2026-06": 1,
         "2026-04": 2,
@@ -202,8 +203,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 744,
-      "reportedStars": 744,
+      "stars": 745,
+      "reportedStars": 745,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -216,7 +217,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 14
+        "2026-10": 15
       }
     },
     {
@@ -225,8 +226,8 @@
       "repo": "davnords/MuM",
       "url": "https://github.com/davnords/MuM",
       "created": "2025-10",
-      "stars": 126,
-      "reportedStars": 126,
+      "stars": 127,
+      "reportedStars": 127,
       "monthly": {
         "2025-11": 50,
         "2025-12": 15,
@@ -239,7 +240,7 @@
         "2026-07": 11,
         "2026-08": 1,
         "2026-09": 4,
-        "2026-10": 1
+        "2026-10": 2
       }
     },
     {
@@ -248,10 +249,10 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 46,
-      "reportedStars": 46,
+      "stars": 47,
+      "reportedStars": 47,
       "monthly": {
-        "2026-10": 46
+        "2026-10": 47
       }
     },
     {
