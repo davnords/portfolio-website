@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-17",
+  "generatedAt": "2026-10-18",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -70,8 +70,8 @@
       "monthly": {
         "2026-10": 9,
         "2026-09": 9,
-        "2026-08": 10,
-        "2026-07": 6,
+        "2026-08": 9,
+        "2026-07": 7,
         "2026-06": 7,
         "2026-05": 2,
         "2026-04": 4,
