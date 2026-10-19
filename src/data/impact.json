@@ -1,5 +1,8 @@
 {
-  "generatedAt": "2026-10-18",
+  "generatedAt": "2026-10-19",
+  "degraded": [
+    "Octic ViTs citations: 2026-10-18 snapshot"
+  ],
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +10,7 @@
   "totals": {
     "citations": 103,
     "hIndex": 4,
-    "stars": 1481,
+    "stars": 1485,
     "papers": 8
   },
   "milestones": [
@@ -70,8 +73,8 @@
       "monthly": {
         "2026-10": 9,
         "2026-09": 9,
-        "2026-08": 9,
-        "2026-07": 7,
+        "2026-08": 10,
+        "2026-07": 6,
         "2026-06": 7,
         "2026-05": 2,
         "2026-04": 4,
@@ -123,7 +126,8 @@
         "2026-06": 1,
         "2026-04": 1,
         "2025-05": 1
-      }
+      },
+      "stale": true
     },
     {
       "key": "romaomega",
@@ -184,8 +188,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 466,
-      "reportedStars": 466,
+      "stars": 468,
+      "reportedStars": 468,
       "monthly": {
         "2026-03": 1,
         "2026-04": 201,
@@ -194,7 +198,7 @@
         "2026-07": 55,
         "2026-08": 27,
         "2026-09": 58,
-        "2026-10": 14
+        "2026-10": 16
       }
     },
     {
@@ -203,8 +207,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 745,
-      "reportedStars": 745,
+      "stars": 746,
+      "reportedStars": 746,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -217,7 +221,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 15
+        "2026-10": 16
       }
     },
     {
@@ -283,11 +287,11 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 66,
-      "reportedStars": 66,
+      "stars": 67,
+      "reportedStars": 67,
       "monthly": {
         "2026-09": 59,
-        "2026-10": 7
+        "2026-10": 8
       }
     },
     {
