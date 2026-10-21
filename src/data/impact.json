@@ -1,16 +1,13 @@
 {
-  "generatedAt": "2026-10-20",
-  "degraded": [
-    "Flopping citations: 2026-10-19 snapshot"
-  ],
+  "generatedAt": "2026-10-21",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 104,
+    "citations": 106,
     "hIndex": 4,
-    "stars": 1486,
+    "stars": 1491,
     "papers": 8
   },
   "milestones": [
@@ -67,11 +64,11 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 60,
-      "reportedCitations": 60,
+      "citations": 62,
+      "reportedCitations": 62,
       "undated": 0,
       "monthly": {
-        "2026-10": 10,
+        "2026-10": 12,
         "2026-09": 9,
         "2026-08": 10,
         "2026-07": 6,
@@ -177,8 +174,7 @@
         "2025-06": 1,
         "2025-05": 1,
         "2025-02": 1
-      },
-      "stale": true
+      }
     }
   ],
   "repos": [
@@ -188,8 +184,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 469,
-      "reportedStars": 469,
+      "stars": 472,
+      "reportedStars": 472,
       "monthly": {
         "2026-03": 1,
         "2026-04": 201,
@@ -198,7 +194,7 @@
         "2026-07": 55,
         "2026-08": 27,
         "2026-09": 58,
-        "2026-10": 17
+        "2026-10": 20
       }
     },
     {
@@ -207,8 +203,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 746,
-      "reportedStars": 746,
+      "stars": 747,
+      "reportedStars": 747,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -221,7 +217,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 16
+        "2026-10": 17
       }
     },
     {
@@ -287,11 +283,11 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 67,
-      "reportedStars": 67,
+      "stars": 68,
+      "reportedStars": 68,
       "monthly": {
         "2026-09": 59,
-        "2026-10": 8
+        "2026-10": 9
       }
     },
     {
