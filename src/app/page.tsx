@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ShootingStars } from "@/components/shooting-stars"
@@ -34,7 +34,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="flex h-16 w-full items-center justify-between px-4 md:px-8">
           <nav className="hidden sm:flex items-center space-x-4 md:space-x-8">
-            {["About", "News", "Publications", "Impact", "Education", "Talks", "Contact"].map((item) => (
+            {["About", "News", "Publications", "Impact", "Awards", "Education", "Talks", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -59,13 +59,81 @@ export default function Home() {
             <ShootingStars />
           </div>
           {/* Globe — hidden on mobile, absolutely positioned to the right on desktop */}
-          <div className="absolute -right-72 -bottom-96 z-10 hidden md:block w-[640px] h-[640px] md:-bottom-80 md:w-[720px] md:h-[720px]">
+          {/* No z-index here on purpose: it would trap the marker card in its own
+              stacking context, below the hero copy. */}
+          <div className="absolute -right-72 -bottom-96 hidden md:block w-[640px] h-[640px] md:-bottom-80 md:w-[720px] md:h-[720px]">
             <GlobeClient
               className="h-full w-full"
+              /* Anchored to the globe's visible top-left quadrant — the rest of
+                 the 720px container is clipped off-screen by the hero section. */
+              cardClassName="left-16 bottom-[336px]"
               markers={[
-                { lat: 39.74, lng: -104.99, src: "/logos/cvpr2026.png", label: "CVPR 2026" },
-                { lat: 49.2827, lng: -123.121, src: "/logos/icmlbg.jpg", label: "ICML 2025" },
-                { lat: 55.61, lng: 13.0, src: "/logos/eccv2026.png", label: "ECCV 2026" },
+                {
+                  lat: 39.74,
+                  lng: -104.99,
+                  src: "/logos/cvpr2026.png",
+                  label: "CVPR 2026",
+                  name: "Computer Vision and Pattern Recognition",
+                  location: "Denver, CO, USA",
+                  dates: "June 2026",
+                  papers: [
+                    {
+                      title: "MuM: Multi-View Masked Image Modeling for 3D Vision",
+                      href: "https://arxiv.org/abs/2511.17309",
+                    },
+                    {
+                      title: "Who Handles Orientation? Investigating Invariance in Feature Matching",
+                      track: "Workshop",
+                      href: "https://arxiv.org/abs/2604.11809",
+                    },
+                  ],
+                },
+                {
+                  lat: 49.2827,
+                  lng: -123.121,
+                  src: "/logos/icmlbg.jpg",
+                  label: "ICML 2025",
+                  name: "International Conference on Machine Learning",
+                  location: "Vancouver, Canada",
+                  dates: "July 2025",
+                  papers: [
+                    {
+                      title: "Flopping for FLOPs: Leveraging Equivariance for Computational Efficiency",
+                      track: "Spotlight",
+                      href: "https://arxiv.org/abs/2502.05169",
+                    },
+                  ],
+                },
+                {
+                  lat: 55.61,
+                  lng: 13.0,
+                  src: "/logos/eccv2026.png",
+                  label: "ECCV 2026",
+                  name: "European Conference on Computer Vision",
+                  location: "Malmö, Sweden",
+                  dates: "September 2026",
+                  papers: [
+                    {
+                      title: "LoMa: Local Feature Matching Revisited",
+                      track: "Oral",
+                      href: "https://arxiv.org/abs/2604.04931",
+                    },
+                    {
+                      title: "RoMa v2: Harder Better Faster Denser Feature Matching",
+                      track: "Oral",
+                      href: "https://arxiv.org/abs/2511.15706",
+                    },
+                    {
+                      title: "Octic Vision Transformers: Quicker ViTs Through Equivariance",
+                      href: "https://arxiv.org/abs/2505.15441",
+                    },
+                    {
+                      title: "RoMa-\u03a9: What Feed-Forward 3D Models Know About Image Matching",
+                      track: "Workshop",
+                      href: "https://arxiv.org/abs/2609.09507",
+                    },
+                  ],
+                },
               ] as GlobeMarker[]}
               config={{
                 atmosphereColor: "#4da6ff",
@@ -417,6 +485,59 @@ export default function Home() {
         <section id="impact" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Impact</h2>
           <ImpactChart />
+        </section>
+
+        {/* Awards Section */}
+        <section id="awards" className="py-8">
+          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Awards &amp; Recognition</h2>
+          <div className="grid gap-6">
+
+            <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start gap-4">
+                <div>
+                  <h3 className="font-semibold text-lg flex items-center gap-2">
+                    <AwardIcon className="h-4 w-4 text-muted-foreground" />
+                    Conference Distinctions
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    <span className="font-semibold text-orange-500">Oral</span> at ECCV 2026 (2 papers) and <span className="font-semibold text-purple-500">Spotlight</span> at ICML 2025.
+                  </p>
+                </div>
+                <span className="shrink-0 text-sm font-medium bg-gray-500/10 dark:bg-gray-300/10 px-2 py-0.5 rounded">2025&ndash;2026</span>
+              </div>
+            </div>
+
+            <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start gap-4">
+                <div>
+                  <h3 className="font-semibold text-lg flex items-center gap-2">
+                    <AwardIcon className="h-4 w-4 text-muted-foreground" />
+                    Outstanding Reviewer, NeurIPS 2026
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Selected for outstanding reviewing contributions.
+                  </p>
+                </div>
+                <span className="shrink-0 text-sm font-medium bg-gray-500/10 dark:bg-gray-300/10 px-2 py-0.5 rounded">2026</span>
+              </div>
+            </div>
+
+            <div className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start gap-4">
+                <div>
+                  <h3 className="font-semibold text-lg flex items-center gap-2">
+                    <AwardIcon className="h-4 w-4 text-muted-foreground" />
+                    SSBA Best Paper Award
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Swedish Society for Automated Image Analysis.
+                  </p>
+                </div>
+                <span className="shrink-0 text-sm font-medium bg-gray-500/10 dark:bg-gray-300/10 px-2 py-0.5 rounded">2026</span>
+              </div>
+            </div>
+
+          </div>
         </section>
 
         {/* Open Source */}

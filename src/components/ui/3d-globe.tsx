@@ -9,12 +9,37 @@ import { cn } from "@/lib/utils";
 // Types
 // ============================================================================
 
+export interface MarkerPaper {
+  /** Paper title */
+  title: string;
+  /** Short author list */
+  authors?: string;
+  /** Track / distinction, e.g. "Oral", "Workshop", "Spotlight" */
+  track?: string;
+  /** Link to the paper (arXiv, project page, ...) */
+  href?: string;
+}
+
 export interface GlobeMarker {
   lat: number;
   lng: number;
   src: string;
+  /** Short name shown on hover, e.g. "ECCV 2026" */
   label?: string;
   size?: number;
+  /** Full conference name shown in the detail card */
+  name?: string;
+  /** City / country, e.g. "Malmö, Sweden" */
+  location?: string;
+  /** When it takes place, e.g. "September 2026" */
+  dates?: string;
+  /** Papers presented at this venue */
+  papers?: MarkerPaper[];
+}
+
+/** Whether a marker carries enough data to be worth opening a card for */
+function hasDetails(marker: GlobeMarker): boolean {
+  return Boolean(marker.name || marker.location || marker.papers?.length);
 }
 
 export interface Globe3DConfig {
@@ -73,6 +98,10 @@ interface Globe3DProps {
   onMarkerClick?: (marker: GlobeMarker) => void;
   /** Callback when a marker is hovered */
   onMarkerHover?: (marker: GlobeMarker | null) => void;
+  /** Classes for the marker detail card — pass placement utilities (e.g.
+   *  "left-16 bottom-8"), since the card is absolutely positioned in the
+   *  container and the container is often larger than its visible area. */
+  cardClassName?: string;
 }
 
 // ============================================================================
@@ -114,6 +143,8 @@ interface MarkerProps {
   marker: GlobeMarker;
   radius: number;
   defaultSize: number;
+  /** Whether this marker's detail card is currently open */
+  selected?: boolean;
   onClick?: (marker: GlobeMarker) => void;
   onHover?: (marker: GlobeMarker | null) => void;
 }
@@ -123,6 +154,7 @@ function Marker({
   radius,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   defaultSize,
+  selected = false,
   onClick,
   onHover,
 }: MarkerProps) {
@@ -175,9 +207,13 @@ function Marker({
     onHover?.(null);
   }, [onHover]);
 
-  const handleClick = useCallback(() => {
-    onClick?.(marker);
-  }, [marker, onClick]);
+  const handleClick = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      onClick?.(marker);
+    },
+    [marker, onClick],
+  );
 
   // Calculate line center and orientation
   const { lineCenter, lineQuaternion } = useMemo(() => {
@@ -197,16 +233,18 @@ function Marker({
       <mesh position={lineCenter} quaternion={lineQuaternion}>
         <cylinderGeometry args={[0.003, 0.003, lineHeight, 8]} />
         <meshBasicMaterial
-          color={hovered ? "#ffffff" : "#94a3b8"}
+          color={hovered || selected ? "#ffffff" : "#94a3b8"}
           transparent
-          opacity={hovered ? 0.9 : 0.6}
+          opacity={hovered || selected ? 0.9 : 0.6}
         />
       </mesh>
 
       {/* Pin point at the surface */}
       <mesh position={surfacePosition} quaternion={lineQuaternion}>
         <coneGeometry args={[0.015, 0.04, 8]} />
-        <meshBasicMaterial color={hovered ? "#f97316" : "#ef4444"} />
+        <meshBasicMaterial
+          color={hovered || selected ? "#f97316" : "#ef4444"}
+        />
       </mesh>
 
       {/* Circular image at the top */}
@@ -219,25 +257,42 @@ function Marker({
             transition: "opacity 0.15s ease-out",
           }}
         >
-          <div
-            className={cn(
-              "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
-              hovered && "scale-125 shadow-xl ring-1 ring-white/50",
+          <div className="relative flex flex-col items-center">
+            {/* Name label on hover */}
+            {marker.label && (
+              <div
+                className={cn(
+                  "pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-neutral-900/90 px-2 py-1 text-[11px] font-medium leading-none text-white shadow-lg backdrop-blur-sm transition-all duration-150",
+                  hovered || selected
+                    ? "translate-y-0 opacity-100"
+                    : "translate-y-1 opacity-0",
+                )}
+              >
+                {marker.label}
+              </div>
             )}
-            style={{
-              width: "32px",
-              height: "32px",
-            }}
-            onMouseEnter={handlePointerEnter}
-            onMouseLeave={handlePointerLeave}
-            onClick={handleClick}
-          >
-            <img
-              src={marker.src}
-              alt={marker.label || "Marker"}
-              className="h-full w-full object-cover"
-              draggable={false}
-            />
+
+            <div
+              className={cn(
+                "cursor-pointer overflow-hidden rounded-full bg-neutral-900 shadow-lg transition-transform duration-200",
+                hovered && "scale-125 shadow-xl ring-1 ring-white/50",
+                selected && "scale-125 shadow-xl ring-2 ring-orange-400",
+              )}
+              style={{
+                width: "32px",
+                height: "32px",
+              }}
+              onMouseEnter={handlePointerEnter}
+              onMouseLeave={handlePointerLeave}
+              onClick={handleClick}
+            >
+              <img
+                src={marker.src}
+                alt={marker.label || "Marker"}
+                className="h-full w-full object-cover"
+                draggable={false}
+              />
+            </div>
           </div>
         </Html>
       </group>
@@ -252,13 +307,15 @@ function Marker({
 interface RotatingGlobeProps {
   config: Required<Globe3DConfig>;
   markers: GlobeMarker[];
-  onMarkerClick?: (marker: GlobeMarker) => void;
+  selectedIndex: number | null;
+  onMarkerClick?: (marker: GlobeMarker, index: number) => void;
   onMarkerHover?: (marker: GlobeMarker | null) => void;
 }
 
 function RotatingGlobe({
   config,
   markers,
+  selectedIndex,
   onMarkerClick,
   onMarkerHover,
 }: RotatingGlobeProps) {
@@ -322,7 +379,8 @@ function RotatingGlobe({
           marker={marker}
           radius={config.radius}
           defaultSize={config.markerSize}
-          onClick={onMarkerClick}
+          selected={selectedIndex === index}
+          onClick={(m) => onMarkerClick?.(m, index)}
           onHover={onMarkerHover}
         />
       ))}
@@ -394,11 +452,21 @@ function Atmosphere({ radius, color, intensity, blur }: AtmosphereProps) {
 interface SceneProps {
   markers: GlobeMarker[];
   config: Required<Globe3DConfig>;
-  onMarkerClick?: (marker: GlobeMarker) => void;
+  selectedIndex: number | null;
+  /** Freeze the auto-rotation (while hovering or reading a marker card) */
+  paused?: boolean;
+  onMarkerClick?: (marker: GlobeMarker, index: number) => void;
   onMarkerHover?: (marker: GlobeMarker | null) => void;
 }
 
-function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
+function Scene({
+  markers,
+  config,
+  selectedIndex,
+  paused = false,
+  onMarkerClick,
+  onMarkerHover,
+}: SceneProps) {
   const { camera } = useThree();
 
   // Set initial camera position (pulled back to accommodate markers)
@@ -426,6 +494,7 @@ function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
       <RotatingGlobe
         config={config}
         markers={markers}
+        selectedIndex={selectedIndex}
         onMarkerClick={onMarkerClick}
         onMarkerHover={onMarkerHover}
       />
@@ -448,12 +517,131 @@ function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
         minDistance={config.minDistance}
         maxDistance={config.maxDistance}
         rotateSpeed={0.4}
-        autoRotate={config.autoRotateSpeed > 0}
+        autoRotate={config.autoRotateSpeed > 0 && !paused}
         autoRotateSpeed={config.autoRotateSpeed}
         enableDamping
         dampingFactor={0.1}
       />
     </>
+  );
+}
+
+// ============================================================================
+// Marker Detail Card
+// ============================================================================
+
+function MarkerCard({
+  marker,
+  className,
+  onClose,
+}: {
+  marker: GlobeMarker;
+  className?: string;
+  onClose: () => void;
+}) {
+  return (
+    <div
+      className={cn(
+        "absolute w-[320px] max-w-full rounded-xl border bg-background/95 p-4 shadow-xl backdrop-blur-md",
+        className,
+      )}
+      // drei's <Html> markers render at z-index ~16777271, so sit just above them
+      style={{ zIndex: 16777280 }}
+    >
+      <button
+        type="button"
+        aria-label="Close"
+        onClick={onClose}
+        className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          className="h-3.5 w-3.5"
+        >
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+
+      {/* Header */}
+      <div className="flex items-start gap-3 pr-6">
+        <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-neutral-900">
+          <img
+            src={marker.src}
+            alt={marker.label || "Venue"}
+            className="h-full w-full object-cover"
+            draggable={false}
+          />
+        </div>
+        <div className="min-w-0">
+          <p className="text-sm font-semibold leading-tight">
+            {marker.label ?? marker.name}
+          </p>
+          {marker.name && marker.label && (
+            <p className="mt-0.5 text-xs leading-snug text-muted-foreground">
+              {marker.name}
+            </p>
+          )}
+          {(marker.location || marker.dates) && (
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              {[marker.location, marker.dates].filter(Boolean).join(" · ")}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Papers */}
+      {marker.papers && marker.papers.length > 0 && (
+        <div className="mt-3 border-t pt-3">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+            {marker.papers.length === 1 ? "1 paper" : `${marker.papers.length} papers`}
+          </p>
+          <ul className="space-y-2">
+            {marker.papers.map((paper) => {
+              const title = (
+                <span className="font-medium text-foreground">
+                  {paper.title}
+                </span>
+              );
+              return (
+                <li key={paper.title} className="text-xs leading-snug">
+                  <div className="flex items-start gap-1.5">
+                    <span className="mt-[5px] h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
+                    <div className="min-w-0">
+                      {paper.href ? (
+                        <a
+                          href={paper.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="underline decoration-muted-foreground/40 underline-offset-2 transition-colors hover:decoration-foreground"
+                        >
+                          {title}
+                        </a>
+                      ) : (
+                        title
+                      )}
+                      {paper.track && (
+                        <span className="ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wide text-orange-500">
+                          {paper.track}
+                        </span>
+                      )}
+                      {paper.authors && (
+                        <p className="mt-0.5 text-[11px] text-muted-foreground">
+                          {paper.authors}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -499,11 +687,37 @@ export function Globe3D({
   className,
   onMarkerClick,
   onMarkerHover,
+  cardClassName,
 }: Globe3DProps) {
   const mergedConfig = useMemo(
     () => ({ ...defaultConfig, ...config }),
     [config],
   );
+
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [isHovering, setIsHovering] = useState(false);
+
+  const handleMarkerClick = useCallback(
+    (marker: GlobeMarker, index: number) => {
+      onMarkerClick?.(marker);
+      if (!hasDetails(marker)) return;
+      setSelectedIndex((current) => (current === index ? null : index));
+    },
+    [onMarkerClick],
+  );
+
+  const handleMarkerHover = useCallback(
+    (marker: GlobeMarker | null) => {
+      onMarkerHover?.(marker);
+      setIsHovering(Boolean(marker));
+    },
+    [onMarkerHover],
+  );
+
+  const closeCard = useCallback(() => setSelectedIndex(null), []);
+
+  const selectedMarker =
+    selectedIndex !== null ? markers[selectedIndex] : undefined;
 
   return (
     <div className={cn("relative h-[500px] w-full", className)}>
@@ -528,11 +742,21 @@ export function Globe3D({
           <Scene
             markers={markers}
             config={mergedConfig}
-            onMarkerClick={onMarkerClick}
-            onMarkerHover={onMarkerHover}
+            selectedIndex={selectedIndex}
+            paused={isHovering || selectedIndex !== null}
+            onMarkerClick={handleMarkerClick}
+            onMarkerHover={handleMarkerHover}
           />
         </Suspense>
       </Canvas>
+
+      {selectedMarker && (
+        <MarkerCard
+          marker={selectedMarker}
+          className={cardClassName}
+          onClose={closeCard}
+        />
+      )}
     </div>
   );
 }

@@ -12,10 +12,19 @@ export function GlobeClient({
   markers,
   config,
   className,
+  cardClassName,
 }: {
   markers: GlobeMarker[];
   config?: Globe3DConfig;
   className?: string;
+  cardClassName?: string;
 }) {
-  return <Globe3D markers={markers} config={config} className={className} />;
+  return (
+    <Globe3D
+      markers={markers}
+      config={config}
+      className={className}
+      cardClassName={cardClassName}
+    />
+  );
 }
