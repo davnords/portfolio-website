@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-22",
+  "generatedAt": "2026-10-23",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,8 +7,8 @@
   "totals": {
     "citations": 106,
     "hIndex": 4,
-    "stars": 1492,
-    "papers": 8
+    "stars": 1494,
+    "papers": 7
   },
   "milestones": [
     {
@@ -130,10 +130,8 @@
       "label": "RoMa-Ω",
       "venue": "ECCVW 2026",
       "arxiv": "2609.09507",
-      "title": "RoMa-$\\Omega$: What Feed-Forward 3D Models Know About Image Matching",
-      "published": "2026-09",
+      "title": null,
       "citations": 0,
-      "reportedCitations": 0,
       "undated": 0,
       "monthly": {}
     },
@@ -203,8 +201,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 747,
-      "reportedStars": 747,
+      "stars": 749,
+      "reportedStars": 749,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -217,7 +215,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 17
+        "2026-10": 19
       }
     },
     {
