@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, FileTextIcon, PresentationIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ShootingStars } from "@/components/shooting-stars"
@@ -677,6 +677,58 @@ export default function Home() {
         <section id="talks" className="py-8">
           <h2 className="mb-8 text-3xl font-bold tracking-tighter">Talks</h2>
           <div className="grid gap-6">
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg">Learning to Understand 3D in the Age of Feed-forward Reconstruction</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Invited talk at &Eacute;cole des Ponts ParisTech (ENPC), Paris, while visiting Vincent Lepetit. October 2026.
+                  </p>
+                </div>
+                <span className="text-sm font-medium bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded flex items-center gap-1">
+                  <PresentationIcon className="h-3.5 w-3.5" />
+                  Slides
+                </span>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="/talks/learning-to-understand-3d-enpc/deck.html" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <PresentationIcon className="h-4 w-4" />
+                    Open Slides
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
+            <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
+              <div className="flex justify-between items-start">
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg">Learning to Understand 3D</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    Invited talk at the Workshop on Geometry, Learning and 3D Understanding &mdash; a pre-ECCV mini-workshop at the Centre for Mathematical Sciences, Lund University. September 2026.
+                  </p>
+                </div>
+                <span className="text-sm font-medium bg-blue-500/10 text-blue-500 px-2 py-0.5 rounded flex items-center gap-1">
+                  <FileTextIcon className="h-3.5 w-3.5" />
+                  Slides
+                </span>
+              </div>
+              <div className="mt-4 flex items-center gap-3">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="/talks/learning-to-understand-3d-lund.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    <FileTextIcon className="h-4 w-4" />
+                    View Slides
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="sm" asChild>
+                  <a href="https://vlarsson.github.io/workshop26/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+                    Workshop page
+                    <ExternalLinkIcon className="h-3 w-3" />
+                  </a>
+                </Button>
+              </div>
+            </div>
             <div className="group rounded-lg border p-6 transition-colors hover:bg-muted/50">
               <div className="flex justify-between items-start">
                 <div className="flex-1">
