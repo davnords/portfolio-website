@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-10-23",
+  "generatedAt": "2026-10-24",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 106,
+    "citations": 107,
     "hIndex": 4,
-    "stars": 1494,
-    "papers": 7
+    "stars": 1496,
+    "papers": 8
   },
   "milestones": [
     {
@@ -64,11 +64,11 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 62,
-      "reportedCitations": 62,
+      "citations": 63,
+      "reportedCitations": 63,
       "undated": 0,
       "monthly": {
-        "2026-10": 12,
+        "2026-10": 13,
         "2026-09": 9,
         "2026-08": 10,
         "2026-07": 6,
@@ -130,8 +130,10 @@
       "label": "RoMa-Ω",
       "venue": "ECCVW 2026",
       "arxiv": "2609.09507",
-      "title": null,
+      "title": "RoMa-$\\Omega$: What Feed-Forward 3D Models Know About Image Matching",
+      "published": "2026-09",
       "citations": 0,
+      "reportedCitations": 0,
       "undated": 0,
       "monthly": {}
     },
@@ -224,8 +226,8 @@
       "repo": "davnords/MuM",
       "url": "https://github.com/davnords/MuM",
       "created": "2025-10",
-      "stars": 127,
-      "reportedStars": 127,
+      "stars": 128,
+      "reportedStars": 128,
       "monthly": {
         "2025-11": 50,
         "2025-12": 15,
@@ -238,7 +240,7 @@
         "2026-07": 11,
         "2026-08": 1,
         "2026-09": 4,
-        "2026-10": 2
+        "2026-10": 3
       }
     },
     {
@@ -247,10 +249,10 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 47,
-      "reportedStars": 47,
+      "stars": 48,
+      "reportedStars": 48,
       "monthly": {
-        "2026-10": 47
+        "2026-10": 48
       }
     },
     {
