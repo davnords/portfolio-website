@@ -1,5 +1,8 @@
 {
-  "generatedAt": "2026-10-24",
+  "generatedAt": "2026-10-25",
+  "degraded": [
+    "LoMa-R citations: 2026-10-24 snapshot"
+  ],
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +10,7 @@
   "totals": {
     "citations": 107,
     "hIndex": 4,
-    "stars": 1496,
+    "stars": 1497,
     "papers": 8
   },
   "milestones": [
@@ -151,7 +154,8 @@
         "2026-07": 1,
         "2026-06": 1,
         "2026-04": 2
-      }
+      },
+      "stale": true
     },
     {
       "key": "flopping",
@@ -184,8 +188,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 473,
-      "reportedStars": 473,
+      "stars": 474,
+      "reportedStars": 474,
       "monthly": {
         "2026-03": 1,
         "2026-04": 201,
@@ -194,7 +198,7 @@
         "2026-07": 55,
         "2026-08": 27,
         "2026-09": 58,
-        "2026-10": 21
+        "2026-10": 22
       }
     },
     {
