@@ -1,7 +1,8 @@
 {
-  "generatedAt": "2026-10-25",
+  "generatedAt": "2026-10-26",
   "degraded": [
-    "LoMa-R citations: 2026-10-24 snapshot"
+    "LoMa citations: 2026-10-25 snapshot",
+    "RoMa v2 citations: 2026-10-25 snapshot"
   ],
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
@@ -10,7 +11,7 @@
   "totals": {
     "citations": 107,
     "hIndex": 4,
-    "stars": 1497,
+    "stars": 1500,
     "papers": 8
   },
   "milestones": [
@@ -58,7 +59,8 @@
         "2026-06": 2,
         "2026-05": 1,
         "2026-04": 5
-      }
+      },
+      "stale": true
     },
     {
       "key": "romav2",
@@ -81,7 +83,8 @@
         "2026-03": 8,
         "2026-02": 1,
         "2025-11": 3
-      }
+      },
+      "stale": true
     },
     {
       "key": "mum",
@@ -154,8 +157,7 @@
         "2026-07": 1,
         "2026-06": 1,
         "2026-04": 2
-      },
-      "stale": true
+      }
     },
     {
       "key": "flopping",
@@ -188,8 +190,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 474,
-      "reportedStars": 474,
+      "stars": 475,
+      "reportedStars": 475,
       "monthly": {
         "2026-03": 1,
         "2026-04": 201,
@@ -198,7 +200,7 @@
         "2026-07": 55,
         "2026-08": 27,
         "2026-09": 58,
-        "2026-10": 22
+        "2026-10": 23
       }
     },
     {
@@ -207,8 +209,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 749,
-      "reportedStars": 749,
+      "stars": 751,
+      "reportedStars": 751,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -221,7 +223,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 19
+        "2026-10": 21
       }
     },
     {
