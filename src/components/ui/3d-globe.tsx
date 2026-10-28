@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { OrbitControls, Html, useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
+import { venueTagColor } from "@/lib/venue";
 
 // ============================================================================
 // Types
@@ -624,7 +625,7 @@ function MarkerCard({
                         title
                       )}
                       {paper.track && (
-                        <span className="ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wide text-orange-500">
+                        <span className={cn("ml-1.5 align-middle text-[10px] font-semibold uppercase tracking-wide", venueTagColor(paper.track))}>
                           {paper.track}
                         </span>
                       )}

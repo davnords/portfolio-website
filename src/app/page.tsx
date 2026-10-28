@@ -1,11 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
-import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, FileTextIcon, PresentationIcon } from "lucide-react"
+import { GithubIcon, LinkedinIcon, MailIcon, DownloadIcon, YoutubeIcon, ExternalLinkIcon, AwardIcon, FileTextIcon, PresentationIcon, QuoteIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { ShootingStars } from "@/components/shooting-stars"
 import Carousel from "@/components/ui/carousel"
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card"
 import { FlipWords } from "@/components/ui/flip-words"
 import { TracingBeam } from "@/components/ui/tracing-beam"
 import { Terminal } from "@/components/ui/terminal"
@@ -13,6 +12,8 @@ import { Tooltip } from "@/components/ui/tooltip-card"
 import { GlobeClient } from "@/components/globe-client"
 import { ImpactChart } from "@/components/impact-chart"
 import type { GlobeMarker } from "@/components/ui/3d-globe"
+import { cn } from "@/lib/utils"
+import { VENUE_TAG_COLORS } from "@/lib/venue"
 
 function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -27,6 +28,279 @@ function GoogleScholarIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const ME = "David Nordström"
+
+const LINK_ICONS = {
+  arxiv: FileTextIcon,
+  pdf: DownloadIcon,
+  code: GithubIcon,
+  page: ExternalLinkIcon,
+  bibtex: QuoteIcon,
+} as const
+
+type PublicationLink = {
+  label: string
+  href: string
+  icon: keyof typeof LINK_ICONS
+  internal?: boolean
+}
+
+type Publication = {
+  title: string
+  authors: string[]
+  venue: string
+  venueTone?: "conference" | "preprint"
+  tag?: keyof typeof VENUE_TAG_COLORS
+  image?: string
+  summary?: React.ReactNode
+  links: PublicationLink[]
+}
+
+/** Renders a full author list, bolding me and keeping equal-contribution asterisks. */
+function AuthorList({ authors, className }: { authors: string[]; className?: string }) {
+  return (
+    <p className={cn("text-sm leading-relaxed text-muted-foreground", className)}>
+      {authors.map((author, i) => {
+        const equalContribution = author.endsWith("*")
+        const name = equalContribution ? author.slice(0, -1) : author
+        return (
+          <span key={author}>
+            <span className={name === ME ? "font-semibold text-foreground" : undefined}>{name}</span>
+            {equalContribution && <sup>*</sup>}
+            {i < authors.length - 1 && ", "}
+          </span>
+        )
+      })}
+    </p>
+  )
+}
+
+function VenueLine({ pub, className }: { pub: Publication; className?: string }) {
+  return (
+    <p
+      className={cn(
+        "text-sm font-semibold italic",
+        pub.venueTone === "preprint" && "text-muted-foreground",
+        className,
+      )}
+    >
+      {pub.venue}
+      {pub.tag && <span className={cn("ml-1.5 not-italic", VENUE_TAG_COLORS[pub.tag])}>({pub.tag})</span>}
+    </p>
+  )
+}
+
+function PublicationLinks({ links, className }: { links: PublicationLink[]; className?: string }) {
+  return (
+    <div className={cn("flex flex-wrap items-center gap-x-4 gap-y-2", className)}>
+      {links.map((link) => {
+        const Icon = LINK_ICONS[link.icon]
+        const linkClassName =
+          "inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+        const content = (
+          <>
+            <Icon className="h-3.5 w-3.5 shrink-0" />
+            {link.label}
+          </>
+        )
+        return link.internal ? (
+          <Link key={link.label} href={link.href} className={linkClassName}>
+            {content}
+          </Link>
+        ) : (
+          <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className={linkClassName}>
+            {content}
+          </a>
+        )
+      })}
+    </div>
+  )
+}
+
+/** Highlighted paper: teaser figure alongside the full reference. */
+function SelectedPublication({ pub }: { pub: Publication }) {
+  return (
+    <article className="rounded-lg border p-5 transition-colors hover:bg-muted/50">
+      <div className="flex flex-col gap-5 sm:flex-row">
+        {pub.image && (
+          <div className="relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-md border bg-white sm:w-56">
+            <Image
+              src={pub.image}
+              alt={`${pub.title} teaser figure`}
+              fill
+              sizes="(max-width: 640px) 100vw, 224px"
+              className="object-contain p-1"
+            />
+          </div>
+        )}
+        <div className="min-w-0">
+          <h4 className="text-base font-semibold leading-snug sm:text-lg">{pub.title}</h4>
+          <AuthorList authors={pub.authors} className="mt-1.5" />
+          <VenueLine pub={pub} className="mt-1.5" />
+          {pub.summary && <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{pub.summary}</p>}
+          <PublicationLinks links={pub.links} className="mt-3.5" />
+        </div>
+      </div>
+    </article>
+  )
+}
+
+/** Compact reference-list entry for the remaining papers. */
+function AdditionalPublication({ pub }: { pub: Publication }) {
+  return (
+    <article className="py-5 first:pt-0 last:pb-0">
+      <h4 className="font-medium leading-snug">{pub.title}</h4>
+      <AuthorList authors={pub.authors} className="mt-1.5" />
+      <VenueLine pub={pub} className="mt-1.5" />
+      <PublicationLinks links={pub.links} className="mt-3" />
+    </article>
+  )
+}
+
+function arxiv(id: string): PublicationLink {
+  return { label: `arXiv:${id}`, href: `https://arxiv.org/abs/${id}`, icon: "arxiv" }
+}
+
+function bibtex(id: string): PublicationLink {
+  return { label: "BibTeX", href: `https://arxiv.org/bibtex/${id}`, icon: "bibtex" }
+}
+
+function code(repo: string): PublicationLink {
+  return { label: "Code", href: `https://github.com/${repo}`, icon: "code" }
+}
+
+const SELECTED_PUBLICATIONS: Publication[] = [
+  {
+    title: "LoMa: Local Feature Matching Revisited",
+    authors: [
+      `${ME}*`,
+      "Johan Edstedt*",
+      "Georg Bökman",
+      "Jonathan Astermark",
+      "Anders Heyden",
+      "Viktor Larsson",
+      "Mårten Wadenbäck",
+      "Michael Felsberg",
+      "Fredrik Kahl",
+    ],
+    venue: "ECCV 2026",
+    tag: "Oral",
+    image: "/projects/loma/teaser.png",
+    summary: (
+      <>
+        Revisits local feature matching with large data mixtures and scaled compute.{" "}
+        <span className="font-semibold text-foreground">+18.6 mAA</span> on HardMatch over ALIKED+LightGlue.
+      </>
+    ),
+    links: [
+      arxiv("2604.04931"),
+      { label: "PDF", href: "/papers/LoMa.pdf", icon: "pdf" },
+      code("davnords/loma"),
+      { label: "Project page", href: "/loma", icon: "page", internal: true },
+      { label: "HardMatch", href: "/loma/hardmatch", icon: "page", internal: true },
+      bibtex("2604.04931"),
+    ],
+  },
+  {
+    title: "MuM: Multi-View Masked Image Modeling for 3D Vision",
+    authors: [ME, "Johan Edstedt", "Fredrik Kahl", "Georg Bökman"],
+    venue: "CVPR 2026",
+    image: "/projects/mum/teaser.png",
+    summary:
+      "Feature encoder for 3D vision via multi-frame MAE. Beats DINOv3 and CroCo v2 on matching, reconstruction, and pose estimation.",
+    links: [
+      arxiv("2511.17309"),
+      { label: "PDF", href: "/papers/MuM.pdf", icon: "pdf" },
+      code("davnords/mum"),
+      { label: "Project page", href: "/mum", icon: "page", internal: true },
+      bibtex("2511.17309"),
+    ],
+  },
+  {
+    title: "Octic Vision Transformers: Quicker ViTs Through Equivariance",
+    authors: [ME, "Johan Edstedt", "Fredrik Kahl", "Georg Bökman"],
+    venue: "ECCV 2026",
+    image: "/projects/octic/method.png",
+    summary:
+      "Builds 8-fold symmetry into Vision Transformers, reducing compute while improving performance through equivariance.",
+    links: [arxiv("2505.15441"), code("davnords/octic-vits"), bibtex("2505.15441")],
+  },
+  {
+    title: "Flopping for FLOPs: Leveraging Equivariance for Computational Efficiency",
+    authors: ["Georg Bökman", ME, "Fredrik Kahl"],
+    venue: "ICML 2025",
+    tag: "Spotlight",
+    image: "/projects/flopping/flopping.png",
+    summary:
+      "Flopping-equivariance in modern vision architectures reduces FLOPs and improves performance — a free lunch from symmetry.",
+    links: [arxiv("2502.05169"), code("georg-bn/flopping-for-flops"), bibtex("2502.05169")],
+  },
+]
+
+const ADDITIONAL_PUBLICATIONS: Publication[] = [
+  {
+    title: "Poincar3: Emergent Multi-View Geometry Through Self-Distillation",
+    authors: [ME, "Thibaut Loiseau", "Vincent Lepetit", "Michael Felsberg", "Guillaume Bourmaud", "Fredrik Kahl"],
+    venue: "Pre-print, 2026",
+    venueTone: "preprint",
+    links: [
+      arxiv("2609.39227"),
+      code("davnords/poincar3"),
+      { label: "Project page", href: "/poincar3", icon: "page", internal: true },
+      bibtex("2609.39227"),
+    ],
+  },
+  {
+    title: "RoMa v2: Harder Better Faster Denser Feature Matching",
+    authors: [
+      "Johan Edstedt",
+      ME,
+      "Yushan Zhang",
+      "Georg Bökman",
+      "Jonathan Astermark",
+      "Viktor Larsson",
+      "Anders Heyden",
+      "Fredrik Kahl",
+      "Mårten Wadenbäck",
+      "Michael Felsberg",
+    ],
+    venue: "ECCV 2026",
+    tag: "Oral",
+    links: [arxiv("2511.15706"), code("Parskatt/romav2"), bibtex("2511.15706")],
+  },
+  {
+    title: "RoMa-Ω: What Feed-Forward 3D Models Know About Image Matching",
+    authors: [ME, "Xinyue Zhang", "Thibaut Loiseau", "Vincent Lepetit", "Fredrik Kahl"],
+    venue: "ECCV 2026",
+    tag: "Workshop",
+    links: [arxiv("2609.09507"), code("davnords/roma-omega"), bibtex("2609.09507")],
+  },
+  {
+    title: "Who Handles Orientation? Investigating Invariance in Feature Matching",
+    authors: [ME, "Johan Edstedt", "Fredrik Kahl", "Georg Bökman"],
+    venue: "CVPR 2026",
+    tag: "Workshop",
+    links: [arxiv("2604.11809"), code("davnords/loma"), bibtex("2604.11809")],
+  },
+]
+
+const SUPERVISED_PUBLICATIONS: (Publication & { role: React.ReactNode })[] = [
+  {
+    title: "Does VGGT Know What It Does Not Know?",
+    authors: ["Adityan Thirumani Srinivasan", ME],
+    venue: "Pre-print, 2026",
+    venueTone: "preprint",
+    role: (
+      <>
+        Advised <span className="font-medium text-foreground">Adityan Thirumani Srinivasan</span> on his first research
+        project, carried out during his final year of high school. The paper shows that a linear probe on VGGT&apos;s
+        frozen features predicts pose failure far better than the model&apos;s own confidence.
+      </>
+    ),
+    links: [arxiv("2610.35806"), bibtex("2610.35806")],
+  },
+]
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-background overflow-x-clip">
@@ -34,7 +308,7 @@ export default function Home() {
       <header className="fixed top-0 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-50">
         <div className="flex h-16 w-full items-center justify-between px-4 md:px-8">
           <nav className="hidden sm:flex items-center space-x-4 md:space-x-8">
-            {["About", "News", "Publications", "Impact", "Awards", "Education", "Talks", "Contact"].map((item) => (
+            {["About", "News", "Publications", "Supervision", "Impact", "Awards", "Education", "Talks", "Contact"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -273,211 +547,56 @@ export default function Home() {
 
         {/* Publications Section */}
         <section id="publications" className="py-8">
-          <h2 className="mb-8 text-3xl font-bold tracking-tighter">Publications</h2>
+          <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <h2 className="text-3xl font-bold tracking-tighter">Publications</h2>
+            <a
+              href="https://scholar.google.com/citations?user=-vJPE04AAAAJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <GoogleScholarIcon className="h-3.5 w-3.5 shrink-0" />
+              Full list on Google Scholar
+              <ExternalLinkIcon className="h-3 w-3 shrink-0" />
+            </a>
+          </div>
 
           {/* Selected */}
           <h3 className="mb-4 text-base font-semibold uppercase tracking-widest text-muted-foreground">Selected</h3>
-          <div className="grid gap-2 grid-cols-1 sm:grid-cols-2 mb-10">
-            {/* LoMa */}
-            <CardContainer containerClassName="py-2 w-full" className="w-full">
-              <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={60} className="w-full">
-                  <h3 className="text-xl font-bold leading-snug">LoMa</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">Local Feature Matching Revisited</p>
-                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span><sup>*</sup>, J. Edstedt<sup>*</sup>, G. Bökman, J. Astermark, A. Heyden, V. Larsson, M. Wadenbäck, M. Felsberg, F. Kahl</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026 <span className="text-orange-500">Oral</span></p>
-                </CardItem>
-                <CardItem translateZ={100} className="w-full mt-4">
-                  <div className="relative h-44 w-full"><Image src="/projects/loma/teaser.png" alt="LoMa method" fill className="object-cover rounded-xl" /></div>
-                </CardItem>
-                <CardItem translateZ={30} className="w-full mt-2">
-                  <p className="text-sm text-muted-foreground">Revisits local feature matching with large data mixtures and scaled compute. <span className="font-semibold text-foreground">+18.6 mAA</span> on HardMatch over ALIKED+LightGlue.</p>
-                </CardItem>
-                <CardItem translateZ={45} className="w-full mt-5">
-                  <div className="flex items-center gap-3">
-                    <a href="https://arxiv.org/abs/2604.04931" target="_blank" rel="noopener noreferrer">
-                      <img src="https://img.shields.io/badge/arXiv-2604.04931-b31b1b" alt="arXiv" className="h-5" />
-                    </a>
-                    <a href="https://github.com/davnords/loma" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                      <GithubIcon className="h-4 w-4" />
-                    </a>
-                    <Link href="/loma" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <ExternalLinkIcon className="h-3.5 w-3.5" />
-                      <span>Project page</span>
-                    </Link>
-                    <Link href="/loma/hardmatch" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <ExternalLinkIcon className="h-3.5 w-3.5" />
-                      <span>HardMatch</span>
-                    </Link>
-                  </div>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
-
-            {/* MuM */}
-            <CardContainer containerClassName="py-2 w-full" className="w-full">
-              <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={60} className="w-full">
-                  <h3 className="text-xl font-bold leading-snug">MuM</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">Multi-View Masked Image Modeling for 3D Vision</p>
-                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span>, J. Edstedt, F. Kahl, G. Bökman</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">CVPR 2026</p>
-                </CardItem>
-                <CardItem translateZ={100} className="w-full mt-4">
-                  <div className="relative h-44 w-full"><Image src="/projects/mum/teaser.png" alt="MuM teaser" fill className="object-cover rounded-xl" /></div>
-                </CardItem>
-                <CardItem translateZ={30} className="w-full mt-2">
-                  <p className="text-sm text-muted-foreground">Feature encoder for 3D vision via multi-frame MAE. Beats DINOv3 and CroCo v2 on matching, reconstruction, and pose estimation.</p>
-                </CardItem>
-                <CardItem translateZ={45} className="w-full mt-5">
-                  <div className="flex items-center gap-3">
-                    <a href="https://arxiv.org/abs/2511.17309" target="_blank" rel="noopener noreferrer">
-                      <img src="https://img.shields.io/badge/arXiv-2511.17309-b31b1b" alt="arXiv" className="h-5" />
-                    </a>
-                    <a href="https://github.com/davnords/mum" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                      <GithubIcon className="h-4 w-4" />
-                    </a>
-                    <Link href="/mum" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                      <ExternalLinkIcon className="h-3.5 w-3.5" />
-                      <span>Project page</span>
-                    </Link>
-                  </div>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
-
-            {/* Octic Vision Transformers */}
-            <CardContainer containerClassName="py-2 w-full" className="w-full">
-              <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={60} className="w-full">
-                  <h3 className="text-xl font-bold leading-snug">Octic ViTs</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">Octic Vision Transformers: Quicker ViTs Through Equivariance</p>
-                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1"><span className="font-medium text-foreground">D. Nordström</span>, J. Edstedt, F. Kahl, G. Bökman</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ECCV 2026</p>
-                </CardItem>
-                <CardItem translateZ={100} className="w-full mt-4">
-                  <div className="relative h-44 w-full"><Image src="/projects/octic/method.png" alt="Octic ViTs" fill className="object-cover rounded-xl" /></div>
-                </CardItem>
-                <CardItem translateZ={30} className="w-full mt-2">
-                  <p className="text-sm text-muted-foreground">Builds 8-fold symmetry into Vision Transformers, reducing compute while improving performance through equivariance.</p>
-                </CardItem>
-                <CardItem translateZ={45} className="w-full mt-5">
-                  <div className="flex items-center gap-3">
-                    <a href="https://arxiv.org/abs/2505.15441" target="_blank" rel="noopener noreferrer">
-                      <img src="https://img.shields.io/badge/arXiv-2505.15441-b31b1b" alt="arXiv" className="h-5" />
-                    </a>
-                    <a href="https://github.com/davnords/octic-vits" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                      <GithubIcon className="h-4 w-4" />
-                    </a>
-                  </div>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
-
-            {/* Flopping for FLOPs */}
-            <CardContainer containerClassName="py-2 w-full" className="w-full">
-              <CardBody className="h-auto w-full rounded-xl border bg-card p-6 dark:border-white/[0.2] dark:hover:shadow-2xl dark:hover:shadow-blue-500/[0.1]">
-                <CardItem translateZ={60} className="w-full">
-                  <h3 className="text-xl font-bold leading-snug">Flopping for FLOPs</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">Leveraging equivariance for computational efficiency</p>
-                  <p className="text-xs text-muted-foreground mt-1.5 line-clamp-1">G. Bökman, <span className="font-medium text-foreground">D. Nordström</span>, F. Kahl</p>
-                  <p className="text-xs font-semibold text-foreground mt-1 italic">ICML 2025 <span className="text-purple-500">Spotlight</span></p>
-                </CardItem>
-                <CardItem translateZ={100} className="w-full mt-4">
-                  <div className="relative h-44 w-full"><Image src="/projects/flopping/flopping.png" alt="Flopping for FLOPs" fill className="object-cover rounded-xl" /></div>
-                </CardItem>
-                <CardItem translateZ={30} className="w-full mt-2">
-                  <p className="text-sm text-muted-foreground">Flopping-equivariance in modern vision architectures reduces FLOPs and improves performance — a free lunch from symmetry.</p>
-                </CardItem>
-                <CardItem translateZ={45} className="w-full mt-5">
-                  <div className="flex items-center gap-3">
-                    <a href="https://arxiv.org/abs/2502.05169" target="_blank" rel="noopener noreferrer">
-                      <img src="https://img.shields.io/badge/arXiv-2502.05169-b31b1b" alt="arXiv" className="h-5" />
-                    </a>
-                    <a href="https://github.com/georg-bn/flopping-for-flops" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
-                      <GithubIcon className="h-4 w-4" />
-                    </a>
-                  </div>
-                </CardItem>
-              </CardBody>
-            </CardContainer>
+          <div className="grid gap-3">
+            {SELECTED_PUBLICATIONS.map((pub) => (
+              <SelectedPublication key={pub.title} pub={pub} />
+            ))}
           </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            <sup>*</sup> Equal contribution.
+          </p>
 
           {/* Other */}
-          <h3 className="mb-4 text-base font-semibold uppercase tracking-widest text-muted-foreground">Other</h3>
-          <div className="grid gap-3">
-            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-medium">Poincar3: Emergent Multi-View Geometry Through Self-Distillation</h3>
-                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Thibaut Loiseau, Vincent Lepetit, Michael Felsberg, Guillaume Bourmaud, Fredrik Kahl</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-muted-foreground">Pre-print</span>
-                  <a href="https://arxiv.org/abs/2609.39227" target="_blank" rel="noopener noreferrer" className="inline-block">
-                    <img src="https://img.shields.io/badge/arXiv-2609.39227-b31b1b" alt="arXiv" className="h-5" />
-                  </a>
-                  <a href="https://github.com/davnords/poincar3" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                    <GithubIcon className="h-4 w-4" />
-                  </a>
-                  <Link href="/poincar3" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-                    <ExternalLinkIcon className="h-3.5 w-3.5" />
-                    <span>Project page</span>
-                  </Link>
-                </div>
-              </div>
-            </div>
-            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-medium">RoMa-&Omega;: What Feed-Forward 3D Models Know About Image Matching</h3>
-                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Xinyue Zhang, Thibaut Loiseau, Vincent Lepetit, Fredrik Kahl</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-blue-500">ECCVW 2026</span>
-                  <a href="https://arxiv.org/abs/2609.09507" target="_blank" rel="noopener noreferrer" className="inline-block">
-                    <img src="https://img.shields.io/badge/arXiv-2609.09507-b31b1b" alt="arXiv" className="h-5" />
-                  </a>
-                  <a href="https://github.com/davnords/roma-omega" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                    <GithubIcon className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-medium">Who Handles Orientation? Investigating Invariance in Feature Matching</h3>
-                  <p className="mt-1 text-sm text-muted-foreground"><span className="font-medium text-foreground">David Nordström</span>, Johan Edstedt, Fredrik Kahl, Georg Bökman</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-blue-500">CVPRW 2026</span>
-                  <a href="https://arxiv.org/abs/2604.11809" target="_blank" rel="noopener noreferrer" className="inline-block">
-                    <img src="https://img.shields.io/badge/arXiv-2604.11809-b31b1b" alt="arXiv" className="h-5" />
-                  </a>
-                  <a href="https://github.com/davnords/loma" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                    <GithubIcon className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="group rounded-lg border px-5 py-4 transition-colors hover:bg-muted/50">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
-                <div className="min-w-0">
-                  <h3 className="font-medium">RoMa v2: Harder Better Faster Denser Feature Matching</h3>
-                  <p className="mt-1 text-sm text-muted-foreground">Johan Edstedt, <span className="font-medium text-foreground">David Nordström</span>, Yushan Zhang, Georg Bökman, Jonathan Astermark, Viktor Larsson, Anders Heyden, Fredrik Kahl, Mårten Wadenbäck, Michael Felsberg</p>
-                </div>
-                <div className="flex flex-wrap items-center gap-2 shrink-0">
-                  <span className="text-sm font-medium text-blue-500">ECCV 2026 <span className="text-orange-500">Oral</span></span>
-                  <a href="https://arxiv.org/abs/2511.15706" target="_blank" rel="noopener noreferrer" className="inline-block">
-                    <img src="https://img.shields.io/badge/arXiv-2511.15706-b31b1b" alt="arXiv" className="h-5" />
-                  </a>
-                  <a href="https://github.com/Parskatt/romav2" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-muted-foreground hover:text-foreground transition-colors">
-                    <GithubIcon className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
+          <h3 className="mb-2 mt-10 text-base font-semibold uppercase tracking-widest text-muted-foreground">Other</h3>
+          <div className="divide-y divide-border">
+            {ADDITIONAL_PUBLICATIONS.map((pub) => (
+              <AdditionalPublication key={pub.title} pub={pub} />
+            ))}
+          </div>
+        </section>
+
+        {/* Supervision Section */}
+        <section id="supervision" className="py-8">
+          <h2 className="mb-2 text-3xl font-bold tracking-tighter">Supervision</h2>
+          <p className="mb-8 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            Students I have advised, and the work that came out of it.
+          </p>
+          <div className="grid gap-6">
+            {SUPERVISED_PUBLICATIONS.map((pub) => (
+              <article key={pub.title} className="rounded-lg border p-6 transition-colors hover:bg-muted/50">
+                <h3 className="text-lg font-semibold leading-snug">{pub.title}</h3>
+                <AuthorList authors={pub.authors} className="mt-1.5" />
+                <VenueLine pub={pub} className="mt-1.5" />
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pub.role}</p>
+                <PublicationLinks links={pub.links} className="mt-3.5" />
+              </article>
+            ))}
           </div>
         </section>
 
