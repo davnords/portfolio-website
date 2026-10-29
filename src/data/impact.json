@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28",
+  "generatedAt": "2026-10-29",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 112,
     "hIndex": 5,
-    "stars": 1505,
+    "stars": 1509,
     "papers": 8
   },
   "milestones": [
@@ -204,8 +204,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 753,
-      "reportedStars": 753,
+      "stars": 756,
+      "reportedStars": 756,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -218,7 +218,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 24
+        "2026-10": 27
       }
     },
     {
@@ -227,8 +227,8 @@
       "repo": "davnords/MuM",
       "url": "https://github.com/davnords/MuM",
       "created": "2025-10",
-      "stars": 128,
-      "reportedStars": 128,
+      "stars": 129,
+      "reportedStars": 129,
       "monthly": {
         "2025-11": 50,
         "2025-12": 15,
@@ -241,7 +241,7 @@
         "2026-07": 11,
         "2026-08": 1,
         "2026-09": 4,
-        "2026-10": 3
+        "2026-10": 4
       }
     },
     {
