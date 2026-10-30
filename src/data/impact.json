@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-10-29",
+  "generatedAt": "2026-10-30",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 112,
+    "citations": 114,
     "hIndex": 5,
-    "stars": 1509,
+    "stars": 1512,
     "papers": 8
   },
   "milestones": [
@@ -64,14 +64,15 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 65,
-      "reportedCitations": 65,
+      "citations": 67,
+      "reportedCitations": 67,
       "undated": 0,
       "monthly": {
+        "2026-12": 1,
         "2026-10": 15,
         "2026-09": 9,
         "2026-08": 10,
-        "2026-07": 6,
+        "2026-07": 7,
         "2026-06": 7,
         "2026-05": 2,
         "2026-04": 4,
@@ -204,8 +205,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 756,
-      "reportedStars": 756,
+      "stars": 758,
+      "reportedStars": 758,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -218,7 +219,7 @@
         "2026-07": 35,
         "2026-08": 38,
         "2026-09": 43,
-        "2026-10": 27
+        "2026-10": 29
       }
     },
     {
@@ -250,10 +251,10 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 48,
-      "reportedStars": 48,
+      "stars": 49,
+      "reportedStars": 49,
       "monthly": {
-        "2026-10": 48
+        "2026-10": 49
       }
     },
     {
