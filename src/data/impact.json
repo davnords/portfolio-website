@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31",
+  "generatedAt": "2026-11-01",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 114,
     "hIndex": 5,
-    "stars": 1515,
+    "stars": 1514,
     "papers": 8
   },
   "milestones": [
@@ -186,14 +186,14 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 480,
-      "reportedStars": 480,
+      "stars": 479,
+      "reportedStars": 479,
       "monthly": {
         "2026-03": 1,
         "2026-04": 200,
         "2026-05": 33,
         "2026-06": 77,
-        "2026-07": 55,
+        "2026-07": 54,
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29
