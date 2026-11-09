@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-08",
+  "generatedAt": "2026-11-09",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 122,
+    "citations": 123,
     "hIndex": 5,
-    "stars": 1529,
+    "stars": 1537,
     "papers": 8
   },
   "milestones": [
@@ -133,12 +133,14 @@
       "label": "RoMa-Ω",
       "venue": "ECCVW 2026",
       "arxiv": "2609.09507",
-      "title": "RoMa-$\\Omega$: What Feed-Forward 3D Models Know About Image Matching",
+      "title": "RoMa-Ω: What Feed-Forward 3D Models Know About Image Matching",
       "published": "2026-09",
-      "citations": 0,
-      "reportedCitations": 0,
+      "citations": 1,
+      "reportedCitations": 1,
       "undated": 0,
-      "monthly": {}
+      "monthly": {
+        "2026-10": 1
+      }
     },
     {
       "key": "orientation",
@@ -189,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 485,
-      "reportedStars": 485,
+      "stars": 486,
+      "reportedStars": 486,
       "monthly": {
         "2026-03": 1,
         "2026-04": 200,
@@ -200,7 +202,7 @@
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29,
-        "2026-11": 6
+        "2026-11": 7
       }
     },
     {
@@ -209,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 761,
-      "reportedStars": 761,
+      "stars": 764,
+      "reportedStars": 764,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -224,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 2
+        "2026-11": 5
       }
     },
     {
@@ -256,11 +258,11 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 55,
-      "reportedStars": 55,
+      "stars": 58,
+      "reportedStars": 58,
       "monthly": {
         "2026-10": 49,
-        "2026-11": 6
+        "2026-11": 9
       }
     },
     {
@@ -291,12 +293,12 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 69,
-      "reportedStars": 69,
+      "stars": 70,
+      "reportedStars": 70,
       "monthly": {
         "2026-09": 59,
         "2026-10": 9,
-        "2026-11": 1
+        "2026-11": 2
       }
     },
     {
