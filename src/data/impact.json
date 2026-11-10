@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09",
+  "generatedAt": "2026-11-10",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 123,
     "hIndex": 5,
-    "stars": 1537,
+    "stars": 1540,
     "papers": 8
   },
   "milestones": [
@@ -191,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 486,
-      "reportedStars": 486,
+      "stars": 487,
+      "reportedStars": 487,
       "monthly": {
         "2026-03": 1,
         "2026-04": 200,
@@ -202,7 +202,7 @@
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29,
-        "2026-11": 7
+        "2026-11": 8
       }
     },
     {
@@ -211,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 764,
-      "reportedStars": 764,
+      "stars": 765,
+      "reportedStars": 765,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 5
+        "2026-11": 6
       }
     },
     {
@@ -258,11 +258,11 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 58,
-      "reportedStars": 58,
+      "stars": 59,
+      "reportedStars": 59,
       "monthly": {
         "2026-10": 49,
-        "2026-11": 9
+        "2026-11": 10
       }
     },
     {
