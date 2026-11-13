@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-12",
+  "generatedAt": "2026-11-13",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 124,
     "hIndex": 5,
-    "stars": 1547,
+    "stars": 1549,
     "papers": 8
   },
   "milestones": [
@@ -211,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 769,
-      "reportedStars": 769,
+      "stars": 770,
+      "reportedStars": 770,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 10
+        "2026-11": 11
       }
     },
     {
@@ -258,11 +258,11 @@
       "repo": "davnords/poincar3",
       "url": "https://github.com/davnords/poincar3",
       "created": "2026-09",
-      "stars": 59,
-      "reportedStars": 59,
+      "stars": 60,
+      "reportedStars": 60,
       "monthly": {
         "2026-10": 49,
-        "2026-11": 10
+        "2026-11": 11
       }
     },
     {
