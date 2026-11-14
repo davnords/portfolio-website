@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-13",
+  "generatedAt": "2026-11-14",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 124,
+    "citations": 127,
     "hIndex": 5,
-    "stars": 1549,
+    "stars": 1550,
     "papers": 8
   },
   "milestones": [
@@ -44,11 +44,11 @@
       "arxiv": "2604.04931",
       "title": "LoMa: Local Feature Matching Revisited",
       "published": "2026-04",
-      "citations": 22,
-      "reportedCitations": 22,
+      "citations": 23,
+      "reportedCitations": 23,
       "undated": 1,
       "monthly": {
-        "2026-11": 3,
+        "2026-11": 4,
         "2026-10": 6,
         "2026-09": 2,
         "2026-08": 1,
@@ -65,12 +65,12 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 72,
-      "reportedCitations": 72,
+      "citations": 74,
+      "reportedCitations": 74,
       "undated": 0,
       "monthly": {
         "2026-12": 1,
-        "2026-11": 4,
+        "2026-11": 6,
         "2026-10": 16,
         "2026-09": 9,
         "2026-08": 10,
@@ -191,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 489,
-      "reportedStars": 489,
+      "stars": 490,
+      "reportedStars": 490,
       "monthly": {
         "2026-03": 1,
         "2026-04": 200,
@@ -202,7 +202,7 @@
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29,
-        "2026-11": 10
+        "2026-11": 11
       }
     },
     {
