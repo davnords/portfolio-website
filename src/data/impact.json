@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-17",
+  "generatedAt": "2026-11-18",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 130,
     "hIndex": 5,
-    "stars": 1558,
+    "stars": 1566,
     "papers": 8
   },
   "milestones": [
@@ -191,18 +191,18 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 492,
-      "reportedStars": 492,
+      "stars": 498,
+      "reportedStars": 498,
       "monthly": {
         "2026-03": 1,
-        "2026-04": 199,
+        "2026-04": 198,
         "2026-05": 33,
         "2026-06": 77,
         "2026-07": 54,
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29,
-        "2026-11": 14
+        "2026-11": 21
       }
     },
     {
@@ -211,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 776,
-      "reportedStars": 776,
+      "stars": 778,
+      "reportedStars": 778,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 17
+        "2026-11": 19
       }
     },
     {
