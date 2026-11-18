@@ -12,6 +12,8 @@ type Task = {
   body: string
   highlights: { value: string; label: string }[]
   columns: string[]
+  /** per numeric column, whether higher or lower is better; best is bolded within each block */
+  better: ('max' | 'min')[]
   blocks: Block[]
   /** row names to dim, e.g. a reference method in a different regime */
   dim?: string[]
@@ -33,6 +35,7 @@ const TASKS: Task[] = [
       { value: '0.61 GiB', label: 'peak GPU memory' },
     ],
     columns: ['Method', 'm ↓', '° ↓', '% ↑', 'cm ↓', '° ↓', '% ↑', 'ms ↓', 'GiB ↓'],
+    better: ['min', 'min', 'max', 'min', 'min', 'max', 'min', 'min'],
     blocks: [
       { rows: [['hloc SP+LG', 0.11, 0.21, 90.7, 1.1, 0.19, 94.5, 250.7, 0.73]] },
       {
@@ -68,7 +71,8 @@ const TASKS: Task[] = [
       { value: '28×', label: 'faster than incremental COLMAP' },
       { value: '56.2', label: 'AUC@1°, best of the three' },
     ],
-    columns: ['Method', '@0.5°', '@1°', '@5°', '@10°', 'Time (s) ↓'],
+    columns: ['Method', '@0.5° ↑', '@1° ↑', '@5° ↑', '@10° ↑', 'Time (s) ↓'],
+    better: ['max', 'max', 'max', 'max', 'min'],
     blocks: [
       {
         rows: [
@@ -92,6 +96,7 @@ const TASKS: Task[] = [
       { value: '0.6 GiB', label: 'VRAM, 8× below DROID-SLAM' },
     ],
     columns: ['Method', 'Succ. ↑', 'FPS ↑', 'Lat. ms ↓', 'VRAM ↓', 'ATE m ↓'],
+    better: ['max', 'max', 'min', 'min', 'min'],
     blocks: [
       {
         group: 'Cambridge Landmarks',
@@ -113,30 +118,6 @@ const TASKS: Task[] = [
       },
     ],
     note: 'Success counts sequences with an evaluable trajectory. ORB-SLAM3 fails on some, and its ATE is over the ones it completes.',
-  },
-  {
-    key: 'metric',
-    label: 'Metric scale',
-    title: 'Poses in metres, straight from the network',
-    body:
-      'A scale head on the pooled camera tokens predicts metric scale, so trajectories come out in metres with no depth model on the side.',
-    highlights: [
-      { value: '96.7%', label: 'of pairs within 25 cm, 5°' },
-      { value: '3.6 cm', label: 'median ATE, no scale fitting' },
-      { value: '14×', label: 'fewer parameters than DA3-Nested' },
-    ],
-    columns: ['Method', '25 cm, 5° ↑', 'scale ≤10% ↑', 'scale ≤25% ↑', 't cm ↓', 'R ° ↓', 'ATE cm ↓'],
-    blocks: [
-      {
-        rows: [
-          ['π³-X', '86.1', '20.4', '46.9', '6.6', '0.23', '6.6'],
-          ['MapAnything', '77.2', '15.4', '35.4', '11.3', '0.49', '10.7'],
-          ['DA3-Nested', '97.4', '54.6', '90.8', '2.6', '0.21', '2.5'],
-          ['VGGT-μ', '96.7', '46.5', '83.5', '3.7', '0.28', '3.6'],
-        ],
-      },
-    ],
-    note: 'Ten-frame sequences from 260 Map-Free scenes, rigid alignment without scaling. DA3-Nested pairs DA3-Giant with a separate metric depth model (1.7B parameters).',
   },
 ]
 
@@ -194,7 +175,7 @@ export function Downstream() {
             </thead>
             <tbody>
               {task.blocks.map((b, bi) => (
-                <FragmentRows key={bi} block={b} cols={task.columns.length} dim={task.dim} />
+                <FragmentRows key={bi} block={b} cols={task.columns.length} better={task.better} dim={task.dim} />
               ))}
             </tbody>
           </table>
@@ -205,7 +186,18 @@ export function Downstream() {
   )
 }
 
-function FragmentRows({ block, cols, dim }: { block: Block; cols: number; dim?: string[] }) {
+/** "8/8" counts as a fraction; "n/a" never wins */
+function num(v: Cell) {
+  const [a, b] = String(v).split('/')
+  return b !== undefined ? Number(a) / Number(b) : Number(a)
+}
+
+function FragmentRows({ block, cols, better, dim }: { block: Block; cols: number; better: ('max' | 'min')[]; dim?: string[] }) {
+  const ranked = block.rows.filter((r) => !dim?.includes(String(r[0])))
+  const best = better.map((dir, c) => {
+    const vals = ranked.map((r) => num(r[c + 1])).filter((x) => !Number.isNaN(x))
+    return dir === 'max' ? Math.max(...vals) : Math.min(...vals)
+  })
   return (
     <>
       {block.group && (
@@ -227,8 +219,9 @@ function FragmentRows({ block, cols, dim }: { block: Block; cols: number; dim?: 
                 className={cn(
                   'px-3 py-2 tabular-nums',
                   i === 0 ? 'text-left' : 'text-right font-mono text-xs',
-                  ours ? 'font-semibold text-foreground' : muted ? 'text-muted-foreground/60' : 'text-muted-foreground',
-                  ours && i === 0 && 'text-rose-600 dark:text-rose-400',
+                  muted ? 'text-muted-foreground/60' : 'text-muted-foreground',
+                  i === 0 && ours && 'font-medium text-rose-600 dark:text-rose-400',
+                  i > 0 && !muted && num(v) === best[i - 1] && 'font-semibold text-foreground',
                 )}
               >
                 {v}

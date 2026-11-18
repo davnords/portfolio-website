@@ -281,8 +281,8 @@ export default function VggtMuPage() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Downstream"
-            title="One model, four pipelines"
-            lead="Condition on known poses or intrinsics when you have them, get metric scale when you don't. The same weights slot into localization, SfM and odometry."
+            title="One model, three pipelines"
+            lead="Condition on known poses or intrinsics when you have them. The same weights slot into localization, SfM and odometry."
           />
           <Downstream />
         </section>

@@ -54,12 +54,15 @@ type ScalingMetric = 'time' | 'mem' | 'camb3' | 'scan3'
 const SCALING_META: Record<ScalingMetric, { label: string; axis: string; log: boolean; lo: number; hi: number; fmt: (v: number) => string }> = {
   time: { label: 'Runtime', axis: 'seconds, log scale ↓', log: true, lo: 0.1, hi: 400, fmt: (v) => (v < 10 ? v.toFixed(2) : v.toFixed(0)) + ' s' },
   mem: { label: 'Memory', axis: 'peak GiB ↓', log: false, lo: 0, hi: 96, fmt: (v) => v.toFixed(1) + ' GiB' },
-  camb3: { label: 'Cambridge', axis: 'AUC@3° ↑', log: false, lo: 0, hi: 70, fmt: (v) => v.toFixed(1) },
-  scan3: { label: 'ScanNet++', axis: 'AUC@3° ↑', log: false, lo: 0, hi: 70, fmt: (v) => v.toFixed(1) },
+  camb3: { label: 'Cambridge', axis: 'AUC@3° on Cambridge ↑', log: false, lo: 0, hi: 70, fmt: (v) => v.toFixed(1) },
+  scan3: { label: 'ScanNet++', axis: 'AUC@3° on ScanNet++ ↑', log: false, lo: 0, hi: 70, fmt: (v) => v.toFixed(1) },
 }
 
 export function ScalingChart() {
-  const [metric, setMetric] = useState<ScalingMetric>('time')
+  // accuracy is one view with a dataset switch, so the top level reads runtime / memory / accuracy
+  const [view, setView] = useState<'time' | 'mem' | 'acc'>('time')
+  const [dataset, setDataset] = useState<'camb3' | 'scan3'>('camb3')
+  const metric: ScalingMetric = view === 'acc' ? dataset : view
   const [hover, setHover] = useState<string | null>(null)
   const { ref, seen } = useInView<HTMLDivElement>()
   const m = SCALING_META[metric]
@@ -90,11 +93,27 @@ export function ScalingChart() {
   return (
     <div ref={ref} className="rounded-xl border border-border bg-card/40 p-4 sm:p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <Segmented
-          value={metric}
-          onChange={setMetric}
-          options={(Object.keys(SCALING_META) as ScalingMetric[]).map((k) => ({ value: k, label: SCALING_META[k].label }))}
-        />
+        <div className="flex flex-wrap items-center gap-2">
+          <Segmented
+            value={view}
+            onChange={setView}
+            options={[
+              { value: 'time', label: 'Runtime' },
+              { value: 'mem', label: 'Memory' },
+              { value: 'acc', label: 'Accuracy' },
+            ]}
+          />
+          {view === 'acc' && (
+            <Segmented
+              value={dataset}
+              onChange={setDataset}
+              options={[
+                { value: 'camb3', label: 'Cambridge' },
+                { value: 'scan3', label: 'ScanNet++' },
+              ]}
+            />
+          )}
+        </div>
         <span className="font-mono text-[11px] text-muted-foreground">{m.axis}</span>
       </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img" aria-label={`${m.label} against number of frames`}>
