@@ -241,10 +241,10 @@ export default function VggtMuPage() {
             eyebrow="The race"
             title={
               <>
-                Every camera of a Cambridge scene. <span className="text-muted-foreground">One forward pass.</span>
+                Every camera of a Cambridge scene. <span className="text-muted-foreground">In one forward pass.</span>
               </>
             }
-            lead="All mapping frames of each scene go in at once, on one 96 GiB GH200. The clocks below run in real time. Pick a scene and watch who finishes."
+            lead="All mapping frames of each scene go in at once, on one 96 GiB GH200. The clocks below run in real time. Pick a scene."
           />
           <Race />
         </section>
@@ -271,7 +271,7 @@ export default function VggtMuPage() {
         <section id="explore" className="scroll-mt-20 border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Explore"
-            title="Fly through the predictions yourself"
+            title="Visualizing the predictions"
             lead="Every camera VGGT-μ predicted for five Cambridge Landmarks scenes, each from one forward pass and drawn with its own image. Scrub through the sequence, colour by error or by the predicted uncertainty, and click a camera to see its frame. The mixed-scene and localization results are here too."
           />
           <LazyPoseViewer />
@@ -281,7 +281,7 @@ export default function VggtMuPage() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Downstream"
-            title="One model, three pipelines"
+            title="Quantitative Results"
             lead="Condition on known poses or intrinsics when you have them. The same weights slot into localization, SfM and odometry."
           />
           <Downstream />
@@ -293,14 +293,14 @@ export default function VggtMuPage() {
             eyebrow="Efficiency"
             title={
               <>
-                Top-tier accuracy, <span className="text-muted-foreground">at a fraction of the cost</span>
+                Strong accuracy and speed tradeoff, <span className="text-muted-foreground">allowing inference on thousands of images.</span>
               </>
             }
             lead="At 500 frames, VGGT-μ is the fastest model and the one with the least memory, while landing second in accuracy, 1.6 points behind π³, which takes 80× longer."
           />
           <EfficiencyScatter />
           <div className="mt-12">
-            <h3 className="mb-2 text-lg font-semibold">Scaling to a thousand frames</h3>
+            <h3 className="mb-2 text-lg font-semibold">Comparing to VGGT inference speedups</h3>
             <p className="mb-6 max-w-2xl text-sm leading-relaxed text-muted-foreground">
               Compared with VGGT-Ω and the efficient VGGT variants, which merge tokens to go faster. VGGT-μ stays
               accurate as sequences grow and is 20× faster than the fastest of them at 1,000 frames. Token merging is
@@ -316,7 +316,7 @@ export default function VggtMuPage() {
             eyebrow="Robustness"
             title={
               <>
-                Throw in the wrong photos. <span className="text-muted-foreground">It notices.</span>
+                Robust to noise. <span className="text-muted-foreground">Separates mixed scenes.</span>
               </>
             }
             lead="Feed-forward models assume a single scene and force everything into one coordinate frame. VGGT-μ is trained on disconnected view graphs, so its edge confidences separate scenes and reject distractors in the same pass that estimates the poses."
@@ -347,7 +347,7 @@ export default function VggtMuPage() {
         <section className="border-t border-border py-16 sm:py-20">
           <SectionHeading
             eyebrow="Method"
-            title="A micro VGGT-Ω that only predicts poses"
+            title="TLDR; A micro VGGT-Ω that only predicts poses"
             lead="Images, possibly from several unrelated scenes, pass through a DINOv3 encoder and one shared block of frame and global attention, repeated K times. Every pair of camera tokens is decoded into a relative pose, a confidence and an information matrix; pose averaging produces metric trajectories. Known poses and intrinsics can be fed in when you have them."
           />
           <Figure
@@ -375,7 +375,7 @@ export default function VggtMuPage() {
 
         {/* ------------------------------------------------------ uncertainty */}
         <section className="border-t border-border py-16 sm:py-20">
-          <SectionHeading eyebrow="Uncertainty" title="Every edge knows how wrong it might be" />
+          <SectionHeading eyebrow="Uncertainty" title="Uncertainty estimates for all edges" />
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_1fr]">
             <div className="space-y-4 text-sm leading-relaxed text-muted-foreground">
               <p>
