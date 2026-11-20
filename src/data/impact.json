@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-19",
+  "generatedAt": "2026-11-20",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 131,
+    "citations": 133,
     "hIndex": 5,
-    "stars": 1566,
+    "stars": 1569,
     "papers": 8
   },
   "milestones": [
@@ -44,11 +44,11 @@
       "arxiv": "2604.04931",
       "title": "LoMa: Local Feature Matching Revisited",
       "published": "2026-04",
-      "citations": 24,
-      "reportedCitations": 24,
+      "citations": 25,
+      "reportedCitations": 25,
       "undated": 1,
       "monthly": {
-        "2026-11": 5,
+        "2026-11": 6,
         "2026-10": 6,
         "2026-09": 2,
         "2026-08": 1,
@@ -65,12 +65,12 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 76,
-      "reportedCitations": 76,
+      "citations": 77,
+      "reportedCitations": 77,
       "undated": 0,
       "monthly": {
         "2026-12": 1,
-        "2026-11": 8,
+        "2026-11": 9,
         "2026-10": 16,
         "2026-09": 9,
         "2026-08": 10,
@@ -191,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 498,
-      "reportedStars": 498,
+      "stars": 499,
+      "reportedStars": 499,
       "monthly": {
         "2026-03": 1,
         "2026-04": 198,
@@ -202,7 +202,7 @@
         "2026-08": 27,
         "2026-09": 58,
         "2026-10": 29,
-        "2026-11": 21
+        "2026-11": 22
       }
     },
     {
@@ -211,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 778,
-      "reportedStars": 778,
+      "stars": 779,
+      "reportedStars": 779,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 19
+        "2026-11": 20
       }
     },
     {
@@ -293,12 +293,12 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 71,
-      "reportedStars": 71,
+      "stars": 72,
+      "reportedStars": 72,
       "monthly": {
         "2026-09": 59,
         "2026-10": 9,
-        "2026-11": 3
+        "2026-11": 4
       }
     },
     {
