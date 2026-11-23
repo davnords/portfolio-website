@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-22",
+  "generatedAt": "2026-11-23",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
@@ -7,7 +7,7 @@
   "totals": {
     "citations": 133,
     "hIndex": 5,
-    "stars": 1572,
+    "stars": 1578,
     "papers": 8
   },
   "milestones": [
@@ -191,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 499,
-      "reportedStars": 499,
+      "stars": 502,
+      "reportedStars": 502,
       "monthly": {
         "2026-03": 1,
         "2026-04": 198,
@@ -200,9 +200,9 @@
         "2026-06": 77,
         "2026-07": 54,
         "2026-08": 27,
-        "2026-09": 58,
+        "2026-09": 57,
         "2026-10": 29,
-        "2026-11": 22
+        "2026-11": 26
       }
     },
     {
@@ -211,8 +211,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 782,
-      "reportedStars": 782,
+      "stars": 784,
+      "reportedStars": 784,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +226,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 23
+        "2026-11": 25
       }
     },
     {
@@ -293,12 +293,12 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 72,
-      "reportedStars": 72,
+      "stars": 73,
+      "reportedStars": 73,
       "monthly": {
         "2026-09": 59,
         "2026-10": 9,
-        "2026-11": 4
+        "2026-11": 5
       }
     },
     {
