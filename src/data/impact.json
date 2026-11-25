@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-24",
+  "generatedAt": "2026-11-25",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 133,
+    "citations": 135,
     "hIndex": 5,
-    "stars": 1582,
+    "stars": 1584,
     "papers": 8
   },
   "milestones": [
@@ -65,12 +65,12 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 77,
-      "reportedCitations": 77,
+      "citations": 79,
+      "reportedCitations": 79,
       "undated": 0,
       "monthly": {
         "2026-12": 1,
-        "2026-11": 9,
+        "2026-11": 11,
         "2026-10": 16,
         "2026-09": 9,
         "2026-08": 10,
@@ -191,8 +191,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 505,
-      "reportedStars": 505,
+      "stars": 506,
+      "reportedStars": 506,
       "monthly": {
         "2026-03": 1,
         "2026-04": 197,
@@ -202,7 +202,7 @@
         "2026-08": 27,
         "2026-09": 57,
         "2026-10": 29,
-        "2026-11": 30
+        "2026-11": 31
       }
     },
     {
@@ -293,12 +293,12 @@
       "repo": "davnords/RoMa-Omega",
       "url": "https://github.com/davnords/RoMa-Omega",
       "created": "2026-07",
-      "stars": 73,
-      "reportedStars": 73,
+      "stars": 74,
+      "reportedStars": 74,
       "monthly": {
         "2026-09": 59,
         "2026-10": 9,
-        "2026-11": 5
+        "2026-11": 6
       }
     },
     {
