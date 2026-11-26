@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-25",
+  "generatedAt": "2026-11-26",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 135,
+    "citations": 142,
     "hIndex": 5,
-    "stars": 1584,
+    "stars": 1588,
     "papers": 8
   },
   "milestones": [
@@ -44,11 +44,11 @@
       "arxiv": "2604.04931",
       "title": "LoMa: Local Feature Matching Revisited",
       "published": "2026-04",
-      "citations": 25,
-      "reportedCitations": 25,
+      "citations": 26,
+      "reportedCitations": 26,
       "undated": 1,
       "monthly": {
-        "2026-11": 6,
+        "2026-11": 7,
         "2026-10": 6,
         "2026-09": 2,
         "2026-08": 1,
@@ -65,12 +65,12 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 79,
-      "reportedCitations": 79,
+      "citations": 82,
+      "reportedCitations": 82,
       "undated": 0,
       "monthly": {
         "2026-12": 1,
-        "2026-11": 11,
+        "2026-11": 14,
         "2026-10": 16,
         "2026-09": 9,
         "2026-08": 10,
@@ -90,10 +90,11 @@
       "arxiv": "2511.17309",
       "title": "MuM: Multi-View Masked Image Modeling for 3D Vision",
       "published": "2025-11",
-      "citations": 8,
-      "reportedCitations": 8,
+      "citations": 9,
+      "reportedCitations": 9,
       "undated": 1,
       "monthly": {
+        "2026-11": 1,
         "2026-10": 1,
         "2026-09": 4,
         "2025-11": 3
@@ -135,10 +136,11 @@
       "arxiv": "2609.09507",
       "title": "RoMa-Ω: What Feed-Forward 3D Models Know About Image Matching",
       "published": "2026-09",
-      "citations": 1,
-      "reportedCitations": 1,
+      "citations": 3,
+      "reportedCitations": 3,
       "undated": 0,
       "monthly": {
+        "2026-11": 2,
         "2026-10": 1
       }
     },
@@ -191,8 +193,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 506,
-      "reportedStars": 506,
+      "stars": 508,
+      "reportedStars": 508,
       "monthly": {
         "2026-03": 1,
         "2026-04": 197,
@@ -202,7 +204,7 @@
         "2026-08": 27,
         "2026-09": 57,
         "2026-10": 29,
-        "2026-11": 31
+        "2026-11": 33
       }
     },
     {
@@ -211,8 +213,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 785,
-      "reportedStars": 785,
+      "stars": 786,
+      "reportedStars": 786,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -226,7 +228,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 26
+        "2026-11": 27
       }
     },
     {
@@ -235,8 +237,8 @@
       "repo": "davnords/MuM",
       "url": "https://github.com/davnords/MuM",
       "created": "2025-10",
-      "stars": 129,
-      "reportedStars": 129,
+      "stars": 130,
+      "reportedStars": 130,
       "monthly": {
         "2025-11": 50,
         "2025-12": 15,
@@ -249,7 +251,8 @@
         "2026-07": 11,
         "2026-08": 1,
         "2026-09": 4,
-        "2026-10": 4
+        "2026-10": 4,
+        "2026-11": 1
       }
     },
     {
