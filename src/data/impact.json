@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-11-26",
+  "generatedAt": "2026-11-27",
   "sources": {
     "citations": "Semantic Scholar Academic Graph API",
     "stars": "GitHub REST API"
   },
   "totals": {
-    "citations": 142,
+    "citations": 146,
     "hIndex": 5,
-    "stars": 1588,
+    "stars": 1590,
     "papers": 8
   },
   "milestones": [
@@ -65,12 +65,12 @@
       "arxiv": "2511.15706",
       "title": "RoMa v2: Harder Better Faster Denser Feature Matching",
       "published": "2025-11",
-      "citations": 82,
-      "reportedCitations": 82,
+      "citations": 84,
+      "reportedCitations": 84,
       "undated": 0,
       "monthly": {
         "2026-12": 1,
-        "2026-11": 14,
+        "2026-11": 16,
         "2026-10": 16,
         "2026-09": 9,
         "2026-08": 10,
@@ -119,10 +119,11 @@
       "arxiv": "2505.15441",
       "title": "Quick ViTs: Speeding up Vision Transformers Through Equivariance",
       "published": "2025-05",
-      "citations": 4,
-      "reportedCitations": 4,
+      "citations": 5,
+      "reportedCitations": 5,
       "undated": 1,
       "monthly": {
+        "2026-11": 1,
         "2026-08": 1,
         "2026-06": 1,
         "2026-04": 1,
@@ -169,10 +170,11 @@
       "arxiv": "2502.05169",
       "title": "Flopping for FLOPs: Leveraging equivariance for computational efficiency",
       "published": "2025-02",
-      "citations": 11,
-      "reportedCitations": 11,
+      "citations": 12,
+      "reportedCitations": 12,
       "undated": 1,
       "monthly": {
+        "2026-11": 1,
         "2026-08": 1,
         "2026-07": 1,
         "2026-06": 1,
@@ -193,8 +195,8 @@
       "repo": "davnords/LoMa",
       "url": "https://github.com/davnords/LoMa",
       "created": "2026-03",
-      "stars": 508,
-      "reportedStars": 508,
+      "stars": 509,
+      "reportedStars": 509,
       "monthly": {
         "2026-03": 1,
         "2026-04": 197,
@@ -204,7 +206,7 @@
         "2026-08": 27,
         "2026-09": 57,
         "2026-10": 29,
-        "2026-11": 33
+        "2026-11": 34
       }
     },
     {
@@ -213,8 +215,8 @@
       "repo": "Parskatt/RoMaV2",
       "url": "https://github.com/Parskatt/RoMaV2",
       "created": "2025-11",
-      "stars": 786,
-      "reportedStars": 786,
+      "stars": 787,
+      "reportedStars": 787,
       "monthly": {
         "2025-11": 309,
         "2025-12": 62,
@@ -228,7 +230,7 @@
         "2026-08": 38,
         "2026-09": 43,
         "2026-10": 30,
-        "2026-11": 27
+        "2026-11": 28
       }
     },
     {
